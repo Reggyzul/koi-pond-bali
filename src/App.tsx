@@ -135,7 +135,7 @@ export default function App() {
         return;
       }
 
-      if (path === 'articles' || path === 'artikel' || path === 'blog' || path === 'edukasi') {
+      if (path === 'articles' || path === 'artikel' || path === 'blog' || targetMatched(path)) {
         setIsArticlesPageActive(true);
         setIsAboutPageActive(false);
         setIsContactPageActive(false);
@@ -163,6 +163,10 @@ export default function App() {
         }, 100);
       }
     };
+
+    function targetMatched(p: string) {
+      return p === 'blog' || p === 'edukasi';
+    }
 
     window.addEventListener('popstate', handlePopState);
     window.addEventListener('hashchange', handleNavigationCheck);
@@ -343,19 +347,18 @@ export default function App() {
       {/* Footer */}
       <Footer onOpenConsultation={() => handleOpenConsultation()} />
 
-      {/* Exact Agro Koi Farm Floating Bottom-Left Button */}
-      <div className="fixed bottom-5 left-5 z-50 flex items-center gap-2">
+      {/* Mobile-Optimized Floating WhatsApp Button (Bottom-Right on Mobile, Bottom-Left on Desktop) */}
+      <div className="fixed bottom-4 right-4 sm:bottom-5 sm:left-5 z-40 flex items-center">
         <a
           id="floating-agro-whatsapp-pill"
           href={contactData.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-4 py-2.5 bg-[#1976D2] hover:bg-[#1565C0] text-white rounded-lg shadow-xl text-sm font-bold transition-transform hover:scale-105"
+          className="flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full shadow-2xl text-xs sm:text-sm font-bold transition-transform hover:scale-105 active:scale-95 border-2 border-white"
         >
-          <span className="p-1 bg-[#25D366] text-white rounded-full flex items-center justify-center">
-            <MessageCircle className="w-4 h-4" />
-          </span>
-          <span>Whatsapp Kami</span>
+          <MessageCircle className="w-4 h-4 sm:w-4 sm:h-4 shrink-0" />
+          <span className="hidden sm:inline">Whatsapp Kami</span>
+          <span className="sm:hidden">Chat WA</span>
         </a>
       </div>
 

@@ -84,21 +84,21 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ duration: 0.25 }}
-            className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-2xl z-10"
+            className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-2xl z-10 max-h-[92vh] flex flex-col"
           >
             {/* Top decorative bar */}
-            <div className="h-2 w-full bg-[#E53935]" />
+            <div className="h-2 w-full bg-[#E53935] shrink-0" />
 
             {/* Close Button */}
             <button
               id="close-modal-btn"
               onClick={onClose}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 p-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 p-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-pointer z-10"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="p-6 md:p-8">
+            <div className="overflow-y-auto p-6 md:p-8">
               {!isSuccess ? (
                 <div>
                   <div className="flex items-center gap-3 mb-4">
