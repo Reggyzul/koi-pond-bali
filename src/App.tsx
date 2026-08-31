@@ -12,6 +12,7 @@ import About from './components/About';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import Articles from './components/Articles';
+import ArticlesPage from './components/ArticlesPage';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -26,6 +27,7 @@ export default function App() {
   const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
   const [isContactPageActive, setIsContactPageActive] = useState<boolean>(false);
   const [isAboutPageActive, setIsAboutPageActive] = useState<boolean>(false);
+  const [isArticlesPageActive, setIsArticlesPageActive] = useState<boolean>(false);
 
   useEffect(() => {
     const serviceMap: { [key: string]: string } = {
@@ -67,6 +69,7 @@ export default function App() {
       if (target === 'contact' || target === 'kontak') {
         setIsContactPageActive(true);
         setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -74,6 +77,16 @@ export default function App() {
 
       if (target === 'about' || target === 'tentang-kami' || target === 'founder') {
         setIsAboutPageActive(true);
+        setIsContactPageActive(false);
+        setIsArticlesPageActive(false);
+        setActiveServiceId(null);
+        window.scrollTo({ top: 0, behavior: 'instant' as any });
+        return;
+      }
+
+      if (target === 'articles' || target === 'artikel' || target === 'blog' || target === 'edukasi') {
+        setIsArticlesPageActive(true);
+        setIsAboutPageActive(false);
         setIsContactPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -85,10 +98,12 @@ export default function App() {
         setActiveServiceId(matchedId);
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
       } else {
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
         if (hash) {
           const element = document.getElementById(hash);
           if (element) {
@@ -105,6 +120,7 @@ export default function App() {
       if (path === 'contact' || path === 'kontak') {
         setIsContactPageActive(true);
         setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -112,6 +128,16 @@ export default function App() {
 
       if (path === 'about' || path === 'tentang-kami' || path === 'founder') {
         setIsAboutPageActive(true);
+        setIsContactPageActive(false);
+        setIsArticlesPageActive(false);
+        setActiveServiceId(null);
+        window.scrollTo({ top: 0, behavior: 'instant' as any });
+        return;
+      }
+
+      if (path === 'articles' || path === 'artikel' || path === 'blog' || path === 'edukasi') {
+        setIsArticlesPageActive(true);
+        setIsAboutPageActive(false);
         setIsContactPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -123,10 +149,12 @@ export default function App() {
         setActiveServiceId(matchedId);
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
       } else {
         setActiveServiceId(null);
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
         setTimeout(() => {
           const element = document.getElementById('services');
           if (element) {
@@ -149,12 +177,14 @@ export default function App() {
       setActiveServiceId(null);
       setIsContactPageActive(false);
       setIsAboutPageActive(false);
+      setIsArticlesPageActive(false);
       window.history.pushState(null, '', '/');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     setIsContactPageActive(false);
     setIsAboutPageActive(false);
+    setIsArticlesPageActive(false);
     setActiveServiceId(id);
     window.history.pushState(null, '', '/' + id);
     window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -164,6 +194,7 @@ export default function App() {
     setActiveServiceId(null);
     setIsAboutPageActive(false);
     setIsContactPageActive(false);
+    setIsArticlesPageActive(false);
     window.history.pushState(null, '', '/');
     setTimeout(() => {
       const element = document.getElementById('services');
@@ -185,6 +216,7 @@ export default function App() {
     if (sectionId === 'contact') {
       setIsContactPageActive(true);
       setIsAboutPageActive(false);
+      setIsArticlesPageActive(false);
       setActiveServiceId(null);
       window.history.pushState(null, '', '/contact');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -194,16 +226,28 @@ export default function App() {
     if (sectionId === 'about') {
       setIsAboutPageActive(true);
       setIsContactPageActive(false);
+      setIsArticlesPageActive(false);
       setActiveServiceId(null);
       window.history.pushState(null, '', '/founder');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
       return;
     }
 
-    if (activeServiceId || isContactPageActive || isAboutPageActive) {
+    if (sectionId === 'articles') {
+      setIsArticlesPageActive(true);
+      setIsAboutPageActive(false);
+      setIsContactPageActive(false);
+      setActiveServiceId(null);
+      window.history.pushState(null, '', '/artikel');
+      window.scrollTo({ top: 0, behavior: 'instant' as any });
+      return;
+    }
+
+    if (activeServiceId || isContactPageActive || isAboutPageActive || isArticlesPageActive) {
       setActiveServiceId(null);
       setIsContactPageActive(false);
       setIsAboutPageActive(false);
+      setIsArticlesPageActive(false);
       window.history.pushState(null, '', '/');
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -253,6 +297,20 @@ export default function App() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         />
+      ) : isArticlesPageActive ? (
+        <ArticlesPage
+          onBackToHome={() => {
+            setIsArticlesPageActive(false);
+            window.history.pushState(null, '', '/');
+            setTimeout(() => {
+              const element = document.getElementById('articles');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 100);
+          }}
+          onOpenConsultation={() => handleOpenConsultation()}
+        />
       ) : (
         <>
           <Hero
@@ -271,8 +329,11 @@ export default function App() {
 
             <WhyChooseUs />
 
-            {/* Articles Section - Positioned Directly Above FAQ */}
-            <Articles onOpenConsultation={() => handleOpenConsultation()} />
+            {/* 3 Featured Articles Preview on Landing Page */}
+            <Articles
+              onOpenConsultation={() => handleOpenConsultation()}
+              onViewAllArticles={() => handleSelectSection('articles')}
+            />
 
             <FAQ />
           </main>
