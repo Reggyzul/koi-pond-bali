@@ -6,7 +6,8 @@
 import {
   Service,
   WhyChooseUsItem,
-  FAQItem
+  FAQItem,
+  Article
 } from './types';
 
 // Slogan & Deskripsi Utama KOI POND SERVICES BALI
@@ -411,6 +412,124 @@ export const faqData: FAQItem[] = [
     question: 'Apakah ikan koi yang dijual dijamin sehat dan sudah dikarantina?',
     answer: 'Semua ikan koi yang kami sediakan dijamin 100% sehat, aktif, dan telah melalui masa karantina ketat minimal 14 hari serta steril dari parasit sebelum dikirim ke kolam Anda.',
     category: 'Materials'
+  }
+];
+
+// Artikel & Edukasi Kolam Koi
+export const articlesData: Article[] = [
+  {
+    id: 'art-1',
+    slug: 'cara-merawat-air-kolam-koi-jernih-kristal-bali',
+    title: 'Panduan Menjaga Air Kolam Koi Tetap Bening Kristal di Iklim Tropis Bali',
+    category: 'Perawatan Kolam',
+    date: '31 Agustus 2026',
+    readTime: '4 Menit Baca',
+    author: 'Alvian Malengga',
+    image: '/images/perawatan_kolam.jpg',
+    excerpt: 'Iklim tropis dan sinar matahari intens di Bali seringkali membuat kolam cepat berlumut dan air menjadi hijau. Simak tips ahli menjaga parameter air tetap ideal dan bening kristal sepanjang tahun.',
+    content: [
+      'Kualitas air adalah kunci utama kesehatan dan keindahan warna ikan koi. Di daerah tropis seperti Bali dengan paparan sinar ultraviolet yang tinggi, alga bersel satu dapat berkembang biak dengan sangat cepat jika kolam tidak ditunjang oleh sistem filtrasi yang memadai.',
+      'Langkah pertama adalah memastikan sirkulasi air berjalan minimal 1.5 hingga 2 kali volume kolam per jam. Ini memastikan kotoran feses ikan tidak mengendap dan cepat dialirkan menuju bottom drain dan chamber filter mekanis.',
+      'Gunakan kombinasi media filter biologis yang berkualitas seperti Japanese Mat (Japmat), Bio Ball, dan Bio Ring yang telah matang oleh bakteri pengurai (nitrifikasi) untuk mengubah amonia beracun menjadi nitrat.',
+      'Pasang lampu UV Sterilizer dengan watt yang disesuaikan dengan debit air (standar 2-3 Watt per 1.000 liter). Lampu UV akan memecah struktur sel alga hijau sehingga air kolam tetap jernih tembus hingga ke dasar.',
+      'Lakukan penggantian air (backwash) rutin sebanyak 10% hingga 15% setiap minggu untuk menjaga kesegaran air dan mengurangi kadar zat terlarut (TDS).'
+    ],
+    tags: ['Air Jernih', 'Perawatan Kolam', 'Filter Kolam', 'Tips Bali']
+  },
+  {
+    id: 'art-2',
+    slug: 'solusi-mengatasi-kolam-koi-bocor-bergaransi',
+    title: 'Penyebab Kolam Koi Bocor & Cara Mengatasinya Tanpa Bongkar Total',
+    category: 'Renovasi Kolam',
+    date: '28 Agustus 2026',
+    readTime: '5 Menit Baca',
+    author: 'Alvian Malengga',
+    image: '/images/renovasi_kolam.jpg',
+    excerpt: 'Air kolam koi Anda cepat surut? Kenali penyebab kebocoran struktural vs plumbing serta metode pelapisan waterproofing elastis bergaransi yang efisien tanpa harus merobohkan kolam.',
+    content: [
+      'Kolam koi yang bocor merupakan momok bagi penghobi karena dapat memboroskan air, mengganggu kestabilan parameter air, dan membahayakan keselamatan ikan koi jika air surut saat pemilik sedang bepergian.',
+      'Penyebab utama kebocoran kolam umumnya terbagi dua: pergeseran tanah/retak struktur beton (structural crack) dan kebocoran sambungan pipa sirkulasi/bottom drain (plumbing leakage).',
+      'Untuk mendiagnosa lokasi bocor, biarkan air surut secara alami hingga berhenti pada level tertentu. Jika air berhenti tepat di bawah skimmer atau pipa return, titik bocor berada di jalur pipa tersebut. Jika terus surut ke dasar, kemungkinan besar terjadi retak di dinding atau lantai beton.',
+      'Metode penanganan modern tidak selalu memerlukan pembongkaran total. Kami menggunakan teknologi injeksi semen grouting polimer dan pelapisan membran waterproofing elastis berbahan dasar semen fleksibel anti-lumut yang aman 100% untuk ikan koi.',
+      'Pastikan setiap perbaikan dikerjakan oleh teknisi berpengalaman dan memiliki garansi tertulis agar kolam tahan puluhan tahun.'
+    ],
+    tags: ['Kolam Bocor', 'Renovasi', 'Waterproofing', 'Garansi']
+  },
+  {
+    id: 'art-3',
+    slug: 'panduan-sistem-filter-chamber-vortex-koi',
+    title: 'Mengenal Sistem Filter Chamber Vortex & Media Filtrasi Terbaik untuk Kolam Koi',
+    category: 'Sistem Filter',
+    date: '25 Agustus 2026',
+    readTime: '6 Menit Baca',
+    author: 'Alvian Malengga',
+    image: '/images/filter_kolam.jpg',
+    excerpt: 'Sistem filter adalah jantung kolam koi. Pelajari bagaimana sistem 4 chamber vortex memisahkan kotoran padat, menyaring zat kimia berbahaya, dan menciptakan ekosistem air yang sehat.',
+    content: [
+      'Memelihara ikan koi pada hakikatnya adalah memelihara air. Tanpa filter yang dirancang dengan rasio volume ideal (minimal 30% dari total volume kolam utama), ikan koi akan rentan terserang penyakit akibat penumpukan amonia.',
+      'Sistem Chamber Multi-Stage standar profesional terdiri dari: Chamber 1 (Vortex / Settling Chamber & Sikat Brush Mekanis) untuk menangkap kotoran kasar; Chamber 2 (Moving Bed MBBR / Japmat) untuk kolonisasi bakteri aerob; Chamber 3 (Bio Ring / Batu Apung / Lava Rock) untuk filtrasi biologis lanjutan; dan Chamber 4 (Pompa Return & Lampu UV Sterilizer).',
+      'Media mekanis bertugas menyaring kotoran fisik, sedangkan media biologis membutuhkan asupan oksigen yang melimpah dari aerator agar bakteri menguntungkan dapat memproses racun kotoran ikan secara efektif.',
+      'KOI POND SERVICES BALI melayani rancang bangun chamber baru, perombakan chamber sempit, dan upgrade media filter bermutu tinggi yang mudah dibackwash.'
+    ],
+    tags: ['Filter Chamber', 'Vortex', 'Media Filter', 'Plumbing']
+  },
+  {
+    id: 'art-4',
+    slug: 'pertolongan-pertama-ikan-koi-sakit-jamur-kutu',
+    title: 'Pertolongan Pertama Saat Ikan Koi Sakit, Berjamur, atau Terserang Kutu Jarum',
+    category: 'Perawatan Ikan',
+    date: '20 Agustus 2026',
+    readTime: '4 Menit Baca',
+    author: 'Alvian Malengga',
+    image: '/images/perawatan_ikan.jpg',
+    excerpt: 'Gejala ikan koi diam di dasar, flashing menggesekkan badan, atau timbul bercak merah/putih membutuhkan penanganan medis yang cepat dan tepat sebelum menular ke seluruh kolam.',
+    content: [
+      'Perubahan cuaca ekstrem di Bali (pancaroba musim hujan ke kemarau) seringkali memicu stres pada ikan koi dan melemahkan sistem imun mereka.',
+      'Gejala umum penyakit koi meliputi: berenang menyendiri di pojok kolam, sirip menguncup, tubuh berlendir tebal, bintik putih (Ich / White Spot), luka borok merah (Aeromonas), atau kutu jarum (Lernaea) yang menempel di sisik.',
+      'Langkah pertama: Segera pisahkan ikan yang sakit ke bak karantina khusus. Berikan aerasi kencang dan tambahkan garam ikan non-yodium dengan dosis 3-5 kg per 1.000 liter air untuk membantu regulasi osmoregulasi ikan.',
+      'Gunakan obat-obatan teruji seperti Malachite Green, Acriflavine, atau Dimilin khusus kutu sesuai dosis yang tepat. Hindari memasukkan garam langsung ke kolam utama jika terdapat tanaman air atau zeolit.',
+      'Jika Anda ragu melakukan pengobatan sendiri, tim KOI POND SERVICES BALI siap datang langsung ke lokasi Anda untuk melakukan diagnosa medis, swab parasit, dan pemberian obat injeksi/oles.'
+    ],
+    tags: ['Ikan Sakit', 'Kutu Jarum', 'Pengobatan Koi', 'Karantina']
+  },
+  {
+    id: 'art-5',
+    slug: 'tips-memilih-ikan-koi-berkualitas-bali',
+    title: 'Tips Memilih Jenis Ikan Koi (Kohaku, Sanke, Showa) untuk Pemula di Bali',
+    category: 'Jual Beli Koi',
+    date: '15 Agustus 2026',
+    readTime: '5 Menit Baca',
+    author: 'Alvian Malengga',
+    image: '/images/jual_beli_koi.jpg',
+    excerpt: 'Ingin mulai mengoleksi koi? Kenali 3 varietas paling populer (Gosanke) beserta kriteria bentuk tubuh (body build), ketajaman warna (kiwa & sashi), dan pola motif yang bernilai tinggi.',
+    content: [
+      'Dalam dunia Nishikigoi, kelompok "Big Three" atau Gosanke (Kohaku, Taisho Sanke, dan Showa Sanshoku) adalah varietas yang paling bergengsi dan menjadi primadona di setiap kontes koi.',
+      'Kohaku adalah koi dengan dasar warna putih bersih (Shiroji) dengan corak merah menyala (Hi/Beni). Pilihlah Kohaku dengan pola merah yang seimbang dari kepala hingga pangkal ekor (odome) dan warna putih yang tidak kekuningan.',
+      'Taisho Sanke (Sanke) adalah koi putih dengan corak merah dan bercak hitam (Sumi) yang hanya tersebar di atas garis punggung, tanpa ada corak hitam di area kepala.',
+      'Showa Sanshoku (Showa) memiliki warna dasar hitam dengan corak merah dan putih, dengan ciri khas corak hitam bermotif petir (Menware) di bagian kepala.',
+      'Selain corak warna, perhatikan postur tubuh: pilih ikan yang berbadan seperti torpedo (proporsional tidak buncit), sirip dada mulus, dan mata yang jernih aktif berenang.',
+      'Kami menyediakan koleksi bibit unggul tosai hingga koi jumbo berkualitas kontes yang sudah lolos karantina ketat di Bali.'
+    ],
+    tags: ['Gosanke', 'Kohaku', 'Sanke', 'Showa', 'Beli Koi']
+  },
+  {
+    id: 'art-6',
+    slug: 'standar-plumbing-dan-bottom-drain-kolam-koi',
+    title: 'Standar Kedalaman & Sirkulasi Pipa (Bottom Drain & Skimmer) Kolam Koi Modern',
+    category: 'Konstruksi Kolam',
+    date: '10 Agustus 2026',
+    readTime: '5 Menit Baca',
+    author: 'Alvian Malengga',
+    image: '/images/pembuatan_kolam.jpg',
+    excerpt: 'Kunci kolam koi minim perawatan adalah desain plumbing yang benar sejak awal pengecoran. Pahami fungsi bottom drain, skimmer, aerated BD, dan kemiringan lantai kolam.',
+    content: [
+      'Banyak pemilik kolam koi mengeluh harus menguras kolam setiap minggu karena kotoran mengendap di dasar. Masalah ini 100% bersumber dari kesalahan desain dasar kolam dan perpipaan plumbing.',
+      'Standar kedalaman kolam koi ideal untuk iklim Bali adalah minimal 1 meter hingga 1.5 meter. Kedalaman ini menjaga suhu air tetap sejuk dan stabil meski matahari siang sangat terik, serta memberi ruang bagi koi untuk berkembang jumbo.',
+      'Lantai kolam wajib dibuat miring membentuk kerucut mengarah ke lubang Bottom Drain (BD) dengan pipa berukuran minimal 3 atau 4 inch agar kotoran tersedot gravitasi secara otomatis.',
+      'Surface Skimmer dipasang di permukaan air untuk menyedot debu, minyak pakan, dan daun kering sebelum tenggelam ke dasar.',
+      'Pipa arus return diposisikan strategis untuk menciptakan arus putaran air yang lembut menuju BD, sehingga kolam memiliki mekanisme "self-cleaning" alami.'
+    ],
+    tags: ['Bottom Drain', 'Plumbing Kolam', 'Konstruksi', 'Desain Kolam']
   }
 ];
 

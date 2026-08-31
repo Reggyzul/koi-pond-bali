@@ -32,6 +32,20 @@ export interface WhyChooseUsItem {
   iconName: string;
 }
 
+export interface Article {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: string;
+  image: string;
+  excerpt: string;
+  content: string[];
+  tags: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -58,24 +72,9 @@ export interface Testimonial {
   name: string;
   company: string;
   rating: number;
-  text: string;
+  feedback: string;
   image: string;
-}
-
-export interface StatItem {
-  id: string;
-  label: string;
-  value: number;
-  suffix: string;
-}
-
-export interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  experience: string;
-  specialization: string;
-  image: string;
+  projectType: string;
 }
 
 export interface FAQItem {
@@ -85,13 +84,20 @@ export interface FAQItem {
   category: 'General' | 'Process' | 'Pricing' | 'Materials' | 'Warranty';
 }
 
-export interface BlogPost {
+export interface MaterialSample {
   id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  readTime: string;
-  category: string;
-  date: string;
+  name: string;
+  category: 'Wood' | 'Stone' | 'Fabric' | 'Metal' | 'Glass';
+  textureUrl: string;
+  description: string;
+  sustainable: boolean;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  bio: string;
   image: string;
+  expertise: string[];
 }

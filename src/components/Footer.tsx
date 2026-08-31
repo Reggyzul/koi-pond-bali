@@ -80,6 +80,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             <li><a href="#about" className="hover:text-[#FCB900] transition-colors">Tentang Kami</a></li>
             <li><a href="#services" className="hover:text-[#FCB900] transition-colors">6 Layanan Kolam</a></li>
             <li><a href="#why-choose-us" className="hover:text-[#FCB900] transition-colors">Keunggulan</a></li>
+            <li><a href="#articles" className="hover:text-[#FCB900] transition-colors">Artikel & Edukasi</a></li>
             <li><a href="#faq" className="hover:text-[#FCB900] transition-colors">FAQ</a></li>
             <li><a href="#contact" className="hover:text-[#FCB900] transition-colors">Kontak Bali</a></li>
           </ul>

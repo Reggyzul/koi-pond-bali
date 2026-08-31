@@ -11,6 +11,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
+import Articles from './components/Articles';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -223,7 +224,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-[#F8F9FA] text-[#222222]">
       
-      {/* Agro Koi Farm Style Top Navigation */}
+      {/* Top Navigation */}
       <Navbar
         onOpenConsultation={() => handleOpenConsultation()}
         onSelectService={handleSelectService}
@@ -269,6 +270,10 @@ export default function App() {
             />
 
             <WhyChooseUs />
+
+            {/* Articles Section - Positioned Directly Above FAQ */}
+            <Articles onOpenConsultation={() => handleOpenConsultation()} />
+
             <FAQ />
           </main>
         </>

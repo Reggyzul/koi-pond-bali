@@ -130,6 +130,18 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
             </a>
 
             <a
+              id="nav-link-articles"
+              href="#articles"
+              onClick={(e) => {
+                e.preventDefault();
+                onSelectSection('articles');
+              }}
+              className="hover:text-[#FCB900] transition-colors py-1 cursor-pointer"
+            >
+              Artikel
+            </a>
+
+            <a
               id="nav-link-faq"
               href="#faq"
               onClick={(e) => {
@@ -220,6 +232,19 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
               >
                 Keunggulan Kami
+              </a>
+
+              <a
+                id="mobile-nav-link-articles"
+                href="#articles"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  onSelectSection('articles');
+                }}
+                className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
+              >
+                Artikel & Edukasi Koi
               </a>
 
               <a
