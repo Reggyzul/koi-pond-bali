@@ -30,6 +30,7 @@ interface NavbarProps {
 export default function Navbar({ onOpenConsultation, onSelectService, onSelectSection }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const serviceCategories = [
     { label: 'Pembuatan Kolam Koi', id: 'pembuatan-kolam-koi', icon: Building2 },
@@ -177,8 +178,11 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
           {/* Mobile Menu Toggle Button */}
           <button
             id="nav-mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors border border-white/10"
+            onClick={() => {
+              setMobileMenuOpen(!mobileMenuOpen);
+              if (mobileMenuOpen) setMobileServicesOpen(false);
+            }}
+            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -194,7 +198,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="lg:hidden bg-gradient-to-b from-[#062C38] to-[#04242E] border-t border-teal-500/20 px-5 py-5 space-y-4 text-white overflow-y-auto max-h-[85vh] shadow-xl"
+              className="lg:hidden bg-gradient-to-b from-[#062C38] to-[#04242E] border-t border-teal-500/20 px-5 py-4 space-y-3 text-white overflow-y-auto max-h-[85vh] shadow-xl"
             >
               <a
                 id="mobile-nav-link-about"
@@ -202,31 +206,53 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 onClick={(e) => {
                   e.preventDefault();
                   setMobileMenuOpen(false);
+                  setMobileServicesOpen(false);
                   onSelectSection('about');
                 }}
-                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1"
+                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                Tentang Kami (Profil & Sejarah)
+                Tentang Kami
               </a>
 
-              <div className="space-y-1.5 pl-3 border-l-2 border-[#FF6E40]/50 bg-white/5 py-2.5 rounded-r-lg pr-3">
-                <span className="text-[11px] font-bold text-[#FBBF24] uppercase tracking-wider block">
-                  6 Layanan Spesialis Kolam
-                </span>
-                {serviceCategories.map((srv) => (
-                  <button
-                    id={`mobile-item-${srv.id}`}
-                    key={srv.id}
-                    onClick={() => {
-                      onSelectService(srv.id);
-                      setMobileMenuOpen(false);
-                    }}
-                    className="w-full text-left py-1 text-xs sm:text-sm font-medium text-teal-50 hover:text-[#FF6E40] transition-colors flex items-center gap-2 cursor-pointer"
-                  >
-                    <srv.icon className="w-3.5 h-3.5 text-[#FF5722] shrink-0" />
-                    <span>{srv.label}</span>
-                  </button>
-                ))}
+              {/* Layanan Kami Accordion */}
+              <div>
+                <button
+                  id="mobile-nav-services-toggle"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="w-full flex items-center justify-between text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5 cursor-pointer text-left"
+                >
+                  <span>Layanan Kami</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180 text-[#FBBF24]' : 'text-teal-300/70'}`} />
+                </button>
+
+                <AnimatePresence>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      id="mobile-services-list"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden space-y-1 pl-3 my-1.5 border-l-2 border-[#FF6E40]/40 bg-white/[0.03] py-2 rounded-r-lg"
+                    >
+                      {serviceCategories.map((srv) => (
+                        <button
+                          id={`mobile-item-${srv.id}`}
+                          key={srv.id}
+                          onClick={() => {
+                            onSelectService(srv.id);
+                            setMobileMenuOpen(false);
+                            setMobileServicesOpen(false);
+                          }}
+                          className="w-full text-left py-1 px-1.5 text-xs sm:text-sm font-normal text-teal-100/90 hover:text-[#FF6E40] transition-colors flex items-center gap-2 cursor-pointer"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#FF6E40] shrink-0" />
+                          <span>{srv.label}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <a
@@ -235,11 +261,12 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 onClick={(e) => {
                   e.preventDefault();
                   setMobileMenuOpen(false);
+                  setMobileServicesOpen(false);
                   onSelectSection('why-choose-us');
                 }}
-                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1"
+                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                Keunggulan Kami
+                Keunggulan
               </a>
 
               <a
@@ -248,11 +275,12 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 onClick={(e) => {
                   e.preventDefault();
                   setMobileMenuOpen(false);
+                  setMobileServicesOpen(false);
                   onSelectSection('articles');
                 }}
-                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1"
+                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                Artikel & Edukasi Koi
+                Artikel & Panduan
               </a>
 
               <a
@@ -261,11 +289,12 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 onClick={(e) => {
                   e.preventDefault();
                   setMobileMenuOpen(false);
+                  setMobileServicesOpen(false);
                   onSelectSection('faq');
                 }}
-                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1"
+                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                FAQ & Tanya Jawab
+                FAQ
               </a>
 
               <a
@@ -274,11 +303,12 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 onClick={(e) => {
                   e.preventDefault();
                   setMobileMenuOpen(false);
+                  setMobileServicesOpen(false);
                   onSelectSection('contact');
                 }}
-                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1"
+                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                Kontak & Lokasi Bali
+                Kontak
               </a>
 
               <div className="pt-2">
@@ -286,9 +316,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   id="mobile-nav-consultation-btn"
                   onClick={() => {
                     setMobileMenuOpen(false);
+                    setMobileServicesOpen(false);
                     onOpenConsultation();
                   }}
-                  className="w-full py-2.5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wide text-center flex items-center justify-center gap-2"
+                  className="w-full py-2.5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wide text-center flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Konsultasi & Survei Gratis</span>
