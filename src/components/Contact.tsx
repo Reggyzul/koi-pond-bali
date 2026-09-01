@@ -27,7 +27,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi / survei kolam koi:\n\n• *Nama*: ${formData.name}\n• *No. HP/WA*: ${formData.phone}\n• *Layanan*: ${formData.type}\n• *Lokasi*: ${formData.location}\n• *Detail Kebutuhan*: ${formData.message}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+    const text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi / survei kolam koi:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.type}\n- Lokasi: ${formData.location}\n- Kebutuhan: ${formData.message}\n\nMohon informasi estimasi & jadwal survei. Terima kasih.`;
     const waUrl = `https://wa.me/628133034733?text=${encodeURIComponent(text)}`;
     
     setTimeout(() => {
@@ -51,7 +51,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Alamat Workshop / Kantor',
+      title: 'Alamat Workshop',
       desc: contactData.address
     },
     {
@@ -61,7 +61,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
     },
     {
       icon: Phone,
-      title: 'Telepon Langsung',
+      title: 'Telepon',
       desc: contactData.phone
     },
     {
@@ -72,68 +72,78 @@ export default function Contact({ onBackToHome }: ContactProps) {
     },
     {
       icon: Clock,
-      title: 'Jam Operasional & Survei',
+      title: 'Jam Operasional',
       desc: contactData.operatingHours
     }
   ];
 
   return (
-    <div className={onBackToHome ? "pt-18 min-h-screen bg-[#F2F9F9]" : ""}>
+    <div className={onBackToHome ? "pt-18 min-h-screen relative" : ""}>
       {onBackToHome && (
-        <div className="bg-gradient-to-r from-[#04242E] via-[#062C38] to-[#0A4354] text-white border-b border-teal-500/20 py-4 shadow-md">
+        <div className="bg-[#04242E]/80 backdrop-blur-md text-white border-b border-teal-500/20 py-4 shadow-md sticky top-16 z-30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <button
               id="contact-page-back-btn"
               onClick={onBackToHome}
-              className="text-sm sm:text-base font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm"
+              className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm"
             >
-              <ArrowLeft className="w-5 h-5 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
               <span>Kembali ke Beranda</span>
             </button>
-            <span className="text-xs sm:text-sm font-mono tracking-widest text-[#FBBF24] uppercase font-extrabold bg-black/20 px-3 py-1 rounded-md border border-amber-400/20">
+            <span className="text-xs font-mono tracking-widest text-[#FBBF24] uppercase font-bold bg-black/30 px-3 py-1 rounded-md border border-amber-400/20">
               Kontak & Lokasi Bali
             </span>
           </div>
         </div>
       )}
 
-      <section id="contact" className={`py-14 md:py-16 bg-white ${onBackToHome ? "" : "border-b border-teal-900/10"}`}>
+      <section id="contact" className={`py-14 md:py-18 relative ${onBackToHome ? "" : "glass-aquatic-section"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
           {/* Header Layout */}
-          <div className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-12">
-            <span className="text-xs font-bold tracking-widest uppercase text-[#FF5722] bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200/80 inline-block shadow-2xs">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-14"
+          >
+            <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
               Konsultasi & Pemesanan
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#062C38] leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
               Hubungi KOI POND SERVICES BALI
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-slate-600 font-normal leading-relaxed">
-              Konsultasikan pembuatan kolam baru, perbaikan kebocoran, atau perawatan ikan koi Anda sekarang juga. Nikmati layanan <strong>KONSULTASI & SURVEI GRATIS</strong> di seluruh Bali.
+            <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
+              Konsultasikan kolam baru, perbaikan kebocoran, atau perawatan ikan koi Anda. Dapatkan survei lokasi gratis se-Bali.
             </p>
             <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
-          </div>
+          </motion.div>
 
           {/* Contact Layout Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-start">
             
             {/* Left Column: Form Section (Span 7) */}
-            <div className="lg:col-span-7 bg-[#F2F9F9] border border-teal-900/10 p-5 sm:p-7 rounded-2xl shadow-xs space-y-5">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="lg:col-span-7 glass-aquatic-card p-5 sm:p-7 rounded-2xl shadow-2xl space-y-5 border border-teal-500/20"
+            >
               {!isSuccess ? (
                 <form id="contact-page-form" onSubmit={handleSubmit} className="space-y-3.5">
-                  <div className="space-y-1 border-b border-teal-900/10 pb-3">
-                    <h3 className="text-lg sm:text-xl font-bold text-[#062C38]">
+                  <div className="space-y-1 border-b border-teal-500/20 pb-3">
+                    <h3 className="text-lg sm:text-xl font-bold text-white">
                       Formulir Konsultasi & Estimasi Biaya
                     </h3>
-                    <p className="text-xs text-slate-600">
-                      Kirimkan detail rencana Anda dan tim teknisi kami akan segera merespons dengan estimasi awal.
+                    <p className="text-xs text-teal-100/75">
+                      Kirimkan detail kebutuhan kolam Anda untuk mendapatkan estimasi awal.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Nama Lengkap Anda *
+                      <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
+                        Nama Lengkap *
                       </label>
                       <input
                         id="contact-input-name"
@@ -141,13 +151,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                         placeholder="Nama Anda"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Nomor WhatsApp / HP *
+                      <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
+                        Nomor WhatsApp *
                       </label>
                       <input
                         id="contact-input-phone"
@@ -155,7 +165,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                         placeholder="08133034733..."
                       />
                     </div>
@@ -163,26 +173,26 @@ export default function Contact({ onBackToHome }: ContactProps) {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Layanan yang Dibutuhkan *
+                      <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
+                        Layanan *
                       </label>
                       <select
                         id="contact-input-type"
                         value={formData.type}
                         onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/90 border border-teal-500/30 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                       >
-                        <option value="Pembuatan Kolam Koi">Pembuatan Kolam Koi Baru</option>
-                        <option value="Renovasi / Perbaikan Kolam">Renovasi / Perbaikan Kolam Bocor</option>
-                        <option value="Perawatan & Kuras Kolam">Perawatan & Kuras Kolam Berkala</option>
-                        <option value="Perawatan & Medis Ikan Koi">Perawatan & Pengobatan Ikan Koi</option>
-                        <option value="Pembuatan / Perawatan Filter">Pembuatan / Perawatan Sistem Filter</option>
-                        <option value="Jual / Beli Ikan Koi">Jual / Beli Ikan Koi</option>
+                        <option value="Pembuatan Kolam Koi" className="bg-[#062C38] text-white">Pembuatan Kolam Koi Baru</option>
+                        <option value="Renovasi / Perbaikan Kolam" className="bg-[#062C38] text-white">Renovasi / Perbaikan Kolam Bocor</option>
+                        <option value="Perawatan & Kuras Kolam" className="bg-[#062C38] text-white">Perawatan & Kuras Kolam Berkala</option>
+                        <option value="Perawatan & Medis Ikan Koi" className="bg-[#062C38] text-white">Perawatan & Pengobatan Ikan Koi</option>
+                        <option value="Pembuatan / Perawatan Filter" className="bg-[#062C38] text-white">Pembuatan / Perawatan Sistem Filter</option>
+                        <option value="Jual / Beli Ikan Koi" className="bg-[#062C38] text-white">Jual / Beli Ikan Koi</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                        Area / Lokasi di Bali *
+                      <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
+                        Lokasi di Bali *
                       </label>
                       <input
                         id="contact-input-location"
@@ -190,15 +200,15 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         required
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
-                        placeholder="Contoh: Denpasar, Sanur, Ubud..."
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
+                        placeholder="Denpasar, Sanur, Ubud, Canggu..."
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Pesan / Detail Kebutuhan Kolam *
+                    <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
+                      Detail Kebutuhan Kolam *
                     </label>
                     <textarea
                       id="contact-input-message"
@@ -206,8 +216,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
                       rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] resize-none transition-all"
-                      placeholder="Jelaskan ukuran perkiraan, masalah air/bocor, atau jenis kolam yang diinginkan..."
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
+                      placeholder="Jelaskan ukuran kolam, kendala air atau kebocoran yang dialami..."
                     />
                   </div>
 
@@ -215,17 +225,17 @@ export default function Contact({ onBackToHome }: ContactProps) {
                     id="contact-submit-btn"
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 px-5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wide uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3 px-5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Menghubungkan...
+                        <span>Menghubungkan...</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        Kirim & Konsultasi WhatsApp
+                        <span>Kirim & Konsultasi WhatsApp</span>
                       </>
                     )}
                   </button>
@@ -237,14 +247,14 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-8 px-5 space-y-4 flex flex-col items-center"
                 >
-                  <div className="p-3 bg-emerald-500/10 text-[#059669] border border-emerald-500/20 rounded-full w-fit">
+                  <div className="p-3 bg-emerald-500/20 text-[#10B981] border border-emerald-500/30 rounded-full w-fit">
                     <Check className="w-8 h-8 stroke-[2.5]" />
                   </div>
                   <div className="space-y-1.5">
-                    <h3 className="text-xl sm:text-2xl font-bold text-[#062C38]">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
                       Permintaan Konsultasi Diterima
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 max-w-md">
+                    <p className="text-xs sm:text-sm text-teal-100/80 max-w-md">
                       Terima kasih, <strong>{formData.name}</strong>. Pesan Anda telah terhubung ke WhatsApp resmi KOI POND SERVICES BALI (08133034733).
                     </p>
                   </div>
@@ -257,15 +267,20 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   </button>
                 </motion.div>
               )}
-            </div>
+            </motion.div>
 
             {/* Right Column: Contact info cards (Span 5) */}
-            <div className="lg:col-span-5 space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="lg:col-span-5 space-y-4"
+            >
               <div className="space-y-1">
-                <span className="text-xs font-bold tracking-widest uppercase text-[#FF5722] block">
+                <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] block">
                   Informasi Kontak
                 </span>
-                <h3 className="text-lg sm:text-xl font-bold text-[#062C38] tracking-tight">
+                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
                   Hubungi KOI POND SERVICES BALI
                 </h3>
               </div>
@@ -275,13 +290,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
                 {contactInfo.map((info, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3.5 p-3.5 bg-[#F2F9F9] border border-teal-900/10 hover:border-[#0E5C73] rounded-xl transition-all group shadow-2xs"
+                    className="flex items-center gap-3.5 p-3.5 glass-aquatic-card border border-teal-500/20 rounded-xl transition-all group"
                   >
-                    <div className="p-2.5 bg-white text-[#0E5C73] rounded-lg shadow-2xs group-hover:bg-[#FF5722] group-hover:text-white transition-colors duration-200 shrink-0 h-fit border border-teal-100">
+                    <div className="p-2.5 bg-[#04242E]/80 text-teal-300 rounded-lg group-hover:bg-[#FF5722] group-hover:text-white transition-colors duration-200 shrink-0 h-fit border border-teal-500/30">
                       <info.icon className="w-4 h-4 stroke-[2]" />
                     </div>
                     <div>
-                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#062C38] mb-0.5">
+                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-teal-200/80 mb-0.5">
                         {info.title}
                       </h4>
                       {info.link ? (
@@ -289,12 +304,12 @@ export default function Contact({ onBackToHome }: ContactProps) {
                           href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs sm:text-sm text-slate-800 font-semibold hover:text-[#FF5722] transition-colors"
+                          className="text-xs sm:text-sm text-white font-semibold hover:text-[#FF6E40] transition-colors"
                         >
                           {info.desc}
                         </a>
                       ) : (
-                        <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                        <p className="text-xs sm:text-sm text-teal-100/90 leading-relaxed font-normal">
                           {info.desc}
                         </p>
                       )}
@@ -304,13 +319,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
               </div>
 
               {/* WhatsApp Hot Desk Banner */}
-              <div className="p-4 sm:p-5 border border-emerald-300 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+              <div className="p-4 sm:p-5 border border-teal-500/30 bg-[#04242E]/70 backdrop-blur-md rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md">
                 <div className="space-y-0.5 text-center sm:text-left">
-                  <h4 className="text-sm font-bold text-emerald-950 flex items-center justify-center sm:justify-start gap-1.5">
-                    <MessageCircle className="w-4 h-4 text-[#059669]" /> WhatsApp Hot Desk
+                  <h4 className="text-sm font-bold text-emerald-300 flex items-center justify-center sm:justify-start gap-1.5">
+                    <MessageCircle className="w-4 h-4 text-[#10B981]" /> WhatsApp Langsung
                   </h4>
-                  <p className="text-xs text-emerald-800">
-                    Kirim foto kolam / video ikan koi untuk diagnosa & estimasi instan.
+                  <p className="text-xs text-teal-100/80 font-normal">
+                    Kirim foto kolam atau video ikan koi untuk diagnosa dan estimasi instan.
                   </p>
                 </div>
                 <a
@@ -318,12 +333,12 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   href={contactData.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="whitespace-nowrap px-5 py-2.5 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:opacity-95 text-white rounded-full font-bold text-xs tracking-wider uppercase transition-all shadow-xs cursor-pointer shrink-0"
+                  className="whitespace-nowrap px-5 py-2.5 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:opacity-95 text-white rounded-full font-bold text-xs tracking-wider uppercase transition-all shadow-md cursor-pointer shrink-0"
                 >
                   Chat WA
                 </a>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 

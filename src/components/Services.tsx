@@ -24,22 +24,28 @@ export default function Services({ onSelectService }: ServicesProps) {
   };
 
   return (
-    <section id="services" className="py-14 md:py-16 bg-[#F2F9F9] border-b border-teal-900/10">
+    <section id="services" className="py-16 md:py-20 glass-aquatic-section relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-12">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#FF5722] bg-orange-50 px-3.5 py-1 rounded-full border border-orange-200/80 inline-block shadow-2xs">
-            Layanan Spesialis Kolam & Ikan
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-14"
+        >
+          <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
+            Layanan Spesialis Kolam
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#062C38] leading-tight">
-            6 Layanan Kolam & Ikan Koi Bali
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
+            Layanan Spesialis Kolam & Ikan Koi Bali
           </h2>
-          <p className="text-xs sm:text-sm md:text-base text-slate-600 font-normal leading-relaxed">
-            Solusi komprehensif mulai dari rancang bangun kolam baru, renovasi kebocoran, sistem filter chamber vortex, hingga perawatan medis ikan koi.
+          <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
+            Rancang bangun kolam baru, renovasi kebocoran, sistem filtrasi vortex, serta perawatan kesehatan ikan koi.
           </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
@@ -47,26 +53,26 @@ export default function Services({ onSelectService }: ServicesProps) {
             <motion.div
               id={service.id}
               key={service.id}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              whileHover={{ y: -4, boxShadow: '0 12px 24px -5px rgba(6, 44, 56, 0.12)' }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: idx * 0.07 }}
+              whileHover={{ y: -5 }}
               onClick={() => onSelectService(service.id)}
-              className="scroll-mt-24 group flex flex-col justify-between overflow-hidden rounded-2xl bg-white border border-teal-900/10 hover:border-[#0E5C73]/60 transition-all duration-300 relative cursor-pointer shadow-xs"
+              className="scroll-mt-24 group flex flex-col justify-between overflow-hidden rounded-2xl glass-aquatic-card border border-teal-500/20 hover:border-[#FF6E40]/50 transition-all duration-300 relative cursor-pointer"
             >
               {/* Service Image Section */}
-              <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-900">
+              <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-950">
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#062C38] via-[#062C38]/40 to-transparent opacity-85 group-hover:opacity-75 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#062C38] via-[#062C38]/30 to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
                 
                 {/* Float Icon Badge */}
-                <div className="absolute bottom-3 left-3 p-2.5 bg-white text-[#062C38] rounded-xl shadow-md border border-teal-900/10 group-hover:bg-gradient-to-r group-hover:from-[#FF5722] group-hover:to-[#FF6E40] group-hover:text-white transition-all duration-300">
+                <div className="absolute bottom-3 left-3 p-2.5 bg-[#04242E]/80 backdrop-blur-md text-teal-200 rounded-xl shadow-md border border-teal-500/25 group-hover:bg-gradient-to-r group-hover:from-[#FF5722] group-hover:to-[#FF6E40] group-hover:text-white transition-all duration-300">
                   {renderIcon(service.iconName)}
                 </div>
 
@@ -76,29 +82,29 @@ export default function Services({ onSelectService }: ServicesProps) {
               </div>
 
               {/* Service Body Content */}
-              <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between bg-white space-y-3">
-                <div className="space-y-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-[#062C38] group-hover:text-[#FF5722] transition-colors duration-200">
+              <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between space-y-3 bg-[#062C38]/40 backdrop-blur-sm">
+                <div className="space-y-1.5">
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-[#FF6E40] transition-colors duration-200">
                     {service.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                  <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed line-clamp-3 font-normal">
                     {service.description}
                   </p>
                 </div>
 
-                <div className="pt-3.5 border-t border-teal-50 mt-3 flex items-center justify-between">
+                <div className="pt-3.5 border-t border-teal-500/20 mt-3 flex items-center justify-between">
                   <button
                     id={`learn-more-${service.id}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       onSelectService(service.id);
                     }}
-                    className="text-xs font-bold tracking-wider uppercase text-[#0E5C73] group-hover:text-[#FF5722] flex items-center gap-1.5 cursor-pointer transition-colors"
+                    className="text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
                     Detail & Estimasi
-                    <Icons.ArrowRight className="w-3.5 h-3.5 text-[#FF5722] group-hover:translate-x-1 transition-transform" />
+                    <Icons.ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                   </button>
-                  <span className="text-xs text-[#059669] font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  <span className="text-[11px] text-emerald-300 font-bold bg-emerald-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-500/30">
                     Survei Gratis
                   </span>
                 </div>

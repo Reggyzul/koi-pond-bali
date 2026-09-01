@@ -270,14 +270,29 @@ export default function App() {
   const activeService = servicesData.find(s => s.id === activeServiceId);
 
   return (
-    <div className="relative min-h-screen bg-[#F2F9F9] text-[#0F172A]">
+    <div className="relative min-h-screen bg-[#04242E] text-slate-100">
       
+      {/* Fixed Ambient Luxury Koi Pond Background Layer */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <img
+          src="/images/luxury_koi_ambient_bg.jpg"
+          alt="KOI POND SERVICES BALI Ambient"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Luxury Cinematic Gradient Overlay to keep swimming koi visible throughout scrolling */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#021820]/75 via-[#04242E]/70 to-[#062C38]/80 backdrop-blur-[1.5px]" />
+      </div>
+
       {/* Top Navigation */}
-      <Navbar
-        onOpenConsultation={() => handleOpenConsultation()}
-        onSelectService={handleSelectService}
-        onSelectSection={handleSelectSection}
-      />
+      <div className="relative z-50">
+        <Navbar
+          onOpenConsultation={() => handleOpenConsultation()}
+          onSelectService={handleSelectService}
+          onSelectSection={handleSelectSection}
+        />
+      </div>
+
+      <div className="relative z-10">
 
       {activeService ? (
         <ServicePage
@@ -369,6 +384,7 @@ export default function App() {
         initialCategory={initialCategory}
       />
 
+      </div>
     </div>
   );
 }

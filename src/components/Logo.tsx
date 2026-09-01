@@ -38,7 +38,7 @@ export default function Logo({ variant = 'light', className = '', showText = tru
               isDark ? 'text-teal-200/85' : 'text-[#0E5C73]'
             }`}
           >
-            SERVICES • SEJAK 2021
+            SERVICES | SEJAK 2021
           </span>
         </div>
       )}

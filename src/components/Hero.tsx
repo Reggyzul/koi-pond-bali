@@ -16,71 +16,67 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative bg-gradient-to-b from-[#04242E] via-[#062C38] to-[#0A4354] pt-20 pb-10 lg:pt-16 lg:pb-0 min-h-[460px] lg:min-h-[500px] flex items-center overflow-hidden border-b border-teal-500/20"
+      className="relative pt-24 pb-14 lg:pt-28 lg:pb-20 min-h-[500px] flex items-center overflow-hidden border-b border-teal-500/15"
     >
-      {/* Desktop Split Left Image with Water Atmosphere Blend */}
-      <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-1/2 h-full z-0 overflow-hidden">
-        <img
-          src="/images/agro_koi_hero.jpg"
-          alt="Ikan Koi Bali - KOI POND SERVICES BALI"
-          className="w-full h-full object-cover object-center"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#062C38]/40 to-[#062C38]" />
-      </div>
-
-      {/* Main Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 w-full items-center gap-5 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 w-full items-center gap-8 lg:gap-12">
           
-          {/* Mobile-Only Hero Koi Image Card */}
-          <div className="block lg:hidden w-full max-w-xs sm:max-w-sm mx-auto overflow-hidden rounded-2xl shadow-xl border-2 border-teal-400/30">
-            <div className="relative aspect-[16/10] overflow-hidden bg-[#062C38]">
-              <img
-                src="/images/agro_koi_hero.jpg"
-                alt="Ikan Koi Bali - KOI POND SERVICES BALI"
-                className="w-full h-full object-cover object-center"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#04242E]/80 via-transparent to-transparent" />
-            </div>
-          </div>
-
-          {/* Desktop Left Spacer */}
-          <div className="hidden lg:block lg:col-span-6" />
-
-          {/* Right Column: Precise Typography & CTA */}
+          {/* Left Column: Glassmorphic Ambience Card with Swimming Koi Highlight */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="lg:col-span-6 py-2 lg:py-12 lg:pl-8 space-y-3.5 sm:space-y-4 text-center lg:text-left flex flex-col items-center lg:items-start"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none"
           >
-            {/* Top Quality Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-900/60 border border-teal-400/30 text-teal-200 text-xs font-semibold shadow-xs">
+            <div className="relative rounded-2xl overflow-hidden glass-aquatic-card p-2.5 shadow-2xl border border-teal-400/25 group">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                <img
+                  src="/images/agro_koi_hero.jpg"
+                  alt="Ikan Koi Bali - KOI POND SERVICES BALI"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#04242E]/80 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-teal-100 font-medium bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                  <span>Air Sebening Kristal</span>
+                  <span className="text-[#FF6E40] font-bold">Bali - Sejak 2021</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Hero Content & CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-7 space-y-4 text-center lg:text-left flex flex-col items-center lg:items-start"
+          >
+            {/* Tag Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal-900/50 backdrop-blur-md border border-teal-400/30 text-teal-200 text-xs font-semibold shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#FF6E40]" />
-              <span>Spesialis Kolam & Ikan Koi Terpercaya Sejak 2021</span>
+              <span>Spesialis Kolam & Ikan Koi di Bali</span>
             </div>
 
-            {/* Bold Headline */}
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-bold text-white leading-[1.3] tracking-tight">
-              Spesialis Pembuatan, Perbaikan & Perawatan Kolam, Filter dan Ikan Koi Terbaik di Bali
+            {/* Headline */}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[36px] font-bold text-white leading-[1.25] tracking-tight">
+              Pembuatan, Renovasi & Perawatan Kolam Koi Profesional di Bali
             </h1>
 
-            {/* Description Paragraph */}
-            <p className="text-teal-50/90 text-xs sm:text-sm md:text-[15px] font-normal leading-relaxed max-w-xl">
-              KOI POND SERVICES BALI menghadirkan kolam koi jernih kristal, bebas bocor, dan ekosistem ikan sehat dengan keahlian teknis terintegrasi di bidang plumbing, kelistrikan, dan konstruksi beton bertulang bergaransi 100% serta estimasi biaya yang fleksibel.
+            {/* Simplified Direct Description */}
+            <p className="text-teal-100/90 text-sm sm:text-[15px] font-normal leading-relaxed max-w-xl">
+              Solusi tuntas kolam jernih, bebas bocor, dan ekosistem ikan sehat. Mengintegrasikan standar perpipaan presisi, kelistrikan hemat energi, dan konstruksi beton bertulang dengan garansi resmi.
             </p>
 
-            {/* Guarantees Mini Tags */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-0.5 text-xs font-medium text-teal-100">
-              <span className="flex items-center gap-1.5 bg-black/25 px-2.5 py-1 rounded-md border border-teal-500/20">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" />
+            {/* Trust Highlights */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs font-medium text-teal-100">
+              <span className="flex items-center gap-1.5 bg-[#04242E]/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-teal-500/25">
+                <ShieldCheck className="w-4 h-4 text-[#059669]" />
                 Garansi Konstruksi 100%
               </span>
-              <span className="flex items-center gap-1.5 bg-black/25 px-2.5 py-1 rounded-md border border-teal-500/20">
-                <Sparkles className="w-3.5 h-3.5 text-[#FBBF24]" />
-                Survei Lokasi GRATIS Se-Bali
+              <span className="flex items-center gap-1.5 bg-[#04242E]/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-teal-500/25">
+                <Sparkles className="w-4 h-4 text-[#FBBF24]" />
+                Survei Lokasi Gratis Se-Bali
               </span>
             </div>
 
@@ -91,10 +87,10 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
                 href={contactData.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 btn-koi-flame text-white rounded-full font-bold text-sm shadow-lg transition-all cursor-pointer active:scale-95"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 btn-koi-flame text-white rounded-full font-bold text-sm shadow-xl transition-all cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" />
-                <span>Whatsapp Kami (Konsultasi)</span>
+                <span>Konsultasi WhatsApp</span>
               </a>
             </div>
 

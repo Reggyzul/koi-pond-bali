@@ -98,7 +98,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-1.5 w-64 bg-white text-[#0F172A] rounded-xl shadow-xl z-50 py-2 border border-teal-900/10 overflow-hidden"
+                    className="absolute top-full left-0 mt-1.5 w-64 bg-[#04242E]/95 backdrop-blur-xl text-white rounded-xl shadow-2xl z-50 py-2 border border-teal-500/25 overflow-hidden"
                   >
                     {serviceCategories.map((srv) => (
                       <button
@@ -108,9 +108,9 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                           onSelectService(srv.id);
                           setDropdownOpen(false);
                         }}
-                        className="w-full text-left px-4 py-2 hover:bg-teal-50 hover:text-[#0A4354] text-xs font-semibold transition-colors flex items-center gap-2.5 cursor-pointer group"
+                        className="w-full text-left px-4 py-2 hover:bg-white/10 hover:text-[#FF6E40] text-xs font-semibold transition-colors flex items-center gap-2.5 cursor-pointer group"
                       >
-                        <div className="p-1 rounded-md bg-teal-100/60 text-[#0E5C73] group-hover:bg-[#FF5722] group-hover:text-white transition-colors">
+                        <div className="p-1 rounded-md bg-teal-900/60 text-teal-300 group-hover:bg-[#FF5722] group-hover:text-white transition-colors border border-teal-500/20">
                           <srv.icon className="w-3.5 h-3.5" />
                         </div>
                         <span>{srv.label}</span>

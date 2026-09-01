@@ -31,8 +31,8 @@
 /* Base Living Koi Pond Theme */
 html {
   scroll-behavior: smooth;
-  background-color: #F2F9F9;
-  color: #0F172A;
+  background-color: #04242E;
+  color: #F8FAFC;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Ubuntu', sans-serif;
@@ -43,7 +43,8 @@ body {
   font-family: 'Ubuntu', sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
-  background-color: #F2F9F9;
+  background-color: #04242E;
+  color: #F8FAFC;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,17 +54,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Aquatic Koi Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #062C38;
+  background: #04242E;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #FF5722, #FF6E40);
   border-radius: 9999px;
-  border: 1px solid #04242E;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -77,13 +77,13 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 9999px;
   font-weight: 700;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 6px 18px rgba(255, 87, 34, 0.35);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.35);
 }
 
 .btn-koi-flame:hover {
   background: linear-gradient(135deg, #E64A19 0%, #FF5722 100%);
   transform: translateY(-1.5px);
-  box-shadow: 0 8px 22px rgba(255, 87, 34, 0.45);
+  box-shadow: 0 8px 25px rgba(255, 87, 34, 0.5);
 }
 
 .btn-pond-teal {
@@ -92,37 +92,42 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 9999px;
   font-weight: 700;
   transition: all 0.25s ease-in-out;
-  box-shadow: 0 4px 14px rgba(6, 44, 56, 0.25);
+  box-shadow: 0 4px 14px rgba(6, 44, 56, 0.35);
 }
 
 .btn-pond-teal:hover {
   background: linear-gradient(135deg, #062C38 0%, #0A4354 100%);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(6, 44, 56, 0.35);
+  box-shadow: 0 6px 18px rgba(6, 44, 56, 0.45);
 }
 
-.btn-moss-emerald {
-  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
-  color: #ffffff;
-  border-radius: 9999px;
-  font-weight: 700;
-  transition: all 0.25s ease-in-out;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+/* Luxury Glassmorphism Utilities */
+.glass-aquatic-section {
+  background: rgba(4, 36, 46, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(20, 184, 166, 0.15);
+  border-bottom: 1px solid rgba(20, 184, 166, 0.15);
 }
 
-.btn-moss-emerald:hover {
-  background: linear-gradient(135deg, #047857 0%, #059669 100%);
-  transform: translateY(-1px);
+.glass-aquatic-card {
+  background: rgba(6, 44, 56, 0.68);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  box-shadow: 0 10px 30px -4px rgba(2, 24, 32, 0.4);
 }
 
-/* Water glassmorphism card */
-.aquatic-card {
-  background: #ffffff;
-  border: 1px solid rgba(14, 92, 115, 0.12);
-  box-shadow: 0 4px 20px -2px rgba(6, 44, 56, 0.06);
+.glass-aquatic-card:hover {
+  background: rgba(8, 55, 70, 0.78);
+  border-color: rgba(255, 110, 64, 0.4);
+  box-shadow: 0 16px 36px -4px rgba(2, 24, 32, 0.55);
 }
 
-.aquatic-card:hover {
-  border-color: rgba(14, 92, 115, 0.3);
-  box-shadow: 0 10px 25px -4px rgba(6, 44, 56, 0.12);
+.glass-aquatic-light {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(14, 92, 115, 0.18);
+  box-shadow: 0 10px 30px -4px rgba(2, 24, 32, 0.15);
 }

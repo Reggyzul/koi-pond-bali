@@ -18,7 +18,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
   };
 
   return (
-    <footer id="footer" className="bg-gradient-to-b from-[#04242E] via-[#062C38] to-[#021820] text-white border-t border-teal-500/20 pt-12 pb-6 relative overflow-hidden">
+    <footer id="footer" className="bg-[#04242E]/85 backdrop-blur-md text-white border-t border-teal-500/20 pt-12 pb-6 relative overflow-hidden">
       
       {/* Footer Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-7 lg:gap-8 border-b border-teal-500/20 pb-8">
@@ -78,9 +78,9 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-teal-100/80 font-medium">
             <li><a href="#about" className="hover:text-[#FBBF24] transition-colors">Tentang Kami</a></li>
-            <li><a href="#services" className="hover:text-[#FBBF24] transition-colors">6 Layanan Kolam</a></li>
+            <li><a href="#services" className="hover:text-[#FBBF24] transition-colors">Layanan Kolam</a></li>
             <li><a href="#why-choose-us" className="hover:text-[#FBBF24] transition-colors">Keunggulan</a></li>
-            <li><a href="#articles" className="hover:text-[#FBBF24] transition-colors">Artikel & Edukasi</a></li>
+            <li><a href="#articles" className="hover:text-[#FBBF24] transition-colors">Artikel & Panduan</a></li>
             <li><a href="#faq" className="hover:text-[#FBBF24] transition-colors">FAQ</a></li>
             <li><a href="#contact" className="hover:text-[#FBBF24] transition-colors">Kontak Bali</a></li>
           </ul>
@@ -95,7 +95,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             <li><a href="#pembuatan-kolam-koi" className="hover:text-[#FBBF24] transition-colors">Pembuatan Kolam Koi</a></li>
             <li><a href="#renovasi-perbaikan-kolam" className="hover:text-[#FBBF24] transition-colors">Renovasi Kolam Bocor</a></li>
             <li><a href="#perawatan-kolam" className="hover:text-[#FBBF24] transition-colors">Perawatan & Kuras Kolam</a></li>
-            <li><a href="#perawatan-ikan-koi" className="hover:text-[#FBBF24] transition-colors">Perawatan Ikan Koi (Medis)</a></li>
+            <li><a href="#perawatan-ikan-koi" className="hover:text-[#FBBF24] transition-colors">Perawatan Ikan Koi</a></li>
             <li><a href="#pembuatan-perawatan-filter" className="hover:text-[#FBBF24] transition-colors">Filter & Plumbing</a></li>
             <li><a href="#jual-beli-ikan-koi" className="hover:text-[#FBBF24] transition-colors">Jual / Beli Ikan Koi</a></li>
           </ul>
@@ -106,8 +106,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
             Survei Lokasi Gratis
           </h4>
-          <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed">
-            Butuh estimasi pembuatan atau perbaikan kolam di Bali? Konsultasi dan survei lokasi 100% GRATIS ke seluruh Bali.
+          <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed font-normal">
+            Butuh estimasi pembuatan atau perbaikan kolam di Bali? Konsultasi dan survei lokasi gratis se-Bali.
           </p>
 
           <button
@@ -129,8 +129,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
 
         <div className="flex gap-2.5">
           <span>Denpasar, Bali</span>
-          <span>•</span>
-          <span>Plumbing • Kelistrikan • Konstruksi</span>
+          <span>|</span>
+          <span>Plumbing | Kelistrikan | Konstruksi</span>
         </div>
 
         <button
