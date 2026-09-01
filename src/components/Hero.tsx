@@ -9,10 +9,10 @@ import { contactData } from '../data';
 
 interface HeroProps {
   onOpenConsultation?: () => void;
-  onViewFounder?: () => void;
+  onOpenWhatsAppChoice?: () => void;
 }
 
-export default function Hero({ onOpenConsultation }: HeroProps) {
+export default function Hero({ onOpenConsultation, onOpenWhatsAppChoice }: HeroProps) {
   return (
     <section
       id="hero"
@@ -88,16 +88,14 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
 
             {/* WhatsApp CTA Button */}
             <div className="pt-2 w-full sm:w-auto flex items-center justify-center lg:justify-start">
-              <a
+              <button
                 id="hero-agro-whatsapp-btn"
-                href={contactData.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => onOpenWhatsAppChoice ? onOpenWhatsAppChoice() : onOpenConsultation?.()}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 btn-koi-flame text-white rounded-full font-bold text-sm shadow-xl transition-all cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" />
                 <span>Konsultasi WhatsApp</span>
-              </a>
+              </button>
             </div>
 
           </motion.div>

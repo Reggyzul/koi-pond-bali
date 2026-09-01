@@ -21,7 +21,8 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
     category: 'Pembuatan Kolam Koi',
     location: '',
     budget: 'Bisa Disesuaikan (Fleksibel)',
-    message: ''
+    message: '',
+    targetNumber: '08133034733'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -41,13 +42,15 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
     setIsSubmitting(true);
 
     const text = `Halo KOI POND SERVICES BALI!\nSaya ingin mengajukan KONSULTASI & SURVEI GRATIS:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.category}\n- Lokasi di Bali: ${formData.location}\n- Estimasi Budget: ${formData.budget}\n- Keterangan: ${formData.message}\n\nMohon informasi jadwal survei gratis. Terima kasih.`;
-    const waUrl = `https://wa.me/628133034733?text=${encodeURIComponent(text)}`;
+    const cleanNumber = formData.targetNumber.replace(/\D/g, '');
+    const fullNumber = cleanNumber.startsWith('0') ? `62${cleanNumber.slice(1)}` : cleanNumber;
+    const waUrl = `https://wa.me/${fullNumber}?text=${encodeURIComponent(text)}`;
 
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
       window.open(waUrl, '_blank');
-    }, 600);
+    }, 500);
   };
 
   const handleReset = () => {
@@ -57,7 +60,8 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
       category: 'Pembuatan Kolam Koi',
       location: '',
       budget: 'Bisa Disesuaikan (Fleksibel)',
-      message: ''
+      message: '',
+      targetNumber: '08133034733'
     });
     setIsSuccess(false);
     onClose();
@@ -212,6 +216,43 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
                         placeholder="Contoh: Kolam bocor surut 10cm/hari, butuh survei..."
                       />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
+                        Pilih Kontak WhatsApp *
+                      </label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <label className={`flex items-center gap-2 p-2.5 rounded-lg border cursor-pointer transition-all ${formData.targetNumber === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
+                          <input
+                            type="radio"
+                            name="modalTargetNumber"
+                            value="08133034733"
+                            checked={formData.targetNumber === '08133034733'}
+                            onChange={(e) => setFormData({ ...formData, targetNumber: e.target.value })}
+                            className="accent-[#25D366] w-3.5 h-3.5 cursor-pointer"
+                          />
+                          <div className="text-xs">
+                            <span className="font-bold block text-white">WA 1 (08133034733)</span>
+                            <span className="text-[10px] text-teal-200/70">Konsultasi & Survei</span>
+                          </div>
+                        </label>
+
+                        <label className={`flex items-center gap-2 p-2.5 rounded-lg border cursor-pointer transition-all ${formData.targetNumber === '081295903430' ? 'border-[#25D366] bg-[#063327] text-white' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
+                          <input
+                            type="radio"
+                            name="modalTargetNumber"
+                            value="081295903430"
+                            checked={formData.targetNumber === '081295903430'}
+                            onChange={(e) => setFormData({ ...formData, targetNumber: e.target.value })}
+                            className="accent-[#25D366] w-3.5 h-3.5 cursor-pointer"
+                          />
+                          <div className="text-xs">
+                            <span className="font-bold block text-white">WA 2 (081295903430)</span>
+                            <span className="text-[10px] text-teal-200/70">Booking & Support</span>
+                          </div>
+                        </label>
+                      </div>
                     </div>
 
                     <button

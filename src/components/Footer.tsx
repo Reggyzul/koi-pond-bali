@@ -10,9 +10,10 @@ import { contactData } from '../data';
 
 interface FooterProps {
   onOpenConsultation: () => void;
+  onOpenWhatsAppChoice?: () => void;
 }
 
-export default function Footer({ onOpenConsultation }: FooterProps) {
+export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice }: FooterProps) {
   return (
     <footer id="footer" className="bg-[#04242E]/85 backdrop-blur-md text-white border-t border-teal-500/20 pt-12 pb-6 relative overflow-hidden">
       
@@ -41,28 +42,33 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               <span>Layanan Konsultasi & Survei Lapangan</span>
             </div>
           </div>
-          <div className="flex gap-2.5 pt-1">
+          
+          {/* Social Links: IG and TikTok directly below */}
+          <div className="flex flex-col gap-2 pt-1">
             <a
               id="footer-social-instagram"
               href={contactData.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 py-1.5 bg-white/10 border border-white/20 hover:border-[#FF6E40] text-white rounded-full transition-all flex items-center gap-1.5 text-xs font-bold"
+              className="px-3.5 py-1.5 bg-white/10 border border-white/20 hover:border-[#FF6E40] text-white rounded-full transition-all flex items-center gap-2 text-xs font-bold w-fit"
               title="Instagram"
             >
               <Instagram className="w-3.5 h-3.5 text-[#FF6E40]" />
               <span>@koi_pondbali</span>
             </a>
+            
             <a
-              id="footer-social-whatsapp"
-              href={contactData.whatsappUrl}
+              id="footer-social-tiktok"
+              href={contactData.tiktokUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 py-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full transition-all flex items-center gap-1.5 text-xs font-bold shadow-sm"
-              title="WhatsApp"
+              className="px-3.5 py-1.5 bg-white/10 border border-white/20 hover:border-[#00F2FE] text-white rounded-full transition-all flex items-center gap-2 text-xs font-bold w-fit"
+              title="TikTok: @koipondservices.com"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>WhatsApp</span>
+              <svg className="w-3.5 h-3.5 fill-current text-[#00F2FE]" viewBox="0 0 24 24">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.15 1.15 2.06 2.3 2.36.95.23 1.98.05 2.78-.51.71-.47 1.15-1.26 1.25-2.11.08-1.73.04-3.46.05-5.19.01-4.34.02-8.68.01-13.02z"/>
+              </svg>
+              <span>tiktok.com/@koipondservices.com</span>
             </a>
           </div>
         </div>

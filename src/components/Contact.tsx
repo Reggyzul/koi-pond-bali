@@ -18,7 +18,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
     phone: '',
     type: 'Pembuatan Kolam Koi',
     location: '',
-    message: ''
+    message: '',
+    targetNumber: '08133034733'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -28,13 +29,15 @@ export default function Contact({ onBackToHome }: ContactProps) {
     setIsSubmitting(true);
     
     const text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi / survei kolam koi:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.type}\n- Lokasi: ${formData.location}\n- Kebutuhan: ${formData.message}\n\nMohon informasi estimasi & jadwal survei. Terima kasih.`;
-    const waUrl = `https://wa.me/628133034733?text=${encodeURIComponent(text)}`;
+    const cleanNumber = formData.targetNumber.replace(/\D/g, '');
+    const fullNumber = cleanNumber.startsWith('0') ? `62${cleanNumber.slice(1)}` : cleanNumber;
+    const waUrl = `https://wa.me/${fullNumber}?text=${encodeURIComponent(text)}`;
     
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
       window.open(waUrl, '_blank');
-    }, 600);
+    }, 500);
   };
 
   const handleReset = () => {
@@ -43,7 +46,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
       phone: '',
       type: 'Pembuatan Kolam Koi',
       location: '',
-      message: ''
+      message: '',
+      targetNumber: '08133034733'
     });
     setIsSuccess(false);
   };
@@ -56,13 +60,20 @@ export default function Contact({ onBackToHome }: ContactProps) {
     },
     {
       icon: MessageCircle,
-      title: 'WhatsApp Resmi',
-      desc: `${contactData.whatsapp} (Layanan Konsultasi)`
+      title: 'WhatsApp 1 (Konsultasi & Survei)',
+      desc: `${contactData.whatsapp1} (Layanan Survei Lapangan)`,
+      link: contactData.whatsappUrl1
+    },
+    {
+      icon: MessageCircle,
+      title: 'WhatsApp 2 (Booking & Support)',
+      desc: `${contactData.whatsapp2} (Layanan Cepat & Booking)`,
+      link: contactData.whatsappUrl2
     },
     {
       icon: Phone,
-      title: 'Telepon',
-      desc: contactData.phone
+      title: 'Telepon Langsung',
+      desc: `${contactData.phone} (Telepon Resmi)`
     },
     {
       icon: Instagram,
@@ -222,6 +233,43 @@ export default function Contact({ onBackToHome }: ContactProps) {
                       className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
                       placeholder="Jelaskan kebutuhan Anda atau ukuran kolam..."
                     />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
+                      Pilih Tujuan WhatsApp *
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${formData.targetNumber === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white shadow-sm' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
+                        <input
+                          type="radio"
+                          name="targetNumber"
+                          value="08133034733"
+                          checked={formData.targetNumber === '08133034733'}
+                          onChange={(e) => setFormData({ ...formData, targetNumber: e.target.value })}
+                          className="accent-[#25D366] w-4 h-4 cursor-pointer"
+                        />
+                        <div className="text-xs">
+                          <span className="font-bold block text-white">WhatsApp 1 (08133034733)</span>
+                          <span className="text-[11px] text-teal-200/70 font-normal">Konsultasi & Survei</span>
+                        </div>
+                      </label>
+
+                      <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${formData.targetNumber === '081295903430' ? 'border-[#25D366] bg-[#063327] text-white shadow-sm' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
+                        <input
+                          type="radio"
+                          name="targetNumber"
+                          value="081295903430"
+                          checked={formData.targetNumber === '081295903430'}
+                          onChange={(e) => setFormData({ ...formData, targetNumber: e.target.value })}
+                          className="accent-[#25D366] w-4 h-4 cursor-pointer"
+                        />
+                        <div className="text-xs">
+                          <span className="font-bold block text-white">WhatsApp 2 (081295903430)</span>
+                          <span className="text-[11px] text-teal-200/70 font-normal">Booking & Support</span>
+                        </div>
+                      </label>
+                    </div>
                   </div>
 
                   <button

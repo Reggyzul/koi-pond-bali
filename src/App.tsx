@@ -18,10 +18,12 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
 import ServicePage from './components/ServicePage';
+import WhatsAppChoiceModal from './components/WhatsAppChoiceModal';
 import { servicesData, contactData } from './data';
 
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
+  const [isWhatsAppChoiceOpen, setIsWhatsAppChoiceOpen] = useState(false);
   const [prefillMessage, setPrefillMessage] = useState('');
   const [initialCategory, setInitialCategory] = useState('Pembuatan Kolam Koi');
   const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
@@ -341,7 +343,7 @@ export default function App() {
         <>
           <Hero
             onOpenConsultation={() => handleOpenConsultation()}
-            onViewFounder={() => handleSelectSection('about')}
+            onOpenWhatsAppChoice={() => setIsWhatsAppChoiceOpen(true)}
           />
 
           <main>
@@ -366,20 +368,30 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <Footer onOpenConsultation={() => handleOpenConsultation()} />
+      <Footer
+        onOpenConsultation={() => handleOpenConsultation()}
+        onOpenWhatsAppChoice={() => setIsWhatsAppChoiceOpen(true)}
+      />
 
-      {/* Mobile-Optimized Floating WhatsApp Button */}
-      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:left-6 z-40 flex items-center">
-        <a
-          id="floating-agro-whatsapp-pill"
-          href={contactData.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:opacity-95 text-white rounded-full shadow-xl text-xs sm:text-sm font-bold transition-transform hover:scale-105 active:scale-95 border border-white/80"
+      {/* Floating WhatsApp Circular Bubble (Bottom-Right Corner) */}
+      <div className="fixed bottom-6 right-6 z-50 flex items-center group">
+        <button
+          id="floating-agro-whatsapp-bubble"
+          onClick={() => setIsWhatsAppChoiceOpen(true)}
+          className="relative w-14 h-14 sm:w-15 sm:h-15 rounded-full bg-gradient-to-tr from-[#25D366] via-[#20ba5a] to-[#128C7E] text-white flex items-center justify-center shadow-[0_6px_25px_rgba(37,211,102,0.45)] hover:shadow-[0_8px_30px_rgba(37,211,102,0.65)] hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white cursor-pointer"
+          aria-label="Chat WhatsApp Konsultasi"
         >
-          <MessageCircle className="w-4 h-4 shrink-0" />
-          <span>WhatsApp</span>
-        </a>
+          {/* Animated pulse ring */}
+          <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none" />
+          
+          <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 fill-current drop-shadow-sm" />
+        </button>
+
+        {/* Hover Tooltip */}
+        <div className="absolute right-full mr-3 hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap bg-[#04242E]/95 text-white text-xs font-bold py-1.5 px-3 rounded-xl border border-teal-500/30 shadow-lg backdrop-blur-md">
+          Chat WhatsApp
+          <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-[#04242E] rotate-45 border-r border-t border-teal-500/30" />
+        </div>
       </div>
 
       {/* Consultation Modal */}
@@ -388,6 +400,12 @@ export default function App() {
         onClose={handleCloseConsultation}
         prefillMessage={prefillMessage}
         initialCategory={initialCategory}
+      />
+
+      {/* WhatsApp Choice Modal (Select between 08133034733 or 081295903430) */}
+      <WhatsAppChoiceModal
+        isOpen={isWhatsAppChoiceOpen}
+        onClose={() => setIsWhatsAppChoiceOpen(false)}
       />
 
       </div>
