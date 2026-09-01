@@ -272,15 +272,22 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-[#04242E] text-slate-100">
       
-      {/* Fixed Ambient Luxury Koi Pond Background Layer */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <img
-          src="/images/luxury_koi_ambient_bg.jpg"
-          alt="KOI POND SERVICES BALI Ambient"
-          className="w-full h-full object-cover object-center"
-        />
+      {/* Fixed Ambient Luxury Koi Pond Background Layer (GPU Accelerated) */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden gpu-layer">
+        <picture>
+          <source srcSet="/images/luxury_koi_ambient_bg.avif" type="image/avif" />
+          <source srcSet="/images/luxury_koi_ambient_bg.webp" type="image/webp" />
+          <img
+            src="/images/luxury_koi_ambient_bg.avif"
+            alt="KOI POND SERVICES BALI Ambient"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+        </picture>
         {/* Luxury Cinematic Gradient Overlay to keep swimming koi visible throughout scrolling */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#021820]/75 via-[#04242E]/70 to-[#062C38]/80 backdrop-blur-[1.5px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#021820]/75 via-[#04242E]/70 to-[#062C38]/80 pointer-events-none" />
       </div>
 
       {/* Top Navigation */}

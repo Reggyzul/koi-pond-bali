@@ -30,14 +30,20 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
           >
             <div className="relative rounded-2xl overflow-hidden glass-aquatic-card p-2.5 shadow-2xl border border-teal-400/25 group">
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                <img
-                  src="/images/agro_koi_hero.jpg"
-                  alt="Ikan Koi Bali - KOI POND SERVICES BALI"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  referrerPolicy="no-referrer"
-                />
+                <picture>
+                  <source srcSet="/images/agro_koi_hero.avif" type="image/avif" />
+                  <source srcSet="/images/agro_koi_hero.webp" type="image/webp" />
+                  <img
+                    src="/images/agro_koi_hero.avif"
+                    alt="Ikan Koi Bali - KOI POND SERVICES BALI"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#04242E]/80 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-teal-100 font-medium bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-teal-100 font-medium bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/10">
                   <span>Air Sebening Kristal</span>
                   <span className="text-[#FF6E40] font-bold">Bali - Sejak 2021</span>
                 </div>

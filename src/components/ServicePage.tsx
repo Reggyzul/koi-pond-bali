@@ -5,9 +5,32 @@
 
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import * as Icons from 'lucide-react';
+import {
+  Building2,
+  Hammer,
+  Sparkles,
+  HeartHandshake,
+  Wrench,
+  ShoppingBag,
+  ArrowLeft,
+  Eye,
+  Target,
+  ShieldCheck,
+  CheckCircle2,
+  Check,
+  Phone
+} from 'lucide-react';
 import { Service } from '../types';
 import { contactData } from '../data';
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Building2,
+  Hammer,
+  Sparkles,
+  HeartHandshake,
+  Wrench,
+  ShoppingBag,
+};
 
 interface ServicePageProps {
   service: Service;
@@ -43,20 +66,20 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
       case 'perawatan-ikan-koi':
         return [
           { name: 'koiCondition', label: 'Gejala / Keluhan Ikan Koi', type: 'select', options: ['Ikan Diam di Dasar / Mengambang Lemas', 'Muncul Kutu Jarum / Kutu Bulat', 'Bercak Putih (White Spot) / Jamur Kapas', 'Luka Merah / Sisik Mengelupas / Borok', 'Insang Megap-megap & Kurang Nafsu Makan', 'Mau Prosedur Karantina Ikan Baru'] },
-          { name: 'sickCount', label: 'Perkiraan Jumlah Ikan Sakit', type: 'select', options: ['1 - 2 Ekor', '3 - 5 Ekor', 'Hampir Seluruh Kolam (>5 Ekor)'] },
-          { name: 'koiSize', label: 'Ukuran Rata-rata Ikan Koi', type: 'select', options: ['Kecil (< 20 cm)', 'Sedang (20 - 40 cm)', 'Jumbo (> 40 cm)'] },
-          { name: 'locationArea', label: 'Lokasi Kolam di Bali', type: 'text', placeholder: 'Alamat lengkap kolam Anda di Bali' }
+          { name: 'fishCount', label: 'Jumlah Populasi & Ukuran Ikan', type: 'text', placeholder: 'Contoh: 15 ekor ukuran 30-50 cm' },
+          { name: 'locationArea', label: 'Lokasi Kolam di Bali', type: 'text', placeholder: 'Contoh: Jimbaran, Nusa Dua, Tabanan, dll.' }
         ];
       case 'pembuatan-perawatan-filter':
         return [
-          { name: 'filterNeed', label: 'Kebutuhan Sistem Filtrasi', type: 'select', options: ['Pembuatan Ruang Chamber Baru', 'Penggantian Media Filter Jenuh (Japmat, Bio Ring, Bio Ball)', 'Pemasangan Lampu UV Sterilizer Anti Lumut', 'Upgrade Pompa Sirkulasi & Aerator Hemat Listrik', 'Pembuatan Sistem Moving Bed MBBR'] },
-          { name: 'pondVolume', label: 'Perkiraan Volume Kolam (m³ / Liter)', type: 'text', placeholder: 'Contoh: 5 m³ (5.000 Liter)' },
-          { name: 'locationArea', label: 'Lokasi Kolam di Bali', type: 'text', placeholder: 'Lokasi Anda di Bali' }
+          { name: 'filterNeed', label: 'Kebutuhan Sistem Filter', type: 'select', options: ['Pembuatan Ruang Chamber Filter Baru (Vortex / Multi-Chamber)', 'Upgrade / Ganti Media Filter Berkualitas (Japmat, Bioball, Bioring)', 'Pemasangan Pompa Hemat Listrik & Aerator High Flow', 'Instalasi Lampu UV Sterilizer Anti-Lumut Hijau', 'Servis / Perbaikan Pompa & Kelistrikan Kolam'] },
+          { name: 'pondVolume', label: 'Estimasi Volume / Ukuran Kolam', type: 'text', placeholder: 'Contoh: Volume 10 ton air / 4x2x1.2 m' },
+          { name: 'locationArea', label: 'Lokasi di Bali', type: 'text', placeholder: 'Alamat survei teknisi' }
         ];
       case 'jual-beli-ikan-koi':
         return [
-          { name: 'koiInterest', label: 'Varietas yang Diminati / Dijual', type: 'select', options: ['Kohaku (Merah & Putih)', 'Taisho Sanke (3 Warna)', 'Showa Sanshoku (Hitam Dasar)', 'Shiro Utsuri / Hi Utsuri', 'Chagoi / Karashi (Jumbo Friendly)', 'Tancho / Asagi / Shusui', 'Campuran / Bebas Rekomendasi'] },
-          { name: 'sizeTarget', label: 'Target Ukuran Ikan Koi', type: 'select', options: ['Tosai (15 - 25 cm)', 'Nisai (25 - 40 cm)', 'Jumbo / Show Quality (40 - 65+ cm)'] },
+          { name: 'varietyInterest', label: 'Varietas Koi yang Dicari', type: 'select', options: ['Paket Campur (Kohaku, Showa, Sanke, dll)', 'Kohaku / Sanke / Showa (Gosanke)', 'Shiro Utsuri / Hi Utsuri', 'Tancho / Asagi / Shusui / Chagoi', 'Koi Slayer Kumpay Bali (Sirip Panjang)', 'Koi Jumbo / Indukan (> 50 cm)', 'Mau Jual / Titip Jual Ikan Koi'] },
+          { name: 'sizeRange', label: 'Ukuran yang Diinginkan', type: 'select', options: ['Bibit / Tosai (15 - 25 cm)', 'Remaja / Nisai (25 - 40 cm)', 'Dewasa / Jumbo (40 - 65+ cm)', 'Bebas / Sesuai Stok yang Bagus'] },
+          { name: 'budgetRange', label: 'Kisaran Anggaran / Budget', type: 'select', options: ['Di bawah Rp 500 Ribu / ekor', 'Rp 500 Ribu - Rp 2 Juta / ekor', 'Rp 2 Juta - Rp 5 Juta (Grade A / Show Quality)', 'Di atas Rp 5 Juta (Import / High Quality)', 'Menyesuaikan Rekomendasi'] },
           { name: 'actionType', label: 'Tujuan Transaksi', type: 'select', options: ['Beli Ikan Koi Sehat & Berkualitas', 'Titip Jual / Menjual Ikan Koi Pribadi'] },
           { name: 'deliveryArea', label: 'Alamat Pengiriman di Bali', type: 'text', placeholder: 'Alamat lengkap pengantaran' }
         ];
@@ -74,11 +97,8 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
   };
 
   const renderIcon = (iconName: string) => {
-    const IconComponent = (Icons as any)[iconName];
-    if (IconComponent) {
-      return <IconComponent className="w-5 h-5 stroke-[2]" />;
-    }
-    return <Icons.Sparkles className="w-5 h-5 stroke-[2]" />;
+    const IconComponent = iconMap[iconName] || Sparkles;
+    return <IconComponent className="w-5 h-5 stroke-[2]" />;
   };
 
   const getWhatsAppLink = () => {
@@ -110,7 +130,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
               onClick={onBackToHome}
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-1.5 px-3.5 rounded-lg border border-white/15 transition-all shadow-xs active:scale-95"
             >
-              <Icons.ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
               <span>Kembali ke Beranda</span>
             </button>
             <span className="font-mono tracking-widest text-[#FBBF24] uppercase font-bold text-xs bg-black/25 px-3 py-1 rounded-md border border-amber-400/20">
@@ -163,7 +183,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2 text-white">
                     <div className="p-1.5 rounded-lg bg-teal-950 text-[#FF6E40] border border-teal-500/30">
-                      <Icons.Eye className="w-4 h-4 stroke-[2]" />
+                      <Eye className="w-4 h-4 stroke-[2]" />
                     </div>
                     <h4 className="text-sm sm:text-base font-bold uppercase tracking-wide">
                       Visi Layanan
@@ -178,7 +198,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2 text-white">
                     <div className="p-1.5 rounded-lg bg-teal-950 text-[#FF6E40] border border-teal-500/30">
-                      <Icons.Target className="w-4 h-4 stroke-[2]" />
+                      <Target className="w-4 h-4 stroke-[2]" />
                     </div>
                     <h4 className="text-sm sm:text-base font-bold uppercase tracking-wide">
                       Misi Layanan
@@ -205,7 +225,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                     key={idx}
                     className="flex items-start gap-3 p-4 glass-aquatic-card rounded-xl border border-teal-500/20 shadow-xs hover:border-[#FF6E40]/50 transition-all"
                   >
-                    <Icons.ShieldCheck className="w-5 h-5 text-[#10B981] mt-0.5 shrink-0" />
+                    <ShieldCheck className="w-5 h-5 text-[#10B981] mt-0.5 shrink-0" />
                     <p className="text-xs sm:text-sm text-teal-100/90 font-normal leading-relaxed">
                       {item}
                     </p>
@@ -225,7 +245,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
               <div className="space-y-2.5">
                 {service.details.map((detail, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-4 glass-aquatic-card rounded-xl border border-teal-500/20 shadow-xs hover:border-teal-400/40 transition-all">
-                    <Icons.CheckCircle2 className="w-5 h-5 text-[#10B981] mt-0.5 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-[#10B981] mt-0.5 shrink-0" />
                     <p className="text-xs sm:text-sm text-teal-100/90 font-normal leading-relaxed">{detail}</p>
                   </div>
                 ))}
@@ -283,7 +303,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                     <ul className="space-y-2 text-xs sm:text-sm text-teal-100/85 font-normal">
                       {pkg.items.map((it, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <Icons.Check className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                          <Check className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
                           <span>{it}</span>
                         </li>
                       ))}
@@ -387,12 +407,12 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                 rel="noopener noreferrer"
                 className="w-full mt-3 py-3 px-5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
-                <Icons.Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4" />
                 <span>Konsultasi WhatsApp</span>
               </a>
 
               <div className="flex items-center justify-center gap-1.5 pt-0.5 text-xs text-teal-200/80 font-medium">
-                <Icons.CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
                 <span>Survei lokasi gratis ke seluruh Bali</span>
               </div>
             </form>

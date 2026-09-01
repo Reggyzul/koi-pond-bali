@@ -4,16 +4,20 @@
  */
 
 import { motion } from 'motion/react';
-import * as Icons from 'lucide-react';
+import { DollarSign, ShieldCheck, Wrench, Headphones } from 'lucide-react';
 import { whyChooseUsData } from '../data';
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  DollarSign,
+  ShieldCheck,
+  Wrench,
+  Headphones,
+};
 
 export default function WhyChooseUs() {
   const renderIcon = (iconName: string) => {
-    const IconComponent = (Icons as any)[iconName];
-    if (IconComponent) {
-      return <IconComponent className="w-5 h-5 stroke-[2]" />;
-    }
-    return <Icons.ShieldCheck className="w-5 h-5 stroke-[2]" />;
+    const IconComponent = iconMap[iconName] || ShieldCheck;
+    return <IconComponent className="w-5 h-5 stroke-[2]" />;
   };
 
   return (

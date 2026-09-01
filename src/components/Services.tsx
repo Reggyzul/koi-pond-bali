@@ -4,8 +4,25 @@
  */
 
 import { motion } from 'motion/react';
-import * as Icons from 'lucide-react';
+import {
+  Building2,
+  Hammer,
+  Sparkles,
+  HeartHandshake,
+  Wrench,
+  ShoppingBag,
+  ArrowRight
+} from 'lucide-react';
 import { servicesData } from '../data';
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Building2,
+  Hammer,
+  Sparkles,
+  HeartHandshake,
+  Wrench,
+  ShoppingBag,
+};
 
 interface ServicesProps {
   onOpenConsultation: () => void;
@@ -16,11 +33,8 @@ interface ServicesProps {
 
 export default function Services({ onSelectService }: ServicesProps) {
   const renderIcon = (iconName: string) => {
-    const IconComponent = (Icons as any)[iconName];
-    if (IconComponent) {
-      return <IconComponent className="w-5 h-5 stroke-[2]" />;
-    }
-    return <Icons.Sparkles className="w-5 h-5 stroke-[2]" />;
+    const IconComponent = iconMap[iconName] || Sparkles;
+    return <IconComponent className="w-5 h-5 stroke-[2]" />;
   };
 
   return (
@@ -67,7 +81,8 @@ export default function Services({ onSelectService }: ServicesProps) {
                   src={service.image}
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#062C38] via-[#062C38]/30 to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
                 
@@ -102,7 +117,7 @@ export default function Services({ onSelectService }: ServicesProps) {
                     className="text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
                     Detail & Estimasi
-                    <Icons.ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                   </button>
                   <span className="text-[11px] text-emerald-300 font-bold bg-emerald-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-500/30">
                     Survei Gratis
