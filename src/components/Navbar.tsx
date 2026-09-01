@@ -16,7 +16,8 @@ import {
   HeartHandshake,
   Wrench,
   ShoppingBag,
-  MessageCircle
+  MessageCircle,
+  PhoneCall
 } from 'lucide-react';
 import { contactData } from '../data';
 
@@ -43,11 +44,11 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
     <>
       <nav
         id="app-navbar"
-        className="fixed top-0 left-0 right-0 z-50 bg-[#0B436B] border-b border-white/15 py-3 shadow-sm transition-all"
+        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#04242E] via-[#062C38] to-[#0A4354] border-b border-teal-500/20 py-3 sm:py-3.5 shadow-lg backdrop-blur-md"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Brand Logo */}
+          {/* Brand Logo - Responsive Sizing with Perfect Touch Area */}
           <a
             id="nav-logo"
             href="#"
@@ -55,13 +56,13 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               e.preventDefault();
               onSelectService('home');
             }}
-            className="flex items-center gap-3 transition-opacity hover:opacity-95 cursor-pointer"
+            className="flex items-center gap-3 transition-transform hover:scale-[1.02] cursor-pointer"
           >
             <Logo variant="dark" />
           </a>
 
           {/* Desktop Nav Menu - Precisely Aligned & Spaced */}
-          <div className="hidden lg:flex items-center gap-8 text-[15px] font-medium text-white">
+          <div className="hidden lg:flex items-center gap-7 text-[15px] font-semibold text-white/95">
             <a
               id="nav-link-about"
               href="#about"
@@ -69,7 +70,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('about');
               }}
-              className="hover:text-[#FCB900] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
             >
               Tentang Kami
             </a>
@@ -82,10 +83,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
             >
               <button
                 id="nav-link-services-drop"
-                className="hover:text-[#FCB900] transition-colors flex items-center gap-1.5 cursor-pointer py-1"
+                className="hover:text-[#FBBF24] transition-colors flex items-center gap-1.5 cursor-pointer py-1"
               >
                 <span>Layanan</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-[#FBBF24]' : ''}`} />
               </button>
 
               <AnimatePresence>
@@ -96,7 +97,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 6 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 mt-1 w-64 bg-white text-[#222222] rounded-lg shadow-xl z-50 py-2 border border-gray-100"
+                    className="absolute top-full left-0 mt-1.5 w-72 bg-white text-[#0F172A] rounded-2xl shadow-2xl z-50 py-2.5 border border-teal-900/10 overflow-hidden"
                   >
                     {serviceCategories.map((srv) => (
                       <button
@@ -106,9 +107,11 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                           onSelectService(srv.id);
                           setDropdownOpen(false);
                         }}
-                        className="w-full text-left px-4 py-2 hover:bg-[#0B436B]/10 hover:text-[#0B436B] text-sm font-medium transition-colors flex items-center gap-2.5 cursor-pointer"
+                        className="w-full text-left px-4 py-2.5 hover:bg-teal-50 hover:text-[#0A4354] text-sm font-semibold transition-colors flex items-center gap-3 cursor-pointer group"
                       >
-                        <srv.icon className="w-4 h-4 text-[#E53935]" />
+                        <div className="p-1.5 rounded-lg bg-teal-100/60 text-[#0E5C73] group-hover:bg-[#FF5722] group-hover:text-white transition-colors">
+                          <srv.icon className="w-4 h-4" />
+                        </div>
                         <span>{srv.label}</span>
                       </button>
                     ))}
@@ -124,7 +127,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('why-choose-us');
               }}
-              className="hover:text-[#FCB900] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
             >
               Keunggulan
             </a>
@@ -136,7 +139,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('articles');
               }}
-              className="hover:text-[#FCB900] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
             >
               Artikel
             </a>
@@ -148,7 +151,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('faq');
               }}
-              className="hover:text-[#FCB900] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
             >
               FAQ
             </a>
@@ -160,24 +163,33 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('contact');
               }}
-              className="hover:text-[#FCB900] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
             >
               Kontak
             </a>
+
+            {/* Direct Consultation Pill Button */}
+            <button
+              id="desktop-nav-cta-btn"
+              onClick={onOpenConsultation}
+              className="btn-koi-flame px-5 py-2 text-xs font-extrabold uppercase tracking-wider cursor-pointer ml-1"
+            >
+              Konsultasi Gratis
+            </button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle Button - Large Easy Tap Area */}
           <button
             id="nav-mobile-menu-toggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+            className="lg:hidden p-2.5 text-white hover:bg-white/10 rounded-xl transition-colors border border-white/10"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu with Large Legible Fonts */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -186,7 +198,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="lg:hidden bg-[#0B436B] border-t border-white/15 px-6 py-5 space-y-4 text-white overflow-y-auto max-h-[85vh]"
+              className="lg:hidden bg-gradient-to-b from-[#062C38] to-[#04242E] border-t border-teal-500/20 px-6 py-6 space-y-5 text-white overflow-y-auto max-h-[85vh] shadow-2xl"
             >
               <a
                 id="mobile-nav-link-about"
@@ -196,14 +208,14 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   setMobileMenuOpen(false);
                   onSelectSection('about');
                 }}
-                className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
+                className="block text-lg font-bold hover:text-[#FBBF24] transition-colors"
               >
                 Tentang Kami (Profil Alvian Malengga)
               </a>
 
-              <div className="space-y-2 pl-3 border-l-2 border-[#FCB900]/40">
-                <span className="text-xs font-bold text-[#FCB900] uppercase tracking-wider block">
-                  6 Layanan Spesialis
+              <div className="space-y-2.5 pl-3.5 border-l-2 border-[#FF6E40]/50 bg-white/5 py-3 rounded-r-xl pr-3">
+                <span className="text-xs font-extrabold text-[#FBBF24] uppercase tracking-wider block">
+                  6 Layanan Spesialis Kolam
                 </span>
                 {serviceCategories.map((srv) => (
                   <button
@@ -213,9 +225,9 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                       onSelectService(srv.id);
                       setMobileMenuOpen(false);
                     }}
-                    className="w-full text-left py-1 text-sm text-white/90 hover:text-[#FCB900] transition-colors flex items-center gap-2 cursor-pointer"
+                    className="w-full text-left py-1.5 text-base font-semibold text-teal-50 hover:text-[#FF6E40] transition-colors flex items-center gap-2.5 cursor-pointer"
                   >
-                    <srv.icon className="w-3.5 h-3.5 text-[#E53935]" />
+                    <srv.icon className="w-4 h-4 text-[#FF5722] shrink-0" />
                     <span>{srv.label}</span>
                   </button>
                 ))}
@@ -229,7 +241,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   setMobileMenuOpen(false);
                   onSelectSection('why-choose-us');
                 }}
-                className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
+                className="block text-lg font-bold hover:text-[#FBBF24] transition-colors"
               >
                 Keunggulan Kami
               </a>
@@ -242,7 +254,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   setMobileMenuOpen(false);
                   onSelectSection('articles');
                 }}
-                className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
+                className="block text-lg font-bold hover:text-[#FBBF24] transition-colors"
               >
                 Artikel & Edukasi Koi
               </a>
@@ -255,7 +267,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   setMobileMenuOpen(false);
                   onSelectSection('faq');
                 }}
-                className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
+                className="block text-lg font-bold hover:text-[#FBBF24] transition-colors"
               >
                 FAQ & Tanya Jawab
               </a>
@@ -268,22 +280,34 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   setMobileMenuOpen(false);
                   onSelectSection('contact');
                 }}
-                className="block text-base font-semibold hover:text-[#FCB900] transition-colors"
+                className="block text-lg font-bold hover:text-[#FBBF24] transition-colors"
               >
                 Kontak & Lokasi Bali
               </a>
 
-              <div className="pt-2">
+              <div className="pt-2 flex flex-col gap-3">
                 <a
                   id="mobile-nav-wa-btn"
                   href={contactData.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 bg-[#E53935] hover:bg-[#D32F2F] text-white rounded-full font-bold text-sm tracking-wide text-center flex items-center justify-center gap-2 shadow-md"
+                  className="w-full py-3.5 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white rounded-full font-bold text-base tracking-wide text-center flex items-center justify-center gap-2 shadow-lg"
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  Whatsapp Kami
+                  <MessageCircle className="w-5 h-5" />
+                  Chat WhatsApp (08133034733)
                 </a>
+
+                <button
+                  id="mobile-nav-consultation-btn"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenConsultation();
+                  }}
+                  className="w-full py-3.5 btn-koi-flame text-white rounded-full font-bold text-base tracking-wide text-center flex items-center justify-center gap-2"
+                >
+                  <PhoneCall className="w-5 h-5" />
+                  Ajukan Survei Gratis
+                </button>
               </div>
             </motion.div>
           )}

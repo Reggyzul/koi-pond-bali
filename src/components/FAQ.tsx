@@ -28,22 +28,22 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-16 bg-[#F8F9FA] border-b border-gray-200">
+    <section id="faq" className="py-16 md:py-20 bg-[#F2F9F9] border-b border-teal-900/10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Layout */}
-        <div className="text-center space-y-2 mb-10">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#E53935] block">
-            Tanya Jawab
+        <div className="text-center space-y-3 mb-12">
+          <span className="text-xs sm:text-sm font-extrabold tracking-widest uppercase text-[#FF5722] bg-orange-50 px-4 py-1.5 rounded-full border border-orange-200/80 inline-block shadow-2xs">
+            Tanya Jawab Seputar Kolam
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0B436B] leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#062C38] leading-tight">
             Pertanyaan yang Sering Diajukan
           </h2>
-          <div className="h-1 w-16 bg-[#E53935] mx-auto mt-2.5 rounded-full" />
+          <div className="h-1.5 w-20 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2.5 rounded-full" />
         </div>
 
         {/* Search and Category Control Bar */}
-        <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-between mb-6 border-b border-gray-200 pb-5">
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mb-8 border-b border-teal-900/10 pb-6">
           {/* Categories */}
           <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
             {categories.map((cat) => (
@@ -54,10 +54,10 @@ export default function FAQ() {
                   setActiveCategory(cat);
                   setOpenId(null);
                 }}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-[#0B436B] text-white shadow-sm'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                    ? 'btn-pond-teal text-white shadow-sm'
+                    : 'bg-white text-slate-700 hover:bg-teal-50 border border-teal-900/10'
                 }`}
               >
                 {cat === 'All' ? 'Semua' : cat}
@@ -67,20 +67,20 @@ export default function FAQ() {
 
           {/* Search Input */}
           <div className="relative w-full sm:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               id="faq-search-input"
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3.5 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0B436B]"
+              className="w-full pl-10 pr-4 py-2.5 bg-white border border-teal-900/15 rounded-full text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0E5C73]"
               placeholder="Cari pertanyaan..."
             />
           </div>
         </div>
 
         {/* Accordions List */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           <AnimatePresence mode="popLayout">
             {filteredFaqs.length > 0 ? (
               filteredFaqs.map((faq) => {
@@ -93,16 +93,16 @@ export default function FAQ() {
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
-                    className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-2xs"
+                    className="border border-teal-900/10 rounded-2xl overflow-hidden bg-white shadow-sm"
                   >
                     <button
                       id={`faq-toggle-btn-${faq.id}`}
                       onClick={() => toggleFaq(faq.id)}
-                      className="w-full flex items-center justify-between p-5 text-left font-bold text-base text-[#0B436B] hover:text-[#E53935] transition-colors cursor-pointer"
+                      className="w-full flex items-center justify-between p-5 sm:p-6 text-left font-black text-base sm:text-lg text-[#062C38] hover:text-[#FF5722] transition-colors cursor-pointer"
                     >
                       <span className="pr-4 leading-snug">{faq.question}</span>
-                      <span className="p-1.5 rounded-full bg-[#0B436B]/5 text-[#0B436B] shrink-0">
-                        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                      <span className="p-2 rounded-xl bg-teal-50 text-[#0E5C73] shrink-0 border border-teal-100">
+                        {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                       </span>
                     </button>
 
@@ -115,7 +115,7 @@ export default function FAQ() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.25, ease: 'easeInOut' }}
                         >
-                          <div className="px-5 pb-5 pt-2 text-sm text-gray-700 leading-relaxed border-t border-gray-100 bg-[#F8F9FA]">
+                          <div className="px-6 pb-6 pt-2 text-base text-slate-700 leading-relaxed border-t border-teal-50 bg-[#F2F9F9]/60">
                             {faq.answer}
                           </div>
                         </motion.div>
@@ -125,10 +125,10 @@ export default function FAQ() {
                 );
               })
             ) : (
-              <div className="text-center py-8 bg-white border border-dashed border-gray-300 rounded-xl space-y-1.5">
-                <HelpCircle className="w-6 h-6 text-[#E53935] mx-auto" />
-                <p className="text-sm font-bold text-gray-800">Pertanyaan tidak ditemukan</p>
-                <p className="text-xs text-gray-500">Silakan hubungi WhatsApp kami untuk konsultasi langsung.</p>
+              <div className="text-center py-10 bg-white border border-dashed border-teal-300 rounded-2xl space-y-2">
+                <HelpCircle className="w-8 h-8 text-[#FF5722] mx-auto" />
+                <p className="text-base font-black text-[#062C38]">Pertanyaan tidak ditemukan</p>
+                <p className="text-sm text-slate-500">Silakan hubungi WhatsApp kami untuk konsultasi langsung.</p>
               </div>
             )}
           </AnimatePresence>

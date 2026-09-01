@@ -11,31 +11,31 @@ export default function WhyChooseUs() {
   const renderIcon = (iconName: string) => {
     const IconComponent = (Icons as any)[iconName];
     if (IconComponent) {
-      return <IconComponent className="w-6 h-6 stroke-[2]" />;
+      return <IconComponent className="w-7 h-7 stroke-[2.2]" />;
     }
-    return <Icons.ShieldCheck className="w-6 h-6 stroke-[2]" />;
+    return <Icons.ShieldCheck className="w-7 h-7 stroke-[2.2]" />;
   };
 
   return (
-    <section id="why-choose-us" className="py-16 bg-[#0B436B] text-white border-b border-[#083657]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="why-choose-us" className="py-18 md:py-22 bg-gradient-to-b from-[#04242E] via-[#062C38] to-[#0A4354] text-white border-b border-teal-500/20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Centered Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-2.5">
-          <span className="text-xs font-bold tracking-widest uppercase text-[#FCB900] block">
+        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+          <span className="text-xs sm:text-sm font-extrabold tracking-widest uppercase text-[#FBBF24] bg-white/10 px-4 py-1.5 rounded-full border border-amber-400/20 inline-block shadow-sm">
             Nilai & Komitmen Kami
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
             Keunggulan KOI POND SERVICES BALI
           </h2>
-          <p className="text-sm sm:text-base text-white/85 font-normal leading-relaxed">
-            Menghadirkan rasa aman dan kepuasan melalui keahlian teknis, transparansi harga, dan garansi resmi.
+          <p className="text-base sm:text-lg text-teal-100/90 font-normal leading-relaxed">
+            Menghadirkan rasa aman dan kepuasan melalui keahlian teknis, transparansi harga fleksibel, dan garansi resmi 100%.
           </p>
-          <div className="w-16 h-1 bg-[#E53935] mx-auto mt-3 rounded-full" />
+          <div className="w-20 h-1.5 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-3 rounded-full" />
         </div>
 
         {/* Why Choose Us Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {whyChooseUsData.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -43,32 +43,32 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              whileHover={{ y: -4 }}
-              className="p-6 bg-white text-[#222222] rounded-xl transition-all duration-300 flex flex-col justify-between relative shadow-lg"
+              whileHover={{ y: -6 }}
+              className="p-7 bg-white text-[#0F172A] rounded-3xl transition-all duration-300 flex flex-col justify-between relative shadow-2xl border border-teal-900/10 hover:border-[#FF6E40]/50"
             >
               {/* Corner Number Display */}
-              <div className="absolute right-4 top-3 text-3xl font-bold text-[#0B436B]/15 select-none pointer-events-none">
+              <div className="absolute right-5 top-4 text-4xl font-black text-[#062C38]/10 select-none pointer-events-none">
                 0{idx + 1}
               </div>
 
-              <div className="space-y-3.5 relative z-10">
+              <div className="space-y-4 relative z-10">
                 {/* Floating Icon Frame */}
-                <div className="p-3 bg-[#0B436B]/10 text-[#0B436B] rounded-lg w-fit">
+                <div className="p-3.5 bg-teal-50 text-[#0E5C73] rounded-2xl w-fit shadow-xs border border-teal-100">
                   {renderIcon(item.iconName)}
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-bold text-[#0B436B] text-lg">
+                  <h3 className="font-black text-[#062C38] text-xl leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
               </div>
 
               {/* Decorative Accent Line */}
-              <div className="h-1 w-8 bg-[#E53935] mt-5 rounded-full" />
+              <div className="h-1.5 w-10 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mt-6 rounded-full" />
             </motion.div>
           ))}
         </div>

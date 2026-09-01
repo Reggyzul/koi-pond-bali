@@ -1,82 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
-  --color-brand-blue: #0B436B;
-  --color-brand-blue-dark: #073454;
-  --color-brand-red: #E53935;
-  --color-brand-red-hover: #D32F2F;
-  --color-brand-yellow: #FCB900;
-  --color-brand-gray: #F4F6F8;
+  /* Living Koi Pond & Aquatic Natural Palette */
+  --color-brand-pond-deep: #04242E;
+  --color-brand-pond-dark: #062C38;
+  --color-brand-pond-mid: #0A4354;
+  --color-brand-pond-teal: #0E5C73;
+  --color-brand-pond-surface: #14728C;
+
+  --color-brand-aqua: #0EA5E9;
+  --color-brand-cyan-glow: #06B6D4;
+  --color-brand-teal-light: #14B8A6;
+
+  --color-brand-koi-red: #FF5722;
+  --color-brand-koi-orange: #FF6E40;
+  --color-brand-koi-dark: #E64A19;
+  --color-brand-koi-gold: #F59E0B;
+  --color-brand-koi-amber: #FBBF24;
+
+  --color-brand-moss: #059669;
+  --color-brand-emerald: #10B981;
+  --color-brand-slate: #0F172A;
+  --color-brand-bg: #F2F9F9;
 }
 
-/* Base Agro Koi Farm Theme */
+/* Base Living Koi Pond Theme */
 html {
   scroll-behavior: smooth;
-  background-color: #F8F9FA;
-  color: #222222;
+  background-color: #F2F9F9;
+  color: #0F172A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Ubuntu', sans-serif;
   font-size: 16px;
 }
 
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Ubuntu', sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
+  background-color: #F2F9F9;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Ubuntu', sans-serif;
   font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
-/* Delicate scrollbar */
+/* Aquatic Koi Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B436B;
+  background: #062C38;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E53935;
+  background: linear-gradient(to bottom, #FF5722, #FF6E40);
   border-radius: 9999px;
+  border: 1px solid #04242E;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D32F2F;
+  background: #E64A19;
 }
 
-/* Agro Koi Farm Button Styles */
-.btn-agro-red {
-  background-color: #E53935;
+/* Custom Living Koi Pond UI Components */
+.btn-koi-flame {
+  background: linear-gradient(135deg, #FF5722 0%, #FF6E40 100%);
   color: #ffffff;
   border-radius: 9999px;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 18px rgba(255, 87, 34, 0.35);
 }
 
-.btn-agro-red:hover {
-  background-color: #D32F2F;
+.btn-koi-flame:hover {
+  background: linear-gradient(135deg, #E64A19 0%, #FF5722 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 22px rgba(255, 87, 34, 0.45);
+}
+
+.btn-pond-teal {
+  background: linear-gradient(135deg, #0A4354 0%, #0E5C73 100%);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 700;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 14px rgba(6, 44, 56, 0.25);
+}
+
+.btn-pond-teal:hover {
+  background: linear-gradient(135deg, #062C38 0%, #0A4354 100%);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(229, 57, 53, 0.4);
+  box-shadow: 0 6px 18px rgba(6, 44, 56, 0.35);
 }
 
-.btn-agro-blue {
-  background-color: #0B436B;
+.btn-moss-emerald {
+  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
   color: #ffffff;
   border-radius: 9999px;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
 }
 
-.btn-agro-blue:hover {
-  background-color: #073454;
+.btn-moss-emerald:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  transform: translateY(-1px);
+}
+
+/* Water glassmorphism card */
+.aquatic-card {
+  background: #ffffff;
+  border: 1px solid rgba(14, 92, 115, 0.12);
+  box-shadow: 0 4px 20px -2px rgba(6, 44, 56, 0.06);
+}
+
+.aquatic-card:hover {
+  border-color: rgba(14, 92, 115, 0.3);
+  box-shadow: 0 10px 25px -4px rgba(6, 44, 56, 0.12);
 }

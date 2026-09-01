@@ -76,9 +76,9 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
   const renderIcon = (iconName: string) => {
     const IconComponent = (Icons as any)[iconName];
     if (IconComponent) {
-      return <IconComponent className="w-5 h-5 stroke-[2]" />;
+      return <IconComponent className="w-6 h-6 stroke-[2.2]" />;
     }
-    return <Icons.Sparkles className="w-5 h-5 stroke-[2]" />;
+    return <Icons.Sparkles className="w-6 h-6 stroke-[2.2]" />;
   };
 
   const getWhatsAppLink = () => {
@@ -97,91 +97,102 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA]">
-      {/* Hero Banner Section - Directly Connected under Navbar without gap */}
-      <div className="relative pt-16 md:pt-18 pb-8 md:pb-10 overflow-hidden bg-[#0B436B] border-b border-[#083657]">
+    <div className="min-h-screen bg-[#F2F9F9] text-[#0F172A]">
+      
+      {/* Hero Banner Section - Living Tranquil Pond Atmosphere */}
+      <div className="relative pt-20 md:pt-24 pb-10 md:pb-14 overflow-hidden bg-gradient-to-b from-[#04242E] via-[#062C38] to-[#0A4354] border-b border-teal-500/20 shadow-xl">
         <img
           src={service.image}
           alt={service.title}
-          className="absolute inset-0 w-full h-full object-cover opacity-35"
+          className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-overlay"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B436B] via-[#0B436B]/80 to-[#0B436B]/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#062C38] via-[#062C38]/85 to-[#04242E]/95" />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
           
-          {/* Integrated Clean Breadcrumb */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-3 pt-2 text-xs">
+          {/* Large, Touch-Friendly Breadcrumb Back Navigation */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-teal-500/20 pb-4 pt-1">
             <button
               id="service-page-back-btn"
               onClick={onBackToHome}
-              className="font-bold tracking-wider uppercase text-white/80 hover:text-white flex items-center gap-1.5 group cursor-pointer transition-colors"
+              className="text-sm sm:text-base font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm active:scale-95"
             >
-              <Icons.ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              Kembali ke Beranda
+              <Icons.ArrowLeft className="w-5 h-5 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
+              <span>Kembali ke Beranda</span>
             </button>
-            <span className="font-mono tracking-widest text-[#FCB900] uppercase font-bold text-[11px]">
+            <span className="font-mono tracking-widest text-[#FBBF24] uppercase font-extrabold text-xs sm:text-sm bg-black/25 px-3.5 py-1.5 rounded-lg border border-amber-400/20">
               Layanan / {service.title}
             </span>
           </div>
 
+          {/* Large Hero Title & Description */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="space-y-2.5 max-w-3xl pt-1"
+            className="space-y-3.5 max-w-4xl pt-1"
           >
-            <div className="inline-flex items-center gap-2 bg-[#E53935] text-white px-3.5 py-1 rounded-full shadow-sm">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white px-4 py-1.5 rounded-full shadow-lg">
               <div className="text-white">
                 {renderIcon(service.iconName)}
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider">
+              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider">
                 KOI POND SERVICES BALI
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
               {service.title}
             </h1>
-            <p className="text-sm sm:text-[15px] text-white/90 leading-relaxed font-normal">
+
+            <p className="text-base xs:text-lg sm:text-xl text-teal-50/95 leading-relaxed font-normal max-w-3xl">
               {service.description}
             </p>
           </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Side: Visi, Misi & Specifications */}
-        <div className="lg:col-span-7 space-y-8">
+      {/* Main Content Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+        
+        {/* Left Side: Visi, Misi, Specs & Packages (Span 7) */}
+        <div className="lg:col-span-7 space-y-9">
+          
           {/* Visi & Misi */}
           {(service.visi || service.misi) && (
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-4"
+              className="bg-white border border-teal-900/10 rounded-2xl p-6 sm:p-8 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-6"
             >
               {service.visi && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-[#0B436B]">
-                    <Icons.Eye className="w-5 h-5 text-[#E53935]" />
-                    <h4 className="text-sm font-bold uppercase tracking-wider">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[#062C38]">
+                    <div className="p-2 rounded-lg bg-teal-50 text-[#FF5722]">
+                      <Icons.Eye className="w-5 h-5 stroke-[2.5]" />
+                    </div>
+                    <h4 className="text-base sm:text-lg font-black uppercase tracking-wide">
                       Visi Layanan
                     </h4>
                   </div>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-base text-slate-700 leading-relaxed pl-1">
                     {service.visi}
                   </p>
                 </div>
               )}
               {service.misi && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-[#0B436B]">
-                    <Icons.Target className="w-5 h-5 text-[#E53935]" />
-                    <h4 className="text-sm font-bold uppercase tracking-wider">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[#062C38]">
+                    <div className="p-2 rounded-lg bg-teal-50 text-[#FF5722]">
+                      <Icons.Target className="w-5 h-5 stroke-[2.5]" />
+                    </div>
+                    <h4 className="text-base sm:text-lg font-black uppercase tracking-wide">
                       Misi Layanan
                     </h4>
                   </div>
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-base text-slate-700 leading-relaxed pl-1">
                     {service.misi}
                   </p>
                 </div>
@@ -191,18 +202,19 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
 
           {/* Mengapa Memilih */}
           {service.whyChooseUs && (
-            <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-[#0B436B]">
+            <div className="space-y-4">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#062C38] flex items-center gap-2.5">
+                <span className="w-2.5 h-6 bg-[#FF5722] rounded-full inline-block" />
                 Keunggulan {service.title}
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.whyChooseUs.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-200 shadow-2xs"
+                    className="flex items-start gap-3.5 p-5 bg-white rounded-2xl border border-teal-900/10 shadow-sm hover:border-[#0E5C73]/40 transition-all hover:shadow-md"
                   >
-                    <Icons.ShieldCheck className="w-5 h-5 text-[#E53935] mt-0.5 shrink-0" />
-                    <p className="text-sm text-gray-700 leading-relaxed">
+                    <Icons.ShieldCheck className="w-6 h-6 text-[#FF5722] mt-0.5 shrink-0" />
+                    <p className="text-base sm:text-[17px] text-slate-800 font-medium leading-relaxed">
                       {item}
                     </p>
                   </div>
@@ -213,15 +225,16 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
 
           {/* Ruang Lingkup Pekerjaan */}
           {service.details && (
-            <div className="space-y-3">
-              <h3 className="text-2xl font-bold text-[#0B436B]">
+            <div className="space-y-4">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#062C38] flex items-center gap-2.5">
+                <span className="w-2.5 h-6 bg-[#059669] rounded-full inline-block" />
                 Ruang Lingkup Pekerjaan
               </h3>
-              <div className="space-y-2.5">
+              <div className="space-y-3">
                 {service.details.map((detail, idx) => (
-                  <div key={idx} className="flex items-start gap-3 p-4 bg-white rounded-xl border border-gray-200 shadow-2xs">
-                    <Icons.CheckCircle2 className="w-5 h-5 text-[#0B436B] mt-0.5 shrink-0" />
-                    <p className="text-sm text-gray-800">{detail}</p>
+                  <div key={idx} className="flex items-start gap-3.5 p-5 bg-white rounded-2xl border border-teal-900/10 shadow-sm hover:border-teal-500/30 transition-all">
+                    <Icons.CheckCircle2 className="w-6 h-6 text-[#059669] mt-0.5 shrink-0" />
+                    <p className="text-base sm:text-[17px] text-slate-800 font-medium leading-relaxed">{detail}</p>
                   </div>
                 ))}
               </div>
@@ -231,21 +244,22 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
           {/* Cakupan & Kategori */}
           {service.servicesList && (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-[#0B436B]">
+              <h3 className="text-2xl sm:text-3xl font-black text-[#062C38] flex items-center gap-2.5">
+                <span className="w-2.5 h-6 bg-[#0E5C73] rounded-full inline-block" />
                 Cakupan & Pilihan Kategori
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.servicesList.map((cat, idx) => (
-                  <div key={idx} className="p-5 bg-white rounded-xl border border-gray-200 shadow-2xs space-y-2.5">
-                    <h4 className="font-bold text-base text-[#0B436B] border-b border-gray-100 pb-2">
+                  <div key={idx} className="p-6 bg-white rounded-2xl border border-teal-900/10 shadow-sm space-y-3.5">
+                    <h4 className="font-black text-lg text-[#062C38] border-b border-teal-50 pb-2.5">
                       {cat.category}
                     </h4>
                     {cat.items && (
-                      <ul className="space-y-2">
+                      <ul className="space-y-2.5">
                         {cat.items.map((it, i) => (
-                          <li key={i} className="text-sm text-gray-700 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                            {it}
+                          <li key={i} className="text-base text-slate-700 flex items-start gap-2.5 leading-snug">
+                            <span className="w-2 h-2 rounded-full bg-[#FF5722] mt-2 shrink-0" />
+                            <span>{it}</span>
                           </li>
                         ))}
                       </ul>
@@ -259,24 +273,25 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
           {/* Paket Rekomendasi */}
           {service.packages && (
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-[#0B436B]">
-                Pilihan Paket
+              <h3 className="text-2xl sm:text-3xl font-black text-[#062C38] flex items-center gap-2.5">
+                <span className="w-2.5 h-6 bg-[#FF6E40] rounded-full inline-block" />
+                Pilihan Paket Rekomendasi
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {service.packages.map((pkg, idx) => (
-                  <div key={idx} className="p-5 bg-white rounded-xl border border-gray-200 hover:border-[#0B436B] transition-colors space-y-3 shadow-2xs">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-bold text-base text-[#0B436B]">
+                  <div key={idx} className="p-6 bg-white rounded-2xl border border-teal-900/15 hover:border-[#0E5C73] transition-all space-y-4 shadow-sm hover:shadow-lg">
+                    <div className="flex items-center justify-between gap-2 border-b border-gray-100 pb-3">
+                      <h4 className="font-black text-lg text-[#062C38]">
                         {pkg.name}
                       </h4>
-                      <span className="text-xs font-bold text-[#E53935] bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
+                      <span className="text-xs sm:text-sm font-extrabold text-[#FF5722] bg-orange-50 px-3 py-1 rounded-full border border-orange-200 shrink-0">
                         Custom
                       </span>
                     </div>
-                    <ul className="space-y-2 text-sm text-gray-700">
+                    <ul className="space-y-2.5 text-base text-slate-700">
                       {pkg.items.map((it, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <Icons.Check className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                        <li key={i} className="flex items-start gap-2.5">
+                          <Icons.Check className="w-5 h-5 text-[#059669] shrink-0 mt-0.5" />
                           <span>{it}</span>
                         </li>
                       ))}
@@ -288,25 +303,25 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
           )}
         </div>
 
-        {/* Right Side: Interactive Consultation Form */}
+        {/* Right Side: Interactive Consultation Form with Large Clear Inputs (Span 5) */}
         <div className="lg:col-span-5">
-          <div className="sticky top-20 bg-white border border-gray-200 rounded-2xl p-6 sm:p-7 shadow-md space-y-4">
-            <div className="space-y-1 border-b border-gray-200 pb-3">
-              <span className="text-xs font-bold tracking-widest uppercase text-[#E53935]">
-                KONSULTASI GRATIS
+          <div className="sticky top-24 bg-white border-2 border-teal-900/10 rounded-3xl p-6 sm:p-8 shadow-xl space-y-5">
+            <div className="space-y-1.5 border-b border-gray-100 pb-4">
+              <span className="text-xs sm:text-sm font-extrabold tracking-widest uppercase text-[#FF5722] block">
+                KONSULTASI & ESTIMASI BIAYA
               </span>
-              <h3 className="text-xl font-bold text-[#0B436B]">
-                Ajukan Estimasi Biaya & Survei
+              <h3 className="text-2xl sm:text-3xl font-black text-[#062C38]">
+                Ajukan Survei Kolam Gratis
               </h3>
-              <p className="text-xs text-gray-600">
-                Isi kebutuhan Anda dan klik tombol WhatsApp untuk terhubung dengan Alvian Malengga.
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Isi form berikut lalu klik tombol WhatsApp untuk terhubung langsung dengan Alvian Malengga.
               </p>
             </div>
 
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-3.5">
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
               {fields.map((field) => (
-                <div key={field.name} className="space-y-1">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+                <div key={field.name} className="space-y-1.5">
+                  <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
                     {field.label} *
                   </label>
                   {field.type === 'select' ? (
@@ -314,7 +329,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                       required
                       value={formData[field.name] || ''}
                       onChange={(e) => handleInputChange(field.name, e.target.value)}
-                      className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-300 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0B436B]"
+                      className="w-full px-4 py-3.5 rounded-xl bg-teal-50/20 border border-slate-300 text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
                     >
                       <option value="">-- Pilih {field.label} --</option>
                       {field.options?.map((opt) => (
@@ -324,11 +339,11 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                   ) : field.type === 'textarea' ? (
                     <textarea
                       required
-                      rows={2}
+                      rows={3}
                       value={formData[field.name] || ''}
                       onChange={(e) => handleInputChange(field.name, e.target.value)}
                       placeholder={field.placeholder}
-                      className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-300 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0B436B] resize-none"
+                      className="w-full px-4 py-3.5 rounded-xl bg-teal-50/20 border border-slate-300 text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] resize-none transition-all"
                     />
                   ) : (
                     <input
@@ -337,28 +352,28 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                       value={formData[field.name] || ''}
                       onChange={(e) => handleInputChange(field.name, e.target.value)}
                       placeholder={field.placeholder}
-                      className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-300 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0B436B]"
+                      className="w-full px-4 py-3.5 rounded-xl bg-teal-50/20 border border-slate-300 text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
                     />
                   )}
                 </div>
               ))}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                <div className="space-y-1">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
-                    Nama Anda *
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
+                    Nama Lengkap *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.clientName || ''}
                     onChange={(e) => handleInputChange('clientName', e.target.value)}
-                    placeholder="Nama Lengkap"
-                    className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-300 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0B436B]"
+                    placeholder="Nama Anda"
+                    className="w-full px-4 py-3.5 rounded-xl bg-teal-50/20 border border-slate-300 text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-bold uppercase tracking-wider text-slate-700">
                     No. WhatsApp *
                   </label>
                   <input
@@ -366,26 +381,28 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                     required
                     value={formData.clientPhone || ''}
                     onChange={(e) => handleInputChange('clientPhone', e.target.value)}
-                    placeholder="0812..."
-                    className="w-full px-3.5 py-2 rounded-lg bg-gray-50 border border-gray-300 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#0B436B]"
+                    placeholder="08133034733..."
+                    className="w-full px-4 py-3.5 rounded-xl bg-teal-50/20 border border-slate-300 text-base text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0E5C73] focus:border-[#0E5C73] transition-all"
                   />
                 </div>
               </div>
 
+              {/* Large Vibrant Koi Flame WhatsApp CTA */}
               <a
                 id="service-submit-whatsapp-btn"
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full mt-3 py-3.5 bg-[#E53935] hover:bg-[#D32F2F] text-white rounded-full font-bold text-sm tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full mt-4 py-4 px-6 btn-koi-flame text-white rounded-full font-black text-base sm:text-lg tracking-wide uppercase transition-all shadow-xl flex items-center justify-center gap-3 cursor-pointer active:scale-98"
               >
-                <Icons.Phone className="w-4 h-4" />
-                Chat WhatsApp (08133034733)
+                <Icons.Phone className="w-5 h-5" />
+                <span>Chat WhatsApp (08133034733)</span>
               </a>
 
-              <p className="text-xs text-center text-gray-500">
-                * Respon cepat • Layanan survei lokasi GRATIS seluruh Bali
-              </p>
+              <div className="flex items-center justify-center gap-2 pt-1 text-xs sm:text-sm text-slate-500 font-medium">
+                <Icons.CheckCircle2 className="w-4 h-4 text-[#059669]" />
+                <span>Respon cepat • Survei lokasi 100% GRATIS se-Bali</span>
+              </div>
             </form>
           </div>
         </div>

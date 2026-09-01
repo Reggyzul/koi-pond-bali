@@ -126,7 +126,7 @@ export default function App() {
         return;
       }
 
-      if (path === 'about' || path === 'tentang-kami' || path === 'founder') {
+      if (path === 'about' || path === 'tentang-kami' || targetMatched(path)) {
         setIsAboutPageActive(true);
         setIsContactPageActive(false);
         setIsArticlesPageActive(false);
@@ -165,7 +165,7 @@ export default function App() {
     };
 
     function targetMatched(p: string) {
-      return p === 'blog' || p === 'edukasi';
+      return p === 'blog' || p === 'edukasi' || p === 'founder';
     }
 
     window.addEventListener('popstate', handlePopState);
@@ -270,7 +270,7 @@ export default function App() {
   const activeService = servicesData.find(s => s.id === activeServiceId);
 
   return (
-    <div className="relative min-h-screen bg-[#F8F9FA] text-[#222222]">
+    <div className="relative min-h-screen bg-[#F2F9F9] text-[#0F172A]">
       
       {/* Top Navigation */}
       <Navbar
@@ -348,15 +348,15 @@ export default function App() {
       <Footer onOpenConsultation={() => handleOpenConsultation()} />
 
       {/* Mobile-Optimized Floating WhatsApp Button (Bottom-Right on Mobile, Bottom-Left on Desktop) */}
-      <div className="fixed bottom-4 right-4 sm:bottom-5 sm:left-5 z-40 flex items-center">
+      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:left-6 z-40 flex items-center">
         <a
           id="floating-agro-whatsapp-pill"
           href={contactData.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full shadow-2xl text-xs sm:text-sm font-bold transition-transform hover:scale-105 active:scale-95 border-2 border-white"
+          className="flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:opacity-95 text-white rounded-full shadow-2xl text-sm sm:text-base font-bold transition-transform hover:scale-105 active:scale-95 border-2 border-white/90"
         >
-          <MessageCircle className="w-4 h-4 sm:w-4 sm:h-4 shrink-0" />
+          <MessageCircle className="w-5 h-5 shrink-0" />
           <span className="hidden sm:inline">Whatsapp Kami</span>
           <span className="sm:hidden">Chat WA</span>
         </a>
