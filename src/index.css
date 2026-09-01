@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   
   /* Living Koi Pond & Aquatic Natural Palette */
@@ -35,21 +35,20 @@ html {
   color: #0F172A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Plus Jakarta Sans', 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
   background-color: #F2F9F9;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', 'Ubuntu', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.015em;
 }
 
 /* Aquatic Koi Scrollbar */
