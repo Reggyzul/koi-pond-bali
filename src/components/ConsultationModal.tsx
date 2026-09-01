@@ -142,7 +142,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                          placeholder="08133034733..."
+                          placeholder="Contoh: 08123456789"
                         />
                       </div>
                     </div>
@@ -228,7 +228,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                       ) : (
                         <>
                           <MessageCircle className="w-4 h-4" />
-                          <span>Konsultasi WhatsApp Sekarang</span>
+                          <span>Konsultasi WhatsApp</span>
                         </>
                       )}
                     </button>
@@ -248,7 +248,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     Permintaan Terkirim
                   </h3>
                   <p className="text-xs sm:text-sm text-teal-100/80 max-w-sm">
-                    Terima kasih, <strong>{formData.name}</strong>. WhatsApp Anda telah terhubung ke <strong>08133034733</strong> (KOI POND SERVICES BALI).
+                    Terima kasih, <strong>{formData.name}</strong>. Pesan Anda telah terhubung ke WhatsApp resmi KOI POND SERVICES BALI.
                   </p>
                   
                   <button

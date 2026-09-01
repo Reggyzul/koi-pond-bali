@@ -134,7 +134,7 @@ export default function FAQ() {
               <div className="text-center py-8 bg-[#04242E]/60 border border-dashed border-teal-500/30 rounded-xl space-y-1.5">
                 <HelpCircle className="w-6 h-6 text-[#FF6E40] mx-auto" />
                 <p className="text-sm font-bold text-white">Pertanyaan tidak ditemukan</p>
-                <p className="text-xs text-teal-200/70">Silakan hubungi WhatsApp kami untuk konsultasi langsung.</p>
+                <p className="text-xs text-teal-200/70">Silakan ajukan pertanyaan langsung melalui formulir kontak kami.</p>
               </div>
             )}
           </AnimatePresence>

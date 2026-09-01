@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Instagram, ArrowUp, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Instagram, MapPin, MessageCircle, Phone } from 'lucide-react';
 import Logo from './Logo';
 import { contactData } from '../data';
 
@@ -13,10 +13,6 @@ interface FooterProps {
 }
 
 export default function Footer({ onOpenConsultation }: FooterProps) {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer id="footer" className="bg-[#04242E]/85 backdrop-blur-md text-white border-t border-teal-500/20 pt-12 pb-6 relative overflow-hidden">
       
@@ -42,7 +38,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#FBBF24] shrink-0" />
-              <span>{contactData.phone} (Layanan WhatsApp & Telepon)</span>
+              <span>Layanan Konsultasi & Survei Lapangan</span>
             </div>
           </div>
           <div className="flex gap-2.5 pt-1">
@@ -52,7 +48,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="px-3.5 py-1.5 bg-white/10 border border-white/20 hover:border-[#FF6E40] text-white rounded-full transition-all flex items-center gap-1.5 text-xs font-bold"
-              title="Instagram: @koi_pondbali"
+              title="Instagram"
             >
               <Instagram className="w-3.5 h-3.5 text-[#FF6E40]" />
               <span>@koi_pondbali</span>
@@ -63,7 +59,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="px-3.5 py-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full transition-all flex items-center gap-1.5 text-xs font-bold shadow-sm"
-              title="WhatsApp: 08133034733"
+              title="WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp</span>
@@ -121,7 +117,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
 
       </div>
 
-      {/* Sub-Footer copyrights & Back-to-top */}
+      {/* Sub-Footer copyrights */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-teal-200/60 font-medium">
         <div>
           &copy; {new Date().getFullYear()} KOI POND SERVICES BALI. All rights reserved.
@@ -132,15 +128,6 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
           <span>|</span>
           <span>Plumbing | Kelistrikan | Konstruksi</span>
         </div>
-
-        <button
-          id="back-to-top-btn"
-          onClick={scrollToTop}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all cursor-pointer text-xs font-bold"
-        >
-          Kembali ke Atas
-          <ArrowUp className="w-3.5 h-3.5" />
-        </button>
       </div>
 
     </footer>

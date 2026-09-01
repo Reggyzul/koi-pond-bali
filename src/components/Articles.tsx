@@ -235,28 +235,6 @@ export default function Articles({ onViewAllArticles }: ArticlesProps) {
                     ))}
                   </div>
                 )}
-
-                {/* Consultation Banner */}
-                <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-[#04242E] to-[#0A4354] border border-teal-500/30 text-white space-y-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
-                  <div className="space-y-0.5">
-                    <h4 className="font-bold text-sm sm:text-base">
-                      Konsultasikan Kolam Anda
-                    </h4>
-                    <p className="text-xs text-teal-100/80">
-                      Layanan survei dan penanganan teknis bergaransi resmi di seluruh Bali.
-                    </p>
-                  </div>
-                  <a
-                    id="landing-article-modal-wa-cta"
-                    href={`https://wa.me/628133034733?text=${encodeURIComponent(`Halo KOI POND SERVICES BALI! Saya membaca artikel "${selectedArticle.title}" dan ingin konsultasi mengenai kolam saya.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="whitespace-nowrap px-5 py-2 btn-koi-flame text-white rounded-full font-bold text-xs uppercase tracking-wider text-center shadow-md flex items-center justify-center gap-1.5"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    <span>Konsultasi WA</span>
-                  </a>
-                </div>
               </div>
             </motion.div>
           </div>

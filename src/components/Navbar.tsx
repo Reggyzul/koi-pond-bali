@@ -281,18 +281,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 Kontak & Lokasi Bali
               </a>
 
-              <div className="pt-2 flex flex-col gap-2.5">
-                <a
-                  id="mobile-nav-wa-btn"
-                  href={contactData.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-2.5 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white rounded-full font-bold text-xs sm:text-sm tracking-wide text-center flex items-center justify-center gap-2 shadow-md"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  Chat WhatsApp (08133034733)
-                </a>
-
+              <div className="pt-2">
                 <button
                   id="mobile-nav-consultation-btn"
                   onClick={() => {
@@ -301,8 +290,8 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   }}
                   className="w-full py-2.5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wide text-center flex items-center justify-center gap-2"
                 >
-                  <PhoneCall className="w-4 h-4" />
-                  Ajukan Survei Gratis
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Konsultasi & Survei Gratis</span>
                 </button>
               </div>
             </motion.div>

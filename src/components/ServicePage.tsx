@@ -393,7 +393,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                     required
                     value={formData.clientPhone || ''}
                     onChange={(e) => handleInputChange('clientPhone', e.target.value)}
-                    placeholder="08133034733..."
+                    placeholder="Contoh: 08123456789"
                     className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                   />
                 </div>
