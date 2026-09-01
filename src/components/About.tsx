@@ -21,7 +21,7 @@ export default function About({ onBackToHome }: AboutProps) {
               <span>Kembali ke Beranda</span>
             </button>
             <span className="text-xs sm:text-sm font-mono tracking-widest text-[#FBBF24] uppercase font-extrabold bg-black/20 px-3 py-1 rounded-md border border-amber-400/20">
-              Profil Pemilik & Dedikasi Kolam
+              Profil & Sejarah Layanan
             </span>
           </div>
         </div>
@@ -36,12 +36,12 @@ export default function About({ onBackToHome }: AboutProps) {
                 TENTANG KAMI
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#062C38] leading-tight">
-                Profil Founder & Dedikasi Kolam
+                Profil & Sejarah KOI POND SERVICES BALI
               </h2>
               <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
             </div>
 
-            {/* Founder Identity Card */}
+            {/* Company Identity Card */}
             <div className="border border-teal-900/10 bg-[#F2F9F9] rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-teal-900/10 pb-5">
                 <div>
@@ -109,15 +109,24 @@ export default function About({ onBackToHome }: AboutProps) {
                 </div>
               </div>
 
-              {/* Latar Belakang & Komitmen */}
-              <div className="space-y-3.5 pt-4 border-t border-teal-900/10">
-                <div className="flex items-center gap-2 text-[#062C38] font-bold text-sm sm:text-base uppercase tracking-wider">
-                  <BookOpen className="w-4 h-4 text-[#FF5722]" />
-                  <span>Komitmen & Standar Kerja</span>
+              {/* Sejarah & Standar Komitmen */}
+              <div className="space-y-4 pt-4 border-t border-teal-900/10">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-[#062C38] font-bold text-sm sm:text-base uppercase tracking-wider">
+                    <BookOpen className="w-4 h-4 text-[#FF5722]" />
+                    <span>Sejarah & Dedikasi Layanan</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    {founderProfile.history}
+                  </p>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                  {founderProfile.background}
-                </p>
+
+                <div className="space-y-2 pt-2">
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    {founderProfile.background}
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                   <div className="flex items-center gap-2.5 text-xs sm:text-sm text-[#062C38] font-medium bg-white p-3 rounded-lg border border-teal-900/10 shadow-2xs">
                     <CheckCircle2 className="w-4 h-4 text-[#059669] shrink-0" />

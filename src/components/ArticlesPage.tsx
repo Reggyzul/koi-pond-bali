@@ -77,7 +77,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
               Koleksi Artikel & Panduan Kolam Koi
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-teal-50/90 leading-relaxed font-normal max-w-3xl">
-              Pelajari berbagai tips praktis seputar perawatan air kolam kristal, instalasi filter biologis vortex, pencegahan kebocoran, serta diagnosa & pengobatan ikan koi dari Alvian Malengga.
+              Pelajari berbagai tips praktis seputar perawatan air kolam kristal, instalasi filter biologis vortex, pencegahan kebocoran, serta diagnosa & pengobatan ikan koi dari KOI POND SERVICES BALI.
             </p>
           </motion.div>
 
@@ -299,7 +299,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                       Punya Masalah Serupa pada Kolam Anda?
                     </h4>
                     <p className="text-xs text-teal-100">
-                      Konsultasikan langsung dengan Alvian Malengga untuk survei dan penanganan bergaransi di Bali.
+                      Konsultasikan langsung dengan tim KOI POND SERVICES BALI untuk survei dan penanganan bergaransi di Bali.
                     </p>
                   </div>
                   <a

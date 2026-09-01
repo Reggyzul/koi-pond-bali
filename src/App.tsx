@@ -232,7 +232,7 @@ export default function App() {
       setIsContactPageActive(false);
       setIsArticlesPageActive(false);
       setActiveServiceId(null);
-      window.history.pushState(null, '', '/founder');
+      window.history.pushState(null, '', '/about');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
       return;
     }
@@ -320,7 +320,6 @@ export default function App() {
           <Hero
             onOpenConsultation={() => handleOpenConsultation()}
             onViewFounder={() => handleSelectSection('about')}
-            onViewServices={() => handleSelectSection('services')}
           />
 
           <main>

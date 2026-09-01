@@ -61,8 +61,8 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
             <Logo variant="dark" />
           </a>
 
-          {/* Desktop Nav Menu - Precisely Aligned & Spaced */}
-          <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-white/90">
+          {/* Desktop Nav Menu - Sleek, Balanced & Elegant */}
+          <div className="hidden lg:flex items-center gap-7 xl:gap-8 text-sm font-medium text-white/90">
             <a
               id="nav-link-about"
               href="#about"
@@ -70,9 +70,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('about');
               }}
-              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              Tentang Kami
+              <span>Tentang Kami</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
             {/* Layanan Dropdown */}
@@ -83,10 +84,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
             >
               <button
                 id="nav-link-services-drop"
-                className="hover:text-[#FBBF24] transition-colors flex items-center gap-1.5 cursor-pointer py-1"
+                className="hover:text-[#FBBF24] transition-colors flex items-center gap-1.5 cursor-pointer py-1 tracking-wide group"
               >
                 <span>Layanan</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-[#FBBF24]' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-[#FBBF24]' : 'text-teal-300/70 group-hover:text-[#FBBF24]'}`} />
               </button>
 
               <AnimatePresence>
@@ -127,9 +128,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('why-choose-us');
               }}
-              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              Keunggulan
+              <span>Keunggulan</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
             <a
@@ -139,9 +141,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('articles');
               }}
-              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              Artikel
+              <span>Artikel</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
             <a
@@ -151,9 +154,10 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('faq');
               }}
-              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              FAQ
+              <span>FAQ</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
             <a
@@ -163,19 +167,11 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 e.preventDefault();
                 onSelectSection('contact');
               }}
-              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer"
+              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              Kontak
+              <span>Kontak</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
-
-            {/* Direct Consultation Pill Button */}
-            <button
-              id="desktop-nav-cta-btn"
-              onClick={onOpenConsultation}
-              className="btn-koi-flame px-4 py-1.5 text-xs font-bold uppercase tracking-wider cursor-pointer ml-1"
-            >
-              Konsultasi Gratis
-            </button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -210,7 +206,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 }}
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1"
               >
-                Tentang Kami (Profil Alvian Malengga)
+                Tentang Kami (Profil & Sejarah)
               </a>
 
               <div className="space-y-1.5 pl-3 border-l-2 border-[#FF6E40]/50 bg-white/5 py-2.5 rounded-r-lg pr-3">

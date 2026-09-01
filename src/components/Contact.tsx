@@ -27,7 +27,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const text = `Halo KOI POND SERVICES BALI (Alvian Malengga)!\nSaya ingin konsultasi / survei kolam koi:\n\n• *Nama*: ${formData.name}\n• *No. HP/WA*: ${formData.phone}\n• *Layanan*: ${formData.type}\n• *Lokasi*: ${formData.location}\n• *Detail Kebutuhan*: ${formData.message}\n\nMohon informasi lebih lanjut. Terima kasih!`;
+    const text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi / survei kolam koi:\n\n• *Nama*: ${formData.name}\n• *No. HP/WA*: ${formData.phone}\n• *Layanan*: ${formData.type}\n• *Lokasi*: ${formData.location}\n• *Detail Kebutuhan*: ${formData.message}\n\nMohon informasi lebih lanjut. Terima kasih!`;
     const waUrl = `https://wa.me/628133034733?text=${encodeURIComponent(text)}`;
     
     setTimeout(() => {
@@ -57,7 +57,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
     {
       icon: MessageCircle,
       title: 'WhatsApp Resmi',
-      desc: `${contactData.whatsapp} (Alvian Malengga)`
+      desc: `${contactData.whatsapp} (Layanan Konsultasi)`
     },
     {
       icon: Phone,
@@ -245,7 +245,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                       Permintaan Konsultasi Diterima
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 max-w-md">
-                      Terima kasih, <strong>{formData.name}</strong>. Pesan Anda telah diarahkan ke WhatsApp 08133034733 (Alvian Malengga).
+                      Terima kasih, <strong>{formData.name}</strong>. Pesan Anda telah terhubung ke WhatsApp resmi KOI POND SERVICES BALI (08133034733).
                     </p>
                   </div>
                   <button
@@ -266,7 +266,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   Informasi Kontak
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-[#062C38] tracking-tight">
-                  Hubungi Alvian Malengga
+                  Hubungi KOI POND SERVICES BALI
                 </h3>
               </div>
 

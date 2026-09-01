@@ -46,7 +46,7 @@ export default function Articles({ onViewAllArticles }: ArticlesProps) {
             Tips & Panduan Perawatan Kolam Koi Bali
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-slate-600 font-normal leading-relaxed">
-            Kumpulan artikel teknis, panduan kualitas air kristal, pencegahan kebocoran, serta diagnosa penyakit ikan koi dari Alvian Malengga.
+            Kumpulan artikel teknis, panduan kualitas air kristal, pencegahan kebocoran, serta diagnosa penyakit ikan koi dari KOI POND SERVICES BALI.
           </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </div>
@@ -234,7 +234,7 @@ export default function Articles({ onViewAllArticles }: ArticlesProps) {
                       Punya Masalah Serupa pada Kolam Anda?
                     </h4>
                     <p className="text-xs text-teal-100">
-                      Konsultasikan langsung dengan Alvian Malengga untuk survei dan penanganan bergaransi di Bali.
+                      Konsultasikan langsung dengan tim KOI POND SERVICES BALI untuk survei dan penanganan bergaransi di Bali.
                     </p>
                   </div>
                   <a

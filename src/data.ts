@@ -15,13 +15,14 @@ export const brandName = "KOI POND SERVICES BALI";
 export const brandSlogan = "Spesialis Pembuatan, Perbaikan dan Perawatan Kolam, Filter dan Ikan Koi Terbaik di Indonesia Khususnya Bali.";
 export const brandDescription = "KOI POND SERVICES BALI adalah penyedia jasa terpadu dan profesional spesialis pembuatan, renovasi, perawatan kolam & sistem filtrasi, serta perawatan dan jual-beli ikan koi terpercaya di Bali sejak 2021. Didukung tenaga ahli plumbing, kelistrikan, dan konstruksi berpengalaman dengan harga termurah, fleksibel, serta bergaransi resmi.";
 
-// Data Owner / Founder Profile
+// Data Profil & Sejarah Perjalanan KOI POND SERVICES BALI
 export const founderProfile = {
-  name: "Alvian Malengga",
-  role: "Founder & Owner KOI POND SERVICES BALI",
+  name: "KOI POND SERVICES BALI",
+  role: "Spesialis Kolam, Sistem Filter & Perawatan Ikan Koi di Bali",
   established: 2021,
-  quote: "Kolam yang sehat berawal dari sistem filtrasi dan plumbing yang presisi, menghadirkan air sejernih kristal untuk keindahan dan kesehatan ikan koi Anda.",
-  background: "KOI POND SERVICES BALI didirikan pada tahun 2021 dan dipimpin langsung oleh Alvian Malengga. Dengan dedikasi tinggi dan keahlian mendalam di bidang plumbing perairan, instalasi kelistrikan sistem kolam, dan konstruksi beton kedap air, beliau memimpin tim teknisi profesional dalam menangani berbagai proyek kolam koi di seluruh Bali — mulai dari hunian pribadi, villa, resort, restoran, hingga area komersial. Seluruh layanan kami mengutamakan kepuasan pelanggan melalui harga yang fleksibel, hasil kerja rapi, serta garansi pada setiap pekerjaan dan material."
+  quote: "Kolam yang sehat berawal dari sistem filtrasi dan plumbing yang presisi, menghadirkan air sejernih kristal untuk keindahan dan kesehatan ekosistem ikan koi Anda.",
+  history: "KOI POND SERVICES BALI didirikan pada tahun 2021 sebagai layanan terpadu spesialis ekosistem kolam koi di Bali. Berawal dari kecintaan mendalam terhadap seni arsitektur air dan biologi Nishikigoi, kami mendedikasikan diri untuk menghadirkan standar mutu perkolaman terbaik bagi residensial, villa, resort, restoran, dan properti komersial di seluruh Bali.",
+  background: "Dengan mengintegrasikan tiga keahlian inti — plumbing sirkulasi air tanpa dead-spot, kelistrikan outdoor aman & hemat daya, serta konstruksi beton kedap air anti bocor bergaransi — KOI POND SERVICES BALI senantiasa mengutamakan kepuasan pelanggan lewat transparansi biaya, estimasi yang fleksibel, dan garansi penuh pada setiap pekerjaan."
 };
 
 // 6 Layanan Utama dengan Foto Generated Asli
@@ -424,7 +425,7 @@ export const articlesData: Article[] = [
     category: 'Perawatan Kolam',
     date: '31 Agustus 2026',
     readTime: '4 Menit Baca',
-    author: 'Alvian Malengga',
+    author: 'KOI POND SERVICES BALI',
     image: '/images/perawatan_kolam.jpg',
     excerpt: 'Iklim tropis dan sinar matahari intens di Bali seringkali membuat kolam cepat berlumut dan air menjadi hijau. Simak tips ahli menjaga parameter air tetap ideal dan bening kristal sepanjang tahun.',
     content: [
@@ -443,7 +444,7 @@ export const articlesData: Article[] = [
     category: 'Renovasi Kolam',
     date: '28 Agustus 2026',
     readTime: '5 Menit Baca',
-    author: 'Alvian Malengga',
+    author: 'KOI POND SERVICES BALI',
     image: '/images/renovasi_kolam.jpg',
     excerpt: 'Air kolam koi Anda cepat surut? Kenali penyebab kebocoran struktural vs plumbing serta metode pelapisan waterproofing elastis bergaransi yang efisien tanpa harus merobohkan kolam.',
     content: [
@@ -462,7 +463,7 @@ export const articlesData: Article[] = [
     category: 'Sistem Filter',
     date: '25 Agustus 2026',
     readTime: '6 Menit Baca',
-    author: 'Alvian Malengga',
+    author: 'KOI POND SERVICES BALI',
     image: '/images/filter_kolam.jpg',
     excerpt: 'Sistem filter adalah jantung kolam koi. Pelajari bagaimana sistem 4 chamber vortex memisahkan kotoran padat, menyaring zat kimia berbahaya, dan menciptakan ekosistem air yang sehat.',
     content: [
@@ -480,7 +481,7 @@ export const articlesData: Article[] = [
     category: 'Perawatan Ikan',
     date: '20 Agustus 2026',
     readTime: '4 Menit Baca',
-    author: 'Alvian Malengga',
+    author: 'KOI POND SERVICES BALI',
     image: '/images/perawatan_ikan.jpg',
     excerpt: 'Gejala ikan koi diam di dasar, flashing menggesekkan badan, atau timbul bercak merah/putih membutuhkan penanganan medis yang cepat dan tepat sebelum menular ke seluruh kolam.',
     content: [
@@ -499,7 +500,7 @@ export const articlesData: Article[] = [
     category: 'Jual Beli Koi',
     date: '15 Agustus 2026',
     readTime: '5 Menit Baca',
-    author: 'Alvian Malengga',
+    author: 'KOI POND SERVICES BALI',
     image: '/images/jual_beli_koi.jpg',
     excerpt: 'Ingin mulai mengoleksi koi? Kenali 3 varietas paling populer (Gosanke) beserta kriteria bentuk tubuh (body build), ketajaman warna (kiwa & sashi), dan pola motif yang bernilai tinggi.',
     content: [
@@ -519,7 +520,7 @@ export const articlesData: Article[] = [
     category: 'Konstruksi Kolam',
     date: '10 Agustus 2026',
     readTime: '5 Menit Baca',
-    author: 'Alvian Malengga',
+    author: 'KOI POND SERVICES BALI',
     image: '/images/pembuatan_kolam.jpg',
     excerpt: 'Kunci kolam koi minim perawatan adalah desain plumbing yang benar sejak awal pengecoran. Pahami fungsi bottom drain, skimmer, aerated BD, dan kemiringan lantai kolam.',
     content: [
@@ -536,7 +537,7 @@ export const articlesData: Article[] = [
 // Informasi Kontak & Area
 export const contactData = {
   businessName: "KOI POND SERVICES BALI",
-  ownerName: "ALVIAN MALENGGA",
+  ownerName: "KOI POND SERVICES BALI",
   phone: "08133034733",
   whatsapp: "08133034733",
   whatsappUrl: "https://wa.me/628133034733",

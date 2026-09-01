@@ -10,10 +10,9 @@ import { contactData } from '../data';
 interface HeroProps {
   onOpenConsultation?: () => void;
   onViewFounder?: () => void;
-  onViewServices?: () => void;
 }
 
-export default function Hero({ onOpenConsultation, onViewServices }: HeroProps) {
+export default function Hero({ onOpenConsultation }: HeroProps) {
   return (
     <section
       id="hero"
@@ -70,7 +69,7 @@ export default function Hero({ onOpenConsultation, onViewServices }: HeroProps) 
 
             {/* Description Paragraph */}
             <p className="text-teal-50/90 text-xs sm:text-sm md:text-[15px] font-normal leading-relaxed max-w-xl">
-              KOI POND SERVICES BALI menghadirkan kolam koi jernih kristal, bebas bocor, dan ekosistem ikan sehat. Dipimpin langsung oleh <strong>Alvian Malengga</strong> dengan keahlian plumbing, kelistrikan, dan konstruksi bergaransi resmi 100% serta harga fleksibel menyesuaikan budget.
+              KOI POND SERVICES BALI menghadirkan kolam koi jernih kristal, bebas bocor, dan ekosistem ikan sehat dengan keahlian teknis terintegrasi di bidang plumbing, kelistrikan, dan konstruksi beton bertulang bergaransi 100% serta estimasi biaya yang fleksibel.
             </p>
 
             {/* Guarantees Mini Tags */}
@@ -86,27 +85,17 @@ export default function Hero({ onOpenConsultation, onViewServices }: HeroProps) 
             </div>
 
             {/* WhatsApp CTA Button */}
-            <div className="pt-2 w-full sm:w-auto flex flex-col sm:flex-row items-center gap-2.5">
+            <div className="pt-2 w-full sm:w-auto flex items-center justify-center lg:justify-start">
               <a
                 id="hero-agro-whatsapp-btn"
                 href={contactData.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 btn-koi-flame text-white rounded-full font-bold text-sm shadow-lg transition-all cursor-pointer active:scale-95"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 btn-koi-flame text-white rounded-full font-bold text-sm shadow-lg transition-all cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" />
                 <span>Whatsapp Kami (Konsultasi)</span>
               </a>
-
-              {onViewServices && (
-                <button
-                  id="hero-view-services-btn"
-                  onClick={onViewServices}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm border border-white/20 transition-all cursor-pointer"
-                >
-                  Lihat 6 Layanan
-                </button>
-              )}
             </div>
 
           </motion.div>

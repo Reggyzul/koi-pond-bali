@@ -40,7 +40,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
     e.preventDefault();
     setIsSubmitting(true);
 
-    const text = `Halo KOI POND SERVICES BALI (Alvian Malengga)!\nSaya ingin mengajukan KONSULTASI & SURVEI GRATIS:\n\n• *Nama*: ${formData.name}\n• *No. WhatsApp*: ${formData.phone}\n• *Layanan*: ${formData.category}\n• *Lokasi di Bali*: ${formData.location}\n• *Estimasi Budget*: ${formData.budget}\n• *Keterangan*: ${formData.message}\n\nMohon informasi jadwal survei gratis. Terima kasih!`;
+    const text = `Halo KOI POND SERVICES BALI!\nSaya ingin mengajukan KONSULTASI & SURVEI GRATIS:\n\n• *Nama*: ${formData.name}\n• *No. WhatsApp*: ${formData.phone}\n• *Layanan*: ${formData.category}\n• *Lokasi di Bali*: ${formData.location}\n• *Estimasi Budget*: ${formData.budget}\n• *Keterangan*: ${formData.message}\n\nMohon informasi jadwal survei gratis. Terima kasih!`;
     const waUrl = `https://wa.me/628133034733?text=${encodeURIComponent(text)}`;
 
     setTimeout(() => {
@@ -110,7 +110,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                         Konsultasi & Survei Gratis
                       </h3>
                       <p className="text-xs text-slate-600 font-medium">
-                        KOI POND SERVICES BALI (Alvian Malengga)
+                        KOI POND SERVICES BALI
                       </p>
                     </div>
                   </div>
@@ -248,7 +248,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     Permintaan Terkirim
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 max-w-sm">
-                    Terima kasih, <strong>{formData.name}</strong>. WhatsApp Anda telah terhubung ke <strong>08133034733</strong> (Alvian Malengga).
+                    Terima kasih, <strong>{formData.name}</strong>. WhatsApp Anda telah terhubung ke <strong>08133034733</strong> (KOI POND SERVICES BALI).
                   </p>
                   
                   <button

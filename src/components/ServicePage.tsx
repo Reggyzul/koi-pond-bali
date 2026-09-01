@@ -82,7 +82,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
   };
 
   const getWhatsAppLink = () => {
-    let text = `Halo KOI POND SERVICES BALI (Alvian Malengga)!\nSaya ingin konsultasi mengenai layanan: *${service.title}*.\n\n`;
+    let text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi mengenai layanan: *${service.title}*.\n\n`;
     fields.forEach(f => {
       const val = formData[f.name];
       if (val) {
@@ -314,7 +314,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                 Ajukan Survei Kolam Gratis
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Isi form berikut lalu klik tombol WhatsApp untuk terhubung langsung dengan Alvian Malengga.
+                Isi form berikut lalu klik tombol WhatsApp untuk terhubung langsung dengan tim KOI POND SERVICES BALI.
               </p>
             </div>
 

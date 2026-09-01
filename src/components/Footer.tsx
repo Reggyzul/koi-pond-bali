@@ -33,7 +33,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             <Logo variant="dark" />
           </a>
           <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal max-w-sm">
-            Spesialis pembuatan, perbaikan dan perawatan kolam, filter chamber vortex dan ikan koi terbaik di Bali. Dikelola langsung oleh Alvian Malengga sejak 2021.
+            Spesialis pembuatan, perbaikan dan perawatan kolam, filter chamber vortex dan ikan koi terbaik di Bali sejak 2021.
           </p>
           <div className="space-y-1.5 text-xs sm:text-sm text-teal-100/85">
             <div className="flex items-start gap-2">
@@ -42,7 +42,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#FBBF24] shrink-0" />
-              <span>{contactData.phone} (Alvian Malengga)</span>
+              <span>{contactData.phone} (Layanan WhatsApp & Telepon)</span>
             </div>
           </div>
           <div className="flex gap-2.5 pt-1">
