@@ -16,10 +16,10 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative pt-24 pb-14 lg:pt-28 lg:pb-20 min-h-[500px] flex items-center overflow-hidden border-b border-teal-500/15"
+      className="relative pt-16 sm:pt-20 lg:pt-20 pb-8 sm:pb-10 lg:pb-12 flex items-center overflow-hidden border-b border-teal-500/15"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 w-full items-center gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 w-full items-center gap-6 lg:gap-10">
           
           {/* Left Column: Glassmorphic Ambience Card with Swimming Koi Highlight */}
           <motion.div
