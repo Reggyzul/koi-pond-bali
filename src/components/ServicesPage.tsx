@@ -14,8 +14,7 @@ import {
   ShoppingBag,
   Zap,
   ArrowLeft,
-  ArrowRight,
-  ShieldCheck
+  ArrowRight
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -48,7 +47,9 @@ export default function ServicesPage({ onBackToHome, onSelectService }: Services
     return <IconComponent className="w-5 h-5 stroke-[2]" />;
   };
 
-  const filteredServices = servicesData.filter((srv) => {
+  const allServices = servicesData || [];
+
+  const filteredServices = allServices.filter((srv) => {
     if (activeFilter === 'All' || activeFilter === 'Semua') return true;
     if (activeFilter === 'Konstruksi & Renovasi' || activeFilter === 'Construction & Renovation') {
       return srv.id === 'pembuatan-kolam-koi' || srv.id === 'renovasi-perbaikan-kolam' || srv.id === 'perbaikan-listrik-konstruksi';
@@ -79,10 +80,10 @@ export default function ServicesPage({ onBackToHome, onSelectService }: Services
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-1.5 px-3.5 rounded-lg border border-white/15 transition-all shadow-xs active:scale-95"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>{t.servicePage.backBtn}</span>
+              <span>{t?.servicePage?.backBtn || 'Kembali'}</span>
             </button>
             <span className="font-mono tracking-widest text-[#FBBF24] uppercase font-bold text-xs bg-black/25 px-3 py-1 rounded-md border border-amber-400/20">
-              {t.services.badge}
+              {t?.services?.badge || 'Layanan Spesialis'}
             </span>
           </div>
 
@@ -187,7 +188,7 @@ export default function ServicesPage({ onBackToHome, onSelectService }: Services
                     }}
                     className="text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
-                    {t.services.detailBtn}
+                    {t?.services?.detailBtn || 'Pelajari Selengkapnya'}
                     <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                   </button>
                   <span className="text-[11px] text-emerald-300 font-bold bg-emerald-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-500/30">

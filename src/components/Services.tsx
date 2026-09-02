@@ -44,7 +44,7 @@ export default function Services({ onSelectService, onViewAllServices }: Service
   };
 
   // Only display the top 3 services on the landing page
-  const featuredServices = servicesData.slice(0, 3);
+  const featuredServices = (servicesData || []).slice(0, 3);
 
   return (
     <section id="services" className="py-16 md:py-20 glass-aquatic-section relative">
@@ -59,13 +59,13 @@ export default function Services({ onSelectService, onViewAllServices }: Service
           className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-14"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-            {t.services.badge}
+            {t?.services?.badge || 'Layanan Spesialis'}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            {t.services.title}
+            {t?.services?.title || 'Solusi Terpadu Kolam & Ikan Koi di Bali'}
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-            {t.services.subtitle}
+            {t?.services?.subtitle || ''}
           </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
@@ -125,7 +125,7 @@ export default function Services({ onSelectService, onViewAllServices }: Service
                     }}
                     className="text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
-                    {t.services.detailBtn}
+                    {t?.services?.detailBtn || 'Pelajari Selengkapnya'}
                     <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                   </button>
                   <span className="text-[11px] text-emerald-300 font-bold bg-emerald-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-500/30">
@@ -148,7 +148,7 @@ export default function Services({ onSelectService, onViewAllServices }: Service
               onClick={onViewAllServices}
               className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white/5 hover:bg-white/10 text-teal-100 hover:text-white border border-teal-500/30 hover:border-[#FF6E40] text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-md cursor-pointer active:scale-95"
             >
-              <span>{t.services.moreServices}</span>
+              <span>{t?.services?.moreServices || 'Layanan Lainnya'}</span>
             </button>
           </div>
         )}

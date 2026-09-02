@@ -31,17 +31,26 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('koi_pond_lang');
-      if (saved === 'id' || saved === 'en') return saved;
+      try {
+        const saved = localStorage.getItem('koi_pond_lang');
+        if (saved === 'id' || saved === 'en') return saved;
+      } catch (e) {
+        console.warn('localStorage not accessible:', e);
+      }
     }
     return 'id';
   });
 
   const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
+    const validLang: Language = lang === 'en' ? 'en' : 'id';
+    setLanguageState(validLang);
     if (typeof window !== 'undefined') {
-      localStorage.setItem('koi_pond_lang', lang);
-      document.documentElement.lang = lang;
+      try {
+        localStorage.setItem('koi_pond_lang', validLang);
+        document.documentElement.lang = validLang;
+      } catch (e) {
+        console.warn('localStorage write failed:', e);
+      }
     }
   };
 
@@ -55,15 +64,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [language]);
 
+  const currentLang: Language = language === 'en' ? 'en' : 'id';
+
   const value: LanguageContextType = {
-    language,
+    language: currentLang,
     setLanguage,
     toggleLanguage,
-    t: translations[language],
-    servicesData: bilingualServicesData[language],
-    whyChooseUsData: bilingualWhyChooseUsData[language],
-    faqData: bilingualFaqData[language],
-    articlesData: bilingualArticlesData[language]
+    t: translations[currentLang] || translations.id,
+    servicesData: bilingualServicesData[currentLang] || bilingualServicesData.id || [],
+    whyChooseUsData: bilingualWhyChooseUsData[currentLang] || bilingualWhyChooseUsData.id || [],
+    faqData: bilingualFaqData[currentLang] || bilingualFaqData.id || [],
+    articlesData: bilingualArticlesData[currentLang] || bilingualArticlesData.id || []
   };
 
   return (
