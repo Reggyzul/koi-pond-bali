@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React from 'react';
 import { motion } from 'motion/react';
 import {
   Building2,
@@ -13,7 +14,7 @@ import {
   ShoppingBag,
   ArrowRight
 } from 'lucide-react';
-import { servicesData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2,
@@ -32,6 +33,8 @@ interface ServicesProps {
 }
 
 export default function Services({ onSelectService }: ServicesProps) {
+  const { t, servicesData, language } = useLanguage();
+
   const renderIcon = (iconName: string) => {
     const IconComponent = iconMap[iconName] || Sparkles;
     return <IconComponent className="w-5 h-5 stroke-[2]" />;
@@ -50,13 +53,13 @@ export default function Services({ onSelectService }: ServicesProps) {
           className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-14"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-            Layanan Spesialis Kolam
+            {t.services.badge}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            Layanan Spesialis Kolam & Ikan Koi Bali
+            {t.services.title}
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-            Rancang bangun kolam baru, renovasi kebocoran, sistem filtrasi vortex, serta perawatan kesehatan ikan koi.
+            {t.services.subtitle}
           </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
@@ -92,7 +95,7 @@ export default function Services({ onSelectService }: ServicesProps) {
                 </div>
 
                 <div className="absolute top-3 right-3 px-2.5 py-1 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] rounded-full text-[11px] font-bold text-white uppercase tracking-wider shadow-sm">
-                  Garansi 100%
+                  {language === 'id' ? 'Garansi 100%' : '100% Warranty'}
                 </div>
               </div>
 
@@ -116,11 +119,11 @@ export default function Services({ onSelectService }: ServicesProps) {
                     }}
                     className="text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 cursor-pointer transition-colors"
                   >
-                    Detail & Estimasi
+                    {t.services.detailBtn}
                     <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                   </button>
                   <span className="text-[11px] text-emerald-300 font-bold bg-emerald-950/60 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                    Survei Gratis
+                    {language === 'id' ? 'Survei Gratis' : 'Free Survey'}
                   </span>
                 </div>
               </div>

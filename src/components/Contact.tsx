@@ -7,16 +7,19 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, MapPin, Clock, Send, MessageCircle, Check, Instagram, ArrowLeft } from 'lucide-react';
 import { contactData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ContactProps {
   onBackToHome?: () => void;
 }
 
 export default function Contact({ onBackToHome }: ContactProps) {
+  const { t, language } = useLanguage();
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    type: 'Pembuatan Kolam Koi',
+    type: language === 'id' ? 'Pembuatan Kolam Koi' : 'Koi Pond Construction',
     location: '',
     message: '',
     targetNumber: '08133034733'
@@ -28,7 +31,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    const text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi / survei kolam koi:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.type}\n- Lokasi: ${formData.location}\n- Kebutuhan: ${formData.message}\n\nMohon informasi estimasi & jadwal survei. Terima kasih.`;
+    let text = '';
+    if (language === 'en') {
+      text = `Hello KOI POND SERVICES BALI!\nI would like to request an on-site survey & consultation:\n\n- Name: ${formData.name}\n- WhatsApp: ${formData.phone}\n- Selected Service: ${formData.type}\n- Location in Bali: ${formData.location}\n- Notes: ${formData.message}\n\nPlease let me know your estimated pricing and available survey schedule. Thank you!`;
+    } else {
+      text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi / survei kolam koi:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.type}\n- Lokasi: ${formData.location}\n- Kebutuhan: ${formData.message}\n\nMohon informasi estimasi & jadwal survei. Terima kasih.`;
+    }
+
     const cleanNumber = formData.targetNumber.replace(/\D/g, '');
     const fullNumber = cleanNumber.startsWith('0') ? `62${cleanNumber.slice(1)}` : cleanNumber;
     const waUrl = `https://wa.me/${fullNumber}?text=${encodeURIComponent(text)}`;
@@ -44,7 +53,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
     setFormData({
       name: '',
       phone: '',
-      type: 'Pembuatan Kolam Koi',
+      type: language === 'id' ? 'Pembuatan Kolam Koi' : 'Koi Pond Construction',
       location: '',
       message: '',
       targetNumber: '08133034733'
@@ -55,37 +64,55 @@ export default function Contact({ onBackToHome }: ContactProps) {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Alamat Workshop',
+      title: t.contact.workshopAddress,
       desc: contactData.address
     },
     {
       icon: MessageCircle,
-      title: 'WhatsApp 1 (Konsultasi & Survei)',
-      desc: `${contactData.whatsapp1} (Layanan Survei Lapangan)`,
+      title: language === 'id' ? 'WhatsApp 1 (Konsultasi & Survei)' : 'WhatsApp 1 (Consultation & Survey)',
+      desc: `${contactData.whatsapp1} (${language === 'id' ? 'Survei & Teknis' : 'Surveys & Engineering'})`,
       link: contactData.whatsappUrl1
     },
     {
       icon: MessageCircle,
-      title: 'WhatsApp 2 (Booking & Support)',
-      desc: `${contactData.whatsapp2} (Layanan Cepat & Booking)`,
+      title: language === 'id' ? 'WhatsApp 2 (Booking & Support)' : 'WhatsApp 2 (Booking & Support)',
+      desc: `${contactData.whatsapp2} (${language === 'id' ? 'Layanan Cepat & Booking' : 'Booking & Customer Care'})`,
       link: contactData.whatsappUrl2
     },
     {
       icon: Phone,
-      title: 'Telepon Langsung',
-      desc: `${contactData.phone} (Telepon Resmi)`
+      title: language === 'id' ? 'Telepon Langsung' : 'Direct Call',
+      desc: `${contactData.phone} (Official Line)`
     },
     {
       icon: Instagram,
-      title: 'Instagram Resmi',
+      title: 'Instagram',
       desc: contactData.instagram,
       link: contactData.instagramUrl
     },
     {
       icon: Clock,
-      title: 'Jam Operasional',
-      desc: contactData.operatingHours
+      title: t.contact.operatingHours,
+      desc: t.contact.hoursDetail
     }
+  ];
+
+  const serviceOptions = language === 'id' ? [
+    { value: 'Pembuatan Kolam Koi', label: 'Pembuatan Kolam Koi Baru' },
+    { value: 'Renovasi / Perbaikan Kolam', label: 'Renovasi / Perbaikan Kolam Bocor' },
+    { value: 'Perawatan & Kuras Kolam', label: 'Perawatan & Kuras Kolam Berkala' },
+    { value: 'Perawatan Ikan Koi', label: 'Perawatan & Pengobatan Ikan Koi' },
+    { value: 'Pembuatan / Perawatan Filter', label: 'Pembuatan / Perawatan Filter' },
+    { value: 'Jual / Beli Ikan Koi', label: 'Jual / Beli Ikan Koi' },
+    { value: 'Konsultasi Umum', label: 'Konsultasi Umum Lainnya' },
+  ] : [
+    { value: 'Koi Pond Construction', label: 'New Koi Pond Construction' },
+    { value: 'Pond Renovation & Leak Repair', label: 'Pond Renovation & Leak Repair' },
+    { value: 'Routine Pond Maintenance', label: 'Routine Cleaning & Water Care' },
+    { value: 'Koi Fish Care & Healthcare', label: 'Koi Fish Health & Medical Care' },
+    { value: 'Filtration & Plumbing Build', label: 'Filter Chamber Build & Servicing' },
+    { value: 'Koi Fish Supply', label: 'Koi Fish Sourcing & Supply' },
+    { value: 'General Consultation', label: 'General Technical Consultation' },
   ];
 
   return (
@@ -99,10 +126,10 @@ export default function Contact({ onBackToHome }: ContactProps) {
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>Kembali ke Beranda</span>
+              <span>{t.contact.backBtn}</span>
             </button>
             <span className="text-xs font-mono tracking-widest text-[#FBBF24] uppercase font-bold bg-black/30 px-3 py-1 rounded-md border border-amber-400/20">
-              Kontak & Lokasi Bali
+              {t.contact.badge}
             </span>
           </div>
         </div>
@@ -120,13 +147,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
             className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2"
           >
             <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-              Kontak & Lokasi
+              {t.contact.badge}
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
-              Konsultasi & Jadwalkan Survei
+              {t.contact.title}
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-              Hubungi tim teknisi spesialis kami untuk survei lokasi dan konsultasi kebutuhan kolam koi Anda di Bali.
+              {t.contact.subtitle}
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
           </motion.div>
@@ -146,17 +173,17 @@ export default function Contact({ onBackToHome }: ContactProps) {
                 <form id="contact-form" onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-1 border-b border-teal-500/20 pb-3">
                     <h3 className="text-lg sm:text-xl font-bold text-white">
-                      Kirim Pesan Konsultasi
+                      {t.contact.formTitle}
                     </h3>
                     <p className="text-xs text-teal-100/80 font-normal">
-                      Isi formulir berikut dan terhubung langsung ke WhatsApp teknisi spesialis kami.
+                      {t.contact.formDesc}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        Nama Lengkap *
+                        {t.contact.labelName}
                       </label>
                       <input
                         id="contact-input-name"
@@ -165,12 +192,12 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                        placeholder="Nama Anda"
+                        placeholder={t.contact.placeholderName}
                       />
                     </div>
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        Nomor WhatsApp *
+                        {t.contact.labelPhone}
                       </label>
                       <input
                         id="contact-input-phone"
@@ -179,7 +206,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                        placeholder="Contoh: 08123456789"
+                        placeholder={t.contact.placeholderPhone}
                       />
                     </div>
                   </div>
@@ -187,7 +214,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        Pilihan Layanan *
+                        {t.contact.labelService}
                       </label>
                       <select
                         id="contact-select-type"
@@ -195,19 +222,17 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/80 border border-teal-500/30 text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                       >
-                        <option value="Pembuatan Kolam Koi" className="bg-[#062C38]">Pembuatan Kolam Koi Baru</option>
-                        <option value="Renovasi / Perbaikan Kolam" className="bg-[#062C38]">Renovasi / Perbaikan Kolam Bocor</option>
-                        <option value="Perawatan & Kuras Kolam" className="bg-[#062C38]">Perawatan & Kuras Kolam Berkala</option>
-                        <option value="Perawatan Ikan Koi" className="bg-[#062C38]">Perawatan & Pengobatan Ikan Koi</option>
-                        <option value="Pembuatan / Perawatan Filter" className="bg-[#062C38]">Pembuatan / Perawatan Filter</option>
-                        <option value="Jual / Beli Ikan Koi" className="bg-[#062C38]">Jual / Beli Ikan Koi</option>
-                        <option value="Konsultasi Umum" className="bg-[#062C38]">Konsultasi Umum Lainnya</option>
+                        {serviceOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value} className="bg-[#062C38]">
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
 
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        Lokasi Properti di Bali *
+                        {t.contact.labelLocation}
                       </label>
                       <input
                         id="contact-input-location"
@@ -216,14 +241,14 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                        placeholder="Denpasar, Sanur, Ubud, Canggu..."
+                        placeholder={t.contact.placeholderLocation}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1">
                     <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                      Pesan atau Keterangan Tambahan
+                      {t.contact.labelMessage}
                     </label>
                     <textarea
                       id="contact-input-message"
@@ -231,13 +256,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
-                      placeholder="Jelaskan kebutuhan Anda atau ukuran kolam..."
+                      placeholder={t.contact.placeholderMessage}
                     />
                   </div>
 
                   <div className="space-y-1.5">
                     <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                      Pilih Tujuan WhatsApp *
+                      {t.contact.labelTargetWa}
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${formData.targetNumber === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white shadow-sm' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
@@ -250,8 +275,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
                           className="accent-[#25D366] w-4 h-4 cursor-pointer"
                         />
                         <div className="text-xs">
-                          <span className="font-bold block text-white">WhatsApp 1 (08133034733)</span>
-                          <span className="text-[11px] text-teal-200/70 font-normal">Konsultasi & Survei</span>
+                          <span className="font-bold block text-white">WA 1 (08133034733)</span>
+                          <span className="text-[11px] text-teal-200/70 font-normal">{language === 'id' ? 'Konsultasi & Survei' : 'Consultation & Survey'}</span>
                         </div>
                       </label>
 
@@ -265,8 +290,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
                           className="accent-[#25D366] w-4 h-4 cursor-pointer"
                         />
                         <div className="text-xs">
-                          <span className="font-bold block text-white">WhatsApp 2 (081295903430)</span>
-                          <span className="text-[11px] text-teal-200/70 font-normal">Booking & Support</span>
+                          <span className="font-bold block text-white">WA 2 (081295903430)</span>
+                          <span className="text-[11px] text-teal-200/70 font-normal">{language === 'id' ? 'Booking & Support' : 'Booking & Support'}</span>
                         </div>
                       </label>
                     </div>
@@ -281,12 +306,12 @@ export default function Contact({ onBackToHome }: ContactProps) {
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Menghubungkan...</span>
+                        <span>{t.contact.submitting}</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>Kirim Pesan Konsultasi</span>
+                        <span>{t.contact.submitBtn}</span>
                       </>
                     )}
                   </button>
@@ -303,10 +328,10 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   </div>
                   <div className="space-y-1.5">
                     <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      Permintaan Konsultasi Diterima
+                      {t.contact.successTitle}
                     </h3>
                     <p className="text-xs sm:text-sm text-teal-100/80 max-w-md">
-                      Terima kasih, <strong>{formData.name}</strong>. Pesan Anda telah terhubung ke WhatsApp resmi KOI POND SERVICES BALI.
+                      {t.contact.successDesc}
                     </p>
                   </div>
                   <button
@@ -314,7 +339,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                     onClick={handleReset}
                     className="px-6 py-2.5 btn-pond-teal text-white rounded-full font-bold text-xs tracking-wider uppercase transition-colors cursor-pointer"
                   >
-                    Kirim Pesan Baru
+                    {t.contact.resetBtn}
                   </button>
                 </motion.div>
               )}
@@ -330,10 +355,10 @@ export default function Contact({ onBackToHome }: ContactProps) {
             >
               <div className="space-y-1">
                 <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] block">
-                  Informasi Kontak
+                  {t.contact.badge}
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                  Detail Lokasi & Layanan
+                  {language === 'id' ? 'Detail Lokasi & Layanan' : 'Location & Contact Details'}
                 </h3>
               </div>
 

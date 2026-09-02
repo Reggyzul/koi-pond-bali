@@ -1,12 +1,43 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import { motion } from 'motion/react';
 import { BookOpen, Quote, ArrowLeft, Wrench, Zap, Waves, MapPin, CheckCircle2 } from 'lucide-react';
-import { founderProfile } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface AboutProps {
   onBackToHome?: () => void;
 }
 
 export default function About({ onBackToHome }: AboutProps) {
+  const { t, language } = useLanguage();
+
+  const historyText = language === 'id'
+    ? "KOI POND SERVICES BALI didirikan pada tahun 2021 sebagai layanan terpadu spesialis ekosistem kolam koi di Bali. Berawal dari kecintaan mendalam terhadap seni arsitektur air dan biologi Nishikigoi, kami mendedikasikan diri untuk menghadirkan standar mutu perkolaman terbaik bagi residensial, villa, resort, restoran, dan properti komersial di seluruh Bali."
+    : "KOI POND SERVICES BALI was established in 2021 as a premier integrated specialist in koi pond ecosystems across Bali. Driven by a deep passion for aquatic architecture and Nishikigoi biological welfare, we dedicate ourselves to delivering top-tier engineering standards for private residences, luxury villas, resorts, restaurants, and commercial properties throughout Bali.";
+
+  const backgroundText = language === 'id'
+    ? "Dengan mengintegrasikan tiga keahlian inti — plumbing sirkulasi air tanpa dead-spot, kelistrikan outdoor aman & hemat daya, serta konstruksi beton kedap air anti bocor bergaransi — KOI POND SERVICES BALI senantiasa mengutamakan kepuasan pelanggan lewat transparansi biaya, estimasi yang fleksibel, dan garansi penuh pada setiap pekerjaan."
+    : "By harmonizing three core engineering pillars—zero-dead-spot hydraulic vortex plumbing, ultra-safe & energy-efficient outdoor electrical systems, and leak-free reinforced concrete construction—KOI POND SERVICES BALI consistently guarantees customer satisfaction through transparent pricing, flexible project tailoring, and full official warranties on every project.";
+
+  const quoteText = language === 'id'
+    ? "Kolam yang sehat berawal dari sistem filtrasi dan plumbing yang presisi, menghadirkan air sejernih kristal untuk keindahan dan kesehatan ekosistem ikan koi Anda."
+    : "A thriving koi pond begins with engineered filtration and precision vortex hydraulics, creating crystal clear water for the beauty and vitality of your aquatic ecosystem.";
+
+  const checklistItems = language === 'id' ? [
+    'Biaya fleksibel menyesuaikan kebutuhan kolam',
+    'Setiap pekerjaan bergaransi 100%',
+    'Konsultasi dan survei gratis ke seluruh wilayah Bali',
+    'Penanganan cepat untuk kolam bocor dan ikan sakit'
+  ] : [
+    'Flexible pricing tailored to your pond volume and budget',
+    '100% official structural & craftsmanship warranty',
+    'Complimentary on-site survey and consultation anywhere in Bali',
+    'Fast priority emergency response for leaks and fish medical care'
+  ];
+
   return (
     <div className={onBackToHome ? "pt-18 min-h-screen relative" : ""}>
       {onBackToHome && (
@@ -18,10 +49,10 @@ export default function About({ onBackToHome }: AboutProps) {
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>Kembali ke Beranda</span>
+              <span>{t.about.backBtn}</span>
             </button>
             <span className="text-xs font-mono tracking-widest text-[#FBBF24] uppercase font-bold bg-black/30 px-3 py-1 rounded-md border border-amber-400/20">
-              Profil & Sejarah Layanan
+              {t.about.badge}
             </span>
           </div>
         </div>
@@ -38,10 +69,10 @@ export default function About({ onBackToHome }: AboutProps) {
               className="space-y-2 text-center"
             >
               <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-                Tentang Kami
+                {t.about.badge}
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
-                Profil & Sejarah KOI POND SERVICES BALI
+                {t.about.title}
               </h2>
               <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
             </motion.div>
@@ -57,23 +88,25 @@ export default function About({ onBackToHome }: AboutProps) {
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-1.5">
                     <span className="px-3 py-0.5 bg-[#FF5722] text-white rounded-full text-[11px] font-bold uppercase tracking-wider shadow-xs">
-                      Sejak 2021
+                      {language === 'id' ? 'Sejak 2021' : 'Since 2021'}
                     </span>
                     <span className="px-3 py-0.5 bg-teal-900/80 text-teal-200 border border-teal-500/30 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-xs">
                       Bali, Indonesia
                     </span>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                    {founderProfile.name}
+                    KOI POND SERVICES BALI
                   </h3>
                   <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#FF6E40] mt-0.5">
-                    {founderProfile.role}
+                    {language === 'id'
+                      ? 'Spesialis Kolam, Sistem Filter & Perawatan Ikan Koi di Bali'
+                      : 'Specialist in Koi Ponds, Bio-Filtration & Koi Fish Care in Bali'}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2 text-xs sm:text-sm text-teal-100 font-semibold bg-[#04242E]/70 px-4 py-2.5 rounded-xl border border-teal-500/25 shadow-xs">
                   <MapPin className="w-4 h-4 text-[#FF5722] shrink-0" />
-                  <span>Jl. Pura Demak 2 No. 24, Bali</span>
+                  <span>JL PURA DEMAK 2 NO. 24, BALI</span>
                 </div>
               </div>
 
@@ -82,7 +115,7 @@ export default function About({ onBackToHome }: AboutProps) {
                 <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#FF5722] to-[#FF6E40] rounded-l-xl" />
                 <Quote className="absolute -top-2.5 -left-1 w-7 h-7 text-teal-400/20 rotate-180 pointer-events-none" />
                 <p className="italic text-sm sm:text-base text-teal-100 font-medium leading-relaxed">
-                  "{founderProfile.quote}"
+                  "{quoteText}"
                 </p>
               </div>
 
@@ -92,9 +125,9 @@ export default function About({ onBackToHome }: AboutProps) {
                   <div className="p-2.5 w-fit rounded-lg bg-teal-950 text-teal-300 border border-teal-500/30">
                     <Waves className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h4 className="font-bold text-base text-white">1. Plumbing</h4>
+                  <h4 className="font-bold text-base text-white">1. {t.about.specPlumbing}</h4>
                   <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed font-normal">
-                    Sistem perpipaan sirkulasi bottom drain, surface skimmer, dan return tanpa dead spot.
+                    {t.about.specPlumbingDesc}
                   </p>
                 </div>
 
@@ -102,9 +135,9 @@ export default function About({ onBackToHome }: AboutProps) {
                   <div className="p-2.5 w-fit rounded-lg bg-amber-950/60 text-[#FBBF24] border border-amber-500/30">
                     <Zap className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h4 className="font-bold text-base text-white">2. Kelistrikan</h4>
+                  <h4 className="font-bold text-base text-white">2. {t.about.specElectrical}</h4>
                   <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed font-normal">
-                    Instalasi pompa, aerasi, dan UV sterilizer hemat energi yang aman dari korsleting outdoor.
+                    {t.about.specElectricalDesc}
                   </p>
                 </div>
 
@@ -112,48 +145,38 @@ export default function About({ onBackToHome }: AboutProps) {
                   <div className="p-2.5 w-fit rounded-lg bg-emerald-950/60 text-[#10B981] border border-emerald-500/30">
                     <Wrench className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h4 className="font-bold text-base text-white">3. Konstruksi</h4>
+                  <h4 className="font-bold text-base text-white">3. {t.about.specConcrete}</h4>
                   <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed font-normal">
-                    Struktur beton bertulang dan waterproofing elastis anti retak dengan garansi resmi.
+                    {t.about.specConcreteDesc}
                   </p>
                 </div>
               </div>
 
-              {/* Sejarah & Standar Komitmen */}
+              {/* History & Dedication */}
               <div className="space-y-4 pt-4 border-t border-teal-500/20">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-white font-bold text-sm sm:text-base uppercase tracking-wider">
                     <BookOpen className="w-4 h-4 text-[#FF6E40]" />
-                    <span>Sejarah & Dedikasi Layanan</span>
+                    <span>{t.about.historyTitle}</span>
                   </div>
                   <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal">
-                    {founderProfile.history}
+                    {historyText}
                   </p>
                 </div>
 
                 <div className="space-y-2 pt-2">
                   <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal">
-                    {founderProfile.background}
+                    {backgroundText}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm text-teal-100 font-medium bg-[#04242E]/60 p-3 rounded-lg border border-teal-500/20 shadow-2xs">
-                    <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                    <span>Biaya fleksibel menyesuaikan kebutuhan kolam</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm text-teal-100 font-medium bg-[#04242E]/60 p-3 rounded-lg border border-teal-500/20 shadow-2xs">
-                    <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                    <span>Setiap pekerjaan bergaransi 100%</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm text-teal-100 font-medium bg-[#04242E]/60 p-3 rounded-lg border border-teal-500/20 shadow-2xs">
-                    <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                    <span>Konsultasi dan survei gratis ke seluruh wilayah Bali</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 text-xs sm:text-sm text-teal-100 font-medium bg-[#04242E]/60 p-3 rounded-lg border border-teal-500/20 shadow-2xs">
-                    <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
-                    <span>Penanganan cepat untuk kolam bocor dan ikan sakit</span>
-                  </div>
+                  {checklistItems.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-teal-100 font-medium bg-[#04242E]/60 p-3 rounded-lg border border-teal-500/20 shadow-2xs">
+                      <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>

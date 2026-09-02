@@ -6,14 +6,30 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, Minus, Search, HelpCircle } from 'lucide-react';
-import { faqData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>('faq-1');
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const { t, faqData, language } = useLanguage();
 
   const categories = ['All', 'General', 'Process', 'Pricing', 'Materials', 'Warranty'];
+
+  const getCategoryLabel = (cat: string) => {
+    if (cat === 'All') return t.faq.allCategories;
+    if (language === 'id') {
+      switch (cat) {
+        case 'General': return 'Umum';
+        case 'Process': return 'Pengerjaan';
+        case 'Pricing': return 'Biaya';
+        case 'Materials': return 'Kualitas';
+        case 'Warranty': return 'Garansi';
+        default: return cat;
+      }
+    }
+    return cat;
+  };
 
   const filteredFaqs = faqData.filter((faq) => {
     const matchesCategory = activeCategory === 'All' || faq.category === activeCategory;
@@ -40,11 +56,14 @@ export default function FAQ() {
           className="text-center space-y-2 mb-10 sm:mb-14"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-            Tanya Jawab Kolam
+            {t.faq.badge}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            Pertanyaan yang Sering Diajukan
+            {t.faq.title}
           </h2>
+          <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
+            {t.faq.subtitle}
+          </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
 
@@ -66,7 +85,7 @@ export default function FAQ() {
                     : 'bg-[#04242E]/60 backdrop-blur-md text-teal-200 hover:text-white border border-teal-500/20'
                 }`}
               >
-                {cat === 'All' ? 'Semua' : cat}
+                {getCategoryLabel(cat)}
               </button>
             ))}
           </div>
@@ -80,7 +99,7 @@ export default function FAQ() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-3.5 py-2 bg-[#04242E]/70 backdrop-blur-md border border-teal-500/30 rounded-full text-xs sm:text-sm text-white placeholder-teal-300/50 focus:outline-none focus:ring-2 focus:ring-[#FF6E40]"
-              placeholder="Cari pertanyaan..."
+              placeholder={t.faq.searchPlaceholder}
             />
           </div>
         </div>
@@ -133,8 +152,7 @@ export default function FAQ() {
             ) : (
               <div className="text-center py-8 bg-[#04242E]/60 border border-dashed border-teal-500/30 rounded-xl space-y-1.5">
                 <HelpCircle className="w-6 h-6 text-[#FF6E40] mx-auto" />
-                <p className="text-sm font-bold text-white">Pertanyaan tidak ditemukan</p>
-                <p className="text-xs text-teal-200/70">Silakan ajukan pertanyaan langsung melalui formulir kontak kami.</p>
+                <p className="text-sm font-bold text-white">{t.faq.noResults}</p>
               </div>
             )}
           </AnimatePresence>

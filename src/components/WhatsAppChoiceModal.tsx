@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X, ShieldCheck, Sparkles } from 'lucide-react';
 import { contactData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface WhatsAppChoiceModalProps {
   isOpen: boolean;
@@ -18,15 +18,24 @@ interface WhatsAppChoiceModalProps {
 export default function WhatsAppChoiceModal({
   isOpen,
   onClose,
-  customMessage = 'Halo KOI POND SERVICES BALI! Saya ingin konsultasi & survei kolam koi.',
-  title = 'Pilih Kontak WhatsApp'
+  customMessage,
+  title
 }: WhatsAppChoiceModalProps) {
+  const { t, language } = useLanguage();
+
   if (!isOpen) return null;
+
+  const defaultMsg = language === 'id'
+    ? 'Halo KOI POND SERVICES BALI! Saya ingin konsultasi & survei kolam koi.'
+    : 'Hello KOI POND SERVICES BALI! I would like to inquire about koi pond services and surveys.';
+
+  const activeMsg = customMessage || defaultMsg;
+  const activeTitle = title || t.whatsappModal.title;
 
   const handleSelectNumber = (number: string) => {
     const cleanNumber = number.replace(/\D/g, '');
     const fullNumber = cleanNumber.startsWith('0') ? `62${cleanNumber.slice(1)}` : cleanNumber;
-    const url = `https://wa.me/${fullNumber}?text=${encodeURIComponent(customMessage)}`;
+    const url = `https://wa.me/${fullNumber}?text=${encodeURIComponent(activeMsg)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
     onClose();
   };
@@ -36,19 +45,17 @@ export default function WhatsAppChoiceModal({
       id: 'wa-1',
       name: 'WhatsApp 1',
       phone: contactData.whatsapp1,
-      role: 'Layanan Konsultasi & Survei Kolam',
-      desc: 'Spesialis teknis pembuatan, renovasi & perbaikan kebocoran kolam di Bali.',
-      badge: 'Survei & Teknis',
-      color: 'from-[#25D366] to-[#128C7E]'
+      role: t.whatsappModal.wa1Role,
+      desc: t.whatsappModal.wa1Desc,
+      badge: language === 'id' ? 'Survei & Teknis' : 'Surveys & Engineering',
     },
     {
       id: 'wa-2',
       name: 'WhatsApp 2',
       phone: contactData.whatsapp2,
-      role: 'Layanan Booking & Customer Care',
-      desc: 'Layanan booking jadwal kuras filter, perawatan ikan koi & pemesanan.',
-      badge: 'Booking & Support',
-      color: 'from-[#10B981] to-[#047857]'
+      role: t.whatsappModal.wa2Role,
+      desc: t.whatsappModal.wa2Desc,
+      badge: language === 'id' ? 'Booking & Support' : 'Booking & Support',
     }
   ];
 
@@ -77,13 +84,13 @@ export default function WhatsAppChoiceModal({
             <div className="space-y-1">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[11px] font-bold uppercase tracking-wider">
                 <Sparkles className="w-3 h-3 text-[#FF6E40]" />
-                <span>Konsultasi & Booking</span>
+                <span>{language === 'id' ? 'Konsultasi & Booking' : 'Consultation & Booking'}</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                {title}
+                {activeTitle}
               </h3>
               <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed font-normal">
-                Silakan pilih salah satu admin WhatsApp resmi KOI POND SERVICES BALI:
+                {t.whatsappModal.subtitle}
               </p>
             </div>
 
@@ -125,7 +132,7 @@ export default function WhatsAppChoiceModal({
 
                 <div className="flex items-center gap-2 px-4 py-2 bg-[#25D366] group-hover:bg-[#20ba5a] text-white rounded-full text-xs font-bold uppercase tracking-wider shrink-0 shadow-sm self-start sm:self-center">
                   <MessageCircle className="w-4 h-4" />
-                  <span>Chat WA</span>
+                  <span>{t.whatsappModal.chatWaBtn}</span>
                 </div>
               </button>
             ))}
@@ -134,7 +141,7 @@ export default function WhatsAppChoiceModal({
           {/* Guarantee Note */}
           <div className="flex items-center justify-center gap-2 pt-1 text-xs text-teal-200/75 font-medium border-t border-teal-500/15">
             <ShieldCheck className="w-4 h-4 text-[#10B981]" />
-            <span>Kedua nomor aktif 24 jam & terhubung langsung ke teknisi Bali</span>
+            <span>{t.whatsappModal.note}</span>
           </div>
         </motion.div>
       </div>

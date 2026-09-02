@@ -5,8 +5,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, Clock, ArrowRight, X, User, Tag, ArrowLeft, Search, MessageCircle, Share2 } from 'lucide-react';
-import { articlesData } from '../data';
+import { Calendar, Clock, ArrowRight, X, User, Tag, ArrowLeft, Search, Share2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { Article } from '../types';
 
 interface ArticlesPageProps {
@@ -16,17 +16,21 @@ interface ArticlesPageProps {
 
 export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('Semua');
+  const [activeCategory, setActiveCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const { t, articlesData, language } = useLanguage();
 
-  const categories = ['Semua', 'Perawatan Kolam', 'Renovasi Kolam', 'Sistem Filter', 'Perawatan Ikan', 'Jual Beli Koi', 'Konstruksi Kolam'];
+  const categories = language === 'id'
+    ? ['Semua', 'Perawatan Kolam', 'Renovasi Kolam', 'Filter & Plumbing']
+    : ['All', 'Pond Care', 'Pond Renovation', 'Filter & Plumbing'];
 
   const filteredArticles = articlesData.filter((art) => {
-    const matchesCategory = activeCategory === 'Semua' || art.category === activeCategory;
+    const isAll = activeCategory === 'Semua' || activeCategory === 'All';
+    const matchesCategory = isAll || art.category === activeCategory;
     const matchesSearch =
       art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       art.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      art.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+      art.tags.some(tg => tg.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -39,7 +43,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('Tautan artikel berhasil disalin ke clipboard!');
+      alert(language === 'id' ? 'Tautan artikel berhasil disalin ke clipboard!' : 'Article link copied to clipboard!');
     }
   };
 
@@ -57,10 +61,10 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-1.5 px-3.5 rounded-lg border border-white/15 transition-all shadow-xs active:scale-95"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>Kembali ke Beranda</span>
+              <span>{t.articles.backBtn}</span>
             </button>
             <span className="font-mono tracking-widest text-[#FBBF24] uppercase font-bold text-xs bg-black/25 px-3 py-1 rounded-md border border-amber-400/20">
-              Pusat Edukasi & Panduan Koi Bali
+              {t.articles.badge}
             </span>
           </div>
 
@@ -71,13 +75,13 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
             className="space-y-2 max-w-4xl pt-1"
           >
             <span className="px-3.5 py-1 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white rounded-full text-xs font-bold uppercase tracking-wider inline-block shadow-xs">
-              Edukasi & Tips Praktisi
+              {language === 'id' ? 'Edukasi & Tips Praktisi' : 'Education & Practical Guides'}
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
-              Koleksi Artikel & Panduan Kolam Koi
+              {t.articles.title}
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-teal-50/90 leading-relaxed font-normal max-w-3xl">
-              Pelajari berbagai tips praktis seputar perawatan air kolam kristal, instalasi filter biologis vortex, pencegahan kebocoran, serta diagnosa dan pengobatan ikan koi dari KOI POND SERVICES BALI.
+              {t.articles.subtitle}
             </p>
           </motion.div>
 
@@ -98,8 +102,8 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'btn-pond-teal text-white shadow-xs'
-                    : 'bg-[#04242E]/60 backdrop-blur-md text-teal-200 hover:text-white border border-teal-500/20'
+                    ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-md scale-100'
+                    : 'bg-white/5 border border-teal-500/30 text-teal-200 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {cat}
@@ -107,33 +111,28 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
             ))}
           </div>
 
-          {/* Search Input */}
+          {/* Search Box */}
           <div className="relative w-full md:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-teal-400" />
             <input
-              id="article-search-input"
+              id="articles-page-search-input"
               type="text"
+              placeholder={language === 'id' ? 'Cari judul panduan...' : 'Search articles...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#04242E]/70 backdrop-blur-md border border-teal-500/30 rounded-full text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40]"
-              placeholder="Cari topik artikel..."
+              className="w-full pl-9 pr-4 py-2 bg-[#04242E]/80 border border-teal-500/30 rounded-full text-xs text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
             />
+            <Search className="w-4 h-4 text-teal-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {filteredArticles.map((article, idx) => (
-            <motion.article
-              id={`full-article-card-${article.id}`}
+          {filteredArticles.map((article) => (
+            <article
+              id={`all-article-card-${article.id}`}
               key={article.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: idx * 0.04 }}
-              whileHover={{ y: -5 }}
               onClick={() => setSelectedArticle(article)}
-              className="glass-aquatic-card rounded-2xl overflow-hidden border border-teal-500/20 hover:border-[#FF6E40]/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer shadow-lg"
+              className="glass-aquatic-card rounded-2xl overflow-hidden border border-teal-500/20 hover:border-[#FF6E40]/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer shadow-lg hover:-translate-y-1"
             >
               {/* Image Banner */}
               <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-950">
@@ -164,7 +163,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#FF6E40] transition-colors leading-snug line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#FF6E40] transition-colors leading-snug">
                     {article.title}
                   </h3>
 
@@ -173,61 +172,56 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                   </p>
                 </div>
 
-                <div className="pt-3.5 border-t border-teal-500/20 flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 transition-colors">
-                    Baca Selengkapnya
-                    <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
-                  </span>
-
-                  <span className="text-[11px] text-teal-300/70 font-medium">
-                    {article.author}
-                  </span>
+                <div className="pt-3.5 border-t border-teal-500/20 flex items-center justify-between text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] transition-colors">
+                  <span>{t.articles.readMore}</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
 
       </div>
 
-      {/* Full Article Reader Modal */}
+      {/* Article Reader Modal */}
       <AnimatePresence>
         {selectedArticle && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             <motion.div
-              id="article-page-modal-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedArticle(null)}
-              className="fixed inset-0 bg-[#021820]/85 backdrop-blur-md"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
             />
 
             <motion.div
-              id="article-page-modal-container"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-[#062C38] border border-teal-500/30 rounded-2xl shadow-2xl z-10 max-h-[90vh] flex flex-col overflow-hidden my-auto text-slate-100"
+              className="relative w-full max-w-3xl bg-[#04242E] border border-teal-500/30 rounded-2xl shadow-2xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col"
             >
-              {/* Modal Top Bar */}
-              <div className="flex items-center justify-between p-4 border-b border-teal-500/20 bg-[#04242E]/90">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FF6E40] bg-orange-950/60 px-3 py-1 rounded-full border border-orange-500/30">
+              {/* Modal Sticky Top Bar */}
+              <div className="p-4 sm:p-5 border-b border-teal-500/20 flex items-center justify-between bg-[#062C38]/90 backdrop-blur-md">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#FF6E40] px-3 py-1 rounded-full bg-black/40 border border-teal-500/25">
                   {selectedArticle.category}
                 </span>
 
                 <div className="flex items-center gap-2">
                   <button
+                    id="page-modal-share-article-btn"
                     onClick={() => handleShare(selectedArticle)}
-                    className="p-1.5 text-teal-200 hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
-                    title="Bagikan Artikel"
+                    className="p-2 text-teal-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
+                    title={t.articles.shareArticle}
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
+
                   <button
-                    id="article-page-modal-close-btn"
+                    id="page-modal-close-article-btn"
                     onClick={() => setSelectedArticle(null)}
-                    className="p-1.5 text-teal-200 hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
+                    className="p-2 text-teal-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
+                    aria-label="Tutup"
                   >
                     <X className="w-4 h-4" />
                   </button>

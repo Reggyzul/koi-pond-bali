@@ -5,7 +5,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Check, Phone, Sparkles, MessageCircle } from 'lucide-react';
+import { X, Check, Sparkles, MessageCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -15,12 +16,14 @@ interface ConsultationModalProps {
 }
 
 export default function ConsultationModal({ isOpen, onClose, prefillMessage = '', initialCategory = 'Pembuatan Kolam Koi' }: ConsultationModalProps) {
+  const { t, language } = useLanguage();
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    category: 'Pembuatan Kolam Koi',
+    category: initialCategory,
     location: '',
-    budget: 'Bisa Disesuaikan (Fleksibel)',
+    budget: language === 'id' ? 'Bisa Disesuaikan (Fleksibel)' : 'Flexible / Customizable',
     message: '',
     targetNumber: '08133034733'
   });
@@ -41,7 +44,13 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
     e.preventDefault();
     setIsSubmitting(true);
 
-    const text = `Halo KOI POND SERVICES BALI!\nSaya ingin mengajukan KONSULTASI & SURVEI GRATIS:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.category}\n- Lokasi di Bali: ${formData.location}\n- Estimasi Budget: ${formData.budget}\n- Keterangan: ${formData.message}\n\nMohon informasi jadwal survei gratis. Terima kasih.`;
+    let text = '';
+    if (language === 'en') {
+      text = `Hello KOI POND SERVICES BALI!\nI would like to request a FREE CONSULTATION & ON-SITE SURVEY:\n\n- Name: ${formData.name}\n- WhatsApp: ${formData.phone}\n- Service: ${formData.category}\n- Location in Bali: ${formData.location}\n- Estimated Budget: ${formData.budget}\n- Details: ${formData.message}\n\nPlease inform me of available survey slots. Thank you!`;
+    } else {
+      text = `Halo KOI POND SERVICES BALI!\nSaya ingin mengajukan KONSULTASI & SURVEI GRATIS:\n\n- Nama: ${formData.name}\n- No. WhatsApp: ${formData.phone}\n- Layanan: ${formData.category}\n- Lokasi di Bali: ${formData.location}\n- Estimasi Budget: ${formData.budget}\n- Keterangan: ${formData.message}\n\nMohon informasi jadwal survei gratis. Terima kasih.`;
+    }
+
     const cleanNumber = formData.targetNumber.replace(/\D/g, '');
     const fullNumber = cleanNumber.startsWith('0') ? `62${cleanNumber.slice(1)}` : cleanNumber;
     const waUrl = `https://wa.me/${fullNumber}?text=${encodeURIComponent(text)}`;
@@ -57,15 +66,31 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
     setFormData({
       name: '',
       phone: '',
-      category: 'Pembuatan Kolam Koi',
+      category: language === 'id' ? 'Pembuatan Kolam Koi' : 'Koi Pond Construction',
       location: '',
-      budget: 'Bisa Disesuaikan (Fleksibel)',
+      budget: language === 'id' ? 'Bisa Disesuaikan (Fleksibel)' : 'Flexible / Customizable',
       message: '',
       targetNumber: '08133034733'
     });
     setIsSuccess(false);
     onClose();
   };
+
+  const categories = language === 'id' ? [
+    { value: 'Pembuatan Kolam Koi', label: 'Pembuatan Kolam Koi Baru' },
+    { value: 'Renovasi / Perbaikan Kolam', label: 'Renovasi / Perbaikan Kolam Bocor' },
+    { value: 'Perawatan & Kuras Kolam', label: 'Perawatan & Kuras Kolam Berkala' },
+    { value: 'Perawatan Ikan Koi', label: 'Perawatan & Pengobatan Ikan Koi' },
+    { value: 'Pembuatan / Perawatan Filter', label: 'Pembuatan / Perawatan Filter' },
+    { value: 'Jual / Beli Ikan Koi', label: 'Jual / Beli Ikan Koi' }
+  ] : [
+    { value: 'Koi Pond Construction', label: 'New Koi Pond Construction' },
+    { value: 'Pond Renovation & Leak Repair', label: 'Pond Renovation & Leak Repair' },
+    { value: 'Routine Pond Maintenance', label: 'Routine Cleaning & Water Care' },
+    { value: 'Koi Fish Care', label: 'Koi Fish Health & Medical Care' },
+    { value: 'Filtration & Plumbing', label: 'Filter Chamber Build & Servicing' },
+    { value: 'Koi Fish Supply', label: 'Koi Fish Sourcing & Supply' }
+  ];
 
   return (
     <AnimatePresence>
@@ -111,7 +136,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     </div>
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold text-white">
-                        Konsultasi & Survei Gratis
+                        {t.consultationModal.title}
                       </h3>
                       <p className="text-xs text-teal-200/80 font-medium">
                         KOI POND SERVICES BALI
@@ -123,7 +148,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          Nama Lengkap *
+                          {t.consultationModal.labelName}
                         </label>
                         <input
                           id="modal-input-name"
@@ -132,12 +157,12 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                          placeholder="Nama Anda"
+                          placeholder={language === 'id' ? 'Nama Anda' : 'Your Name'}
                         />
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          No. WhatsApp *
+                          {t.consultationModal.labelPhone}
                         </label>
                         <input
                           id="modal-input-phone"
@@ -146,7 +171,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                          placeholder="Contoh: 08123456789"
+                          placeholder={language === 'id' ? 'Contoh: 08123456789' : 'e.g. +628123456789'}
                         />
                       </div>
                     </div>
@@ -154,7 +179,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          Layanan *
+                          {t.consultationModal.labelService}
                         </label>
                         <select
                           id="modal-select-category"
@@ -162,17 +187,16 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/80 border border-teal-500/30 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                         >
-                          <option value="Pembuatan Kolam Koi" className="bg-[#062C38]">Pembuatan Kolam Koi Baru</option>
-                          <option value="Renovasi / Perbaikan Kolam" className="bg-[#062C38]">Renovasi / Perbaikan Kolam Bocor</option>
-                          <option value="Perawatan & Kuras Kolam" className="bg-[#062C38]">Perawatan & Kuras Kolam Berkala</option>
-                          <option value="Perawatan Ikan Koi" className="bg-[#062C38]">Perawatan & Pengobatan Ikan Koi</option>
-                          <option value="Pembuatan / Perawatan Filter" className="bg-[#062C38]">Pembuatan / Perawatan Filter</option>
-                          <option value="Jual / Beli Ikan Koi" className="bg-[#062C38]">Jual / Beli Ikan Koi</option>
+                          {categories.map((cat) => (
+                            <option key={cat.value} value={cat.value} className="bg-[#062C38]">
+                              {cat.label}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          Lokasi di Bali *
+                          {t.consultationModal.labelLocation}
                         </label>
                         <input
                           id="modal-input-location"
@@ -181,14 +205,14 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           value={formData.location}
                           onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                           className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                          placeholder="Denpasar, Sanur, Ubud..."
+                          placeholder={language === 'id' ? 'Denpasar, Sanur, Ubud...' : 'Sanur, Canggu, Ubud...'}
                         />
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                        Estimasi Anggaran
+                        {t.consultationModal.labelBudget}
                       </label>
                       <select
                         id="modal-select-budget"
@@ -196,17 +220,17 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/80 border border-teal-500/30 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                       >
-                        <option value="Bisa Disesuaikan (Fleksibel)" className="bg-[#062C38]">Bisa Disesuaikan (Fleksibel)</option>
-                        <option value="Di bawah Rp 10 Juta" className="bg-[#062C38]">Di bawah Rp 10 Juta</option>
-                        <option value="Rp 10 Juta - Rp 25 Juta" className="bg-[#062C38]">Rp 10 Juta - Rp 25 Juta</option>
-                        <option value="Rp 25 Juta - Rp 50 Juta" className="bg-[#062C38]">Rp 25 Juta - Rp 50 Juta</option>
-                        <option value="Di atas Rp 50 Juta" className="bg-[#062C38]">Di atas Rp 50 Juta</option>
+                        <option value={t.consultationModal.budgetFlexible} className="bg-[#062C38]">{t.consultationModal.budgetFlexible}</option>
+                        <option value={t.consultationModal.budgetUnder10m} className="bg-[#062C38]">{t.consultationModal.budgetUnder10m}</option>
+                        <option value={t.consultationModal.budget10m25m} className="bg-[#062C38]">{t.consultationModal.budget10m25m}</option>
+                        <option value={t.consultationModal.budget25m50m} className="bg-[#062C38]">{t.consultationModal.budget25m50m}</option>
+                        <option value={t.consultationModal.budgetAbove50m} className="bg-[#062C38]">{t.consultationModal.budgetAbove50m}</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                        Keterangan Tambahan
+                        {t.consultationModal.labelMessage}
                       </label>
                       <textarea
                         id="modal-input-message"
@@ -214,13 +238,13 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-white placeholder-teal-300/40 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
-                        placeholder="Contoh: Kolam bocor surut 10cm/hari, butuh survei..."
+                        placeholder={language === 'id' ? 'Contoh: Kolam bocor surut 10cm/hari, butuh survei...' : 'e.g. Pond leaking, need on-site inspection...'}
                       />
                     </div>
 
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                        Pilih Kontak WhatsApp *
+                        {t.consultationModal.labelTargetWa}
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <label className={`flex items-center gap-2 p-2.5 rounded-lg border cursor-pointer transition-all ${formData.targetNumber === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
@@ -234,7 +258,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           />
                           <div className="text-xs">
                             <span className="font-bold block text-white">WA 1 (08133034733)</span>
-                            <span className="text-[10px] text-teal-200/70">Konsultasi & Survei</span>
+                            <span className="text-[10px] text-teal-200/70">{language === 'id' ? 'Konsultasi & Survei' : 'Consult & Survey'}</span>
                           </div>
                         </label>
 
@@ -249,7 +273,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                           />
                           <div className="text-xs">
                             <span className="font-bold block text-white">WA 2 (081295903430)</span>
-                            <span className="text-[10px] text-teal-200/70">Booking & Support</span>
+                            <span className="text-[10px] text-teal-200/70">{language === 'id' ? 'Booking & Support' : 'Booking & Support'}</span>
                           </div>
                         </label>
                       </div>
@@ -264,12 +288,12 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                       {isSubmitting ? (
                         <>
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>Menghubungkan...</span>
+                          <span>{t.consultationModal.submitting}</span>
                         </>
                       ) : (
                         <>
                           <MessageCircle className="w-4 h-4" />
-                          <span>Konsultasi WhatsApp</span>
+                          <span>{t.consultationModal.submitBtn}</span>
                         </>
                       )}
                     </button>
@@ -280,24 +304,25 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                   id="modal-success-screen"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="py-8 text-center flex flex-col items-center justify-center space-y-3"
+                  className="text-center py-6 space-y-4"
                 >
-                  <div className="w-12 h-12 bg-emerald-950/60 text-[#10B981] rounded-full flex items-center justify-center border border-emerald-500/40 shadow-xs">
-                    <Check className="w-7 h-7 stroke-[2.5]" />
+                  <div className="w-12 h-12 bg-emerald-500/20 text-[#10B981] border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto">
+                    <Check className="w-6 h-6 stroke-[3]" />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    Permintaan Terkirim
-                  </h3>
-                  <p className="text-xs sm:text-sm text-teal-100/80 max-w-sm">
-                    Terima kasih, <strong>{formData.name}</strong>. Pesan Anda telah terhubung ke WhatsApp resmi KOI POND SERVICES BALI.
-                  </p>
-                  
+                  <div className="space-y-1">
+                    <h4 className="text-lg font-bold text-white">
+                      {t.consultationModal.successTitle}
+                    </h4>
+                    <p className="text-xs text-teal-200/80 leading-relaxed max-w-xs mx-auto">
+                      {t.consultationModal.successDesc}
+                    </p>
+                  </div>
                   <button
-                    id="modal-success-close-btn"
+                    id="modal-finish-close-btn"
                     onClick={handleReset}
-                    className="px-6 py-2 btn-pond-teal text-white rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                    className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                   >
-                    Tutup
+                    {t.consultationModal.closeBtn}
                   </button>
                 </motion.div>
               )}

@@ -5,8 +5,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, Clock, ArrowRight, X, User, Tag, MessageCircle, Share2, Sparkles } from 'lucide-react';
-import { articlesData } from '../data';
+import { Calendar, Clock, ArrowRight, X, User, Tag, Share2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import { Article } from '../types';
 
 interface ArticlesProps {
@@ -16,6 +16,7 @@ interface ArticlesProps {
 
 export default function Articles({ onViewAllArticles }: ArticlesProps) {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+  const { t, articlesData, language } = useLanguage();
 
   // Exactly 3 Featured Articles for Landing Page
   const featuredArticles = articlesData.slice(0, 3);
@@ -29,7 +30,7 @@ export default function Articles({ onViewAllArticles }: ArticlesProps) {
       }).catch(() => {});
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('Tautan artikel berhasil disalin ke clipboard!');
+      alert(language === 'id' ? 'Tautan artikel berhasil disalin ke clipboard!' : 'Article link copied to clipboard!');
     }
   };
 
@@ -46,13 +47,13 @@ export default function Articles({ onViewAllArticles }: ArticlesProps) {
           className="text-center max-w-3xl mx-auto space-y-2 mb-10 sm:mb-14"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-            Artikel & Panduan Koi
+            {t.articles.badge}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            Tips & Panduan Perawatan Kolam Koi Bali
+            {t.articles.title}
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-            Artikel teknis, kualitas air kristal, pencegahan kebocoran, dan perawatan kesehatan ikan koi.
+            {t.articles.subtitle}
           </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
@@ -100,82 +101,79 @@ export default function Articles({ onViewAllArticles }: ArticlesProps) {
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#FF6E40] transition-colors leading-snug line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#FF6E40] transition-colors leading-snug">
                     {article.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed line-clamp-3 font-normal">
+                  <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed line-clamp-2 font-normal">
                     {article.excerpt}
                   </p>
                 </div>
 
-                <div className="pt-3.5 border-t border-teal-500/20 flex items-center justify-between">
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal-200 group-hover:text-[#FF6E40] flex items-center gap-1.5 transition-colors">
-                    Baca Selengkapnya
-                    <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
-                  </span>
-
-                  <span className="text-[11px] text-teal-300/70 font-medium">
-                    {article.author}
-                  </span>
+                <div className="pt-3.5 border-t border-teal-500/20 flex items-center justify-between text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] transition-colors">
+                  <span>{t.articles.readMore}</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </motion.article>
           ))}
         </div>
 
-        {/* Action Button to Next Page */}
-        <div className="text-center pt-10">
-          <button
-            id="btn-view-more-articles"
-            onClick={onViewAllArticles}
-            className="inline-flex items-center gap-2.5 px-7 py-3 btn-pond-teal text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-md cursor-pointer active:scale-95"
-          >
-            <span>Lihat Seluruh Artikel & Panduan</span>
-            <ArrowRight className="w-4 h-4 text-[#FBBF24]" />
-          </button>
-        </div>
+        {/* View All Articles Action */}
+        {onViewAllArticles && (
+          <div className="mt-12 text-center">
+            <button
+              id="landing-view-all-articles-btn"
+              onClick={onViewAllArticles}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-teal-100 hover:text-white border border-teal-500/30 hover:border-[#FF6E40] text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md cursor-pointer active:scale-95"
+            >
+              <span>{t.articles.viewAll}</span>
+              <ArrowRight className="w-4 h-4 text-[#FF6E40]" />
+            </button>
+          </div>
+        )}
 
       </div>
 
-      {/* Full Article Reader Modal */}
+      {/* Article Reader Modal */}
       <AnimatePresence>
         {selectedArticle && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             <motion.div
-              id="landing-article-modal-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedArticle(null)}
-              className="fixed inset-0 bg-[#021820]/85 backdrop-blur-md"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
             />
 
             <motion.div
-              id="landing-article-modal-container"
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-[#062C38] border border-teal-500/30 rounded-2xl shadow-2xl z-10 max-h-[90vh] flex flex-col overflow-hidden my-auto text-slate-100"
+              className="relative w-full max-w-3xl bg-[#04242E] border border-teal-500/30 rounded-2xl shadow-2xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col"
             >
-              {/* Modal Top Bar */}
-              <div className="flex items-center justify-between p-4 border-b border-teal-500/20 bg-[#04242E]/90">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FF6E40] bg-orange-950/60 px-3 py-1 rounded-full border border-orange-500/30">
+              {/* Modal Sticky Top Bar */}
+              <div className="p-4 sm:p-5 border-b border-teal-500/20 flex items-center justify-between bg-[#062C38]/90 backdrop-blur-md">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#FF6E40] px-3 py-1 rounded-full bg-black/40 border border-teal-500/25">
                   {selectedArticle.category}
                 </span>
 
                 <div className="flex items-center gap-2">
                   <button
+                    id="modal-share-article-btn"
                     onClick={() => handleShare(selectedArticle)}
-                    className="p-1.5 text-teal-200 hover:text-white rounded-full hover:bg-white/10 transition-colors"
-                    title="Bagikan Artikel"
+                    className="p-2 text-teal-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
+                    title={t.articles.shareArticle}
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
+
                   <button
-                    id="landing-article-close-btn"
+                    id="modal-close-article-btn"
                     onClick={() => setSelectedArticle(null)}
-                    className="p-1.5 text-teal-200 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+                    className="p-2 text-teal-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
+                    aria-label="Tutup"
                   >
                     <X className="w-4 h-4" />
                   </button>

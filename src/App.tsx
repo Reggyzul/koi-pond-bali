@@ -19,7 +19,7 @@ import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
 import ServicePage from './components/ServicePage';
 import WhatsAppChoiceModal from './components/WhatsAppChoiceModal';
-import { servicesData, contactData } from './data';
+import { useLanguage } from './context/LanguageContext';
 
 export default function App() {
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -30,6 +30,8 @@ export default function App() {
   const [isContactPageActive, setIsContactPageActive] = useState<boolean>(false);
   const [isAboutPageActive, setIsAboutPageActive] = useState<boolean>(false);
   const [isArticlesPageActive, setIsArticlesPageActive] = useState<boolean>(false);
+
+  const { servicesData, language } = useLanguage();
 
   useEffect(() => {
     const serviceMap: { [key: string]: string } = {
@@ -128,7 +130,7 @@ export default function App() {
         return;
       }
 
-      if (path === 'about' || path === 'tentang-kami' || targetMatched(path)) {
+      if (path === 'about' || path === 'tentang-kami' || path === 'founder') {
         setIsAboutPageActive(true);
         setIsContactPageActive(false);
         setIsArticlesPageActive(false);
@@ -137,7 +139,7 @@ export default function App() {
         return;
       }
 
-      if (path === 'articles' || path === 'artikel' || path === 'blog' || targetMatched(path)) {
+      if (path === 'articles' || path === 'artikel' || path === 'blog' || path === 'edukasi') {
         setIsArticlesPageActive(true);
         setIsAboutPageActive(false);
         setIsContactPageActive(false);
@@ -165,10 +167,6 @@ export default function App() {
         }, 100);
       }
     };
-
-    function targetMatched(p: string) {
-      return p === 'blog' || p === 'edukasi' || p === 'founder';
-    }
 
     window.addEventListener('popstate', handlePopState);
     window.addEventListener('hashchange', handleNavigationCheck);
@@ -212,7 +210,7 @@ export default function App() {
 
   const handleOpenConsultation = (categoryName?: string) => {
     setPrefillMessage('');
-    setInitialCategory(categoryName || 'Pembuatan Kolam Koi');
+    setInitialCategory(categoryName || (language === 'id' ? 'Pembuatan Kolam Koi' : 'Koi Pond Construction'));
     setIsConsultationOpen(true);
   };
 
@@ -244,7 +242,7 @@ export default function App() {
       setIsAboutPageActive(false);
       setIsContactPageActive(false);
       setActiveServiceId(null);
-      window.history.pushState(null, '', '/artikel');
+      window.history.pushState(null, '', '/articles');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
       return;
     }
@@ -380,7 +378,7 @@ export default function App() {
           id="floating-agro-whatsapp-bubble"
           onClick={() => setIsWhatsAppChoiceOpen(true)}
           className="relative w-14 h-14 sm:w-15 sm:h-15 rounded-full bg-gradient-to-tr from-[#25D366] via-[#20ba5a] to-[#128C7E] text-white flex items-center justify-center shadow-[0_6px_25px_rgba(37,211,102,0.45)] hover:shadow-[0_8px_30px_rgba(37,211,102,0.65)] hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white cursor-pointer"
-          aria-label="Chat WhatsApp Konsultasi"
+          aria-label={language === 'id' ? 'Chat WhatsApp Konsultasi' : 'Chat WhatsApp Consultation'}
         >
           {/* Animated pulse ring */}
           <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none" />
@@ -390,7 +388,7 @@ export default function App() {
 
         {/* Hover Tooltip */}
         <div className="absolute right-full mr-3 hidden sm:block opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap bg-[#04242E]/95 text-white text-xs font-bold py-1.5 px-3 rounded-xl border border-teal-500/30 shadow-lg backdrop-blur-md">
-          Chat WhatsApp
+          {language === 'id' ? 'Chat WhatsApp' : 'WhatsApp Chat'}
           <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-[#04242E] rotate-45 border-r border-t border-teal-500/30" />
         </div>
       </div>

@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { Instagram, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Instagram, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
 import { contactData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onOpenConsultation: () => void;
@@ -14,7 +14,9 @@ interface FooterProps {
   onSelectSection?: (sectionId: string) => void;
 }
 
-export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSelectSection }: FooterProps) {
+export default function Footer({ onOpenConsultation, onSelectSection }: FooterProps) {
+  const { t, servicesData } = useLanguage();
+
   return (
     <footer id="footer" className="bg-[#04242E]/85 backdrop-blur-md text-white border-t border-teal-500/20 pt-12 pb-6 relative overflow-hidden">
       
@@ -35,7 +37,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
             <Logo variant="dark" />
           </a>
           <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal max-w-sm">
-            Spesialis pembuatan, perbaikan dan perawatan kolam, filter chamber vortex dan ikan koi terbaik di Bali sejak 2021.
+            {t.footer.brandDesc}
           </p>
           <div className="space-y-1.5 text-xs sm:text-sm text-teal-100/85">
             <div className="flex items-start gap-2">
@@ -44,7 +46,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#FBBF24] shrink-0" />
-              <span>Layanan Konsultasi & Survei Lapangan</span>
+              <span>{t.footer.consultationDesc}</span>
             </div>
           </div>
           
@@ -81,7 +83,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
         {/* Quick Links Column (Span 2) */}
         <div className="md:col-span-2 space-y-3">
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
-            Tautan Cepat
+            {t.footer.quickLinks}
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-teal-100/80 font-medium">
             <li>
@@ -93,7 +95,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                Tentang Kami
+                {t.nav.about}
               </a>
             </li>
             <li>
@@ -105,7 +107,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                Layanan Kolam
+                {t.nav.services}
               </a>
             </li>
             <li>
@@ -117,7 +119,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                Keunggulan
+                {t.nav.whyChooseUs}
               </a>
             </li>
             <li>
@@ -129,7 +131,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                Artikel & Panduan
+                {t.nav.articles}
               </a>
             </li>
             <li>
@@ -141,7 +143,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                FAQ
+                {t.nav.faq}
               </a>
             </li>
             <li>
@@ -153,34 +155,42 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                Kontak & Lokasi Bali
+                {t.nav.contact}
               </a>
             </li>
           </ul>
         </div>
 
-        {/* 6 Services Column (Span 3) */}
+        {/* Services Column (Span 3) */}
         <div className="md:col-span-3 space-y-3">
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
-            Layanan Spesialis
+            {t.footer.specialistServices}
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-teal-100/80 font-medium">
-            <li><a href="#pembuatan-kolam-koi" className="hover:text-[#FBBF24] transition-colors">Pembuatan Kolam Koi</a></li>
-            <li><a href="#renovasi-perbaikan-kolam" className="hover:text-[#FBBF24] transition-colors">Renovasi Kolam Bocor</a></li>
-            <li><a href="#perawatan-kolam" className="hover:text-[#FBBF24] transition-colors">Perawatan & Kuras Kolam</a></li>
-            <li><a href="#perawatan-ikan-koi" className="hover:text-[#FBBF24] transition-colors">Perawatan Ikan Koi</a></li>
-            <li><a href="#pembuatan-perawatan-filter" className="hover:text-[#FBBF24] transition-colors">Filter & Plumbing</a></li>
-            <li><a href="#jual-beli-ikan-koi" className="hover:text-[#FBBF24] transition-colors">Jual / Beli Ikan Koi</a></li>
+            {servicesData.map((srv) => (
+              <li key={srv.id}>
+                <a
+                  href={`#${srv.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onSelectSection?.(srv.id);
+                  }}
+                  className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+                >
+                  {srv.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Free Consultation Column (Span 3) */}
         <div className="md:col-span-3 space-y-3">
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
-            Survei Lokasi Gratis
+            {t.footer.freeSurveyHeader}
           </h4>
           <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed font-normal">
-            Butuh estimasi pembuatan atau perbaikan kolam di Bali? Konsultasi dan survei lokasi gratis se-Bali.
+            {t.footer.freeSurveyDesc}
           </p>
 
           <button
@@ -188,7 +198,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
             onClick={onOpenConsultation}
             className="w-full py-2.5 btn-koi-flame text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
-            Konsultasi Gratis
+            {t.footer.freeConsultationBtn}
           </button>
         </div>
 
@@ -203,7 +213,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSel
         <div className="flex gap-2.5">
           <span>Denpasar, Bali</span>
           <span>|</span>
-          <span>Plumbing | Kelistrikan | Konstruksi</span>
+          <span>Plumbing | Electrical | Concrete Construction</span>
         </div>
       </div>
 

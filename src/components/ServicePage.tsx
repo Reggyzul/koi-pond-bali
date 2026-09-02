@@ -21,7 +21,7 @@ import {
   Phone
 } from 'lucide-react';
 import { Service } from '../types';
-import { contactData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Building2,
@@ -38,10 +38,61 @@ interface ServicePageProps {
   onOpenConsultation: () => void;
 }
 
-export default function ServicePage({ service, onBackToHome, onOpenConsultation }: ServicePageProps) {
+export default function ServicePage({ service, onBackToHome }: ServicePageProps) {
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const { t, language } = useLanguage();
   
   const getDivisionFields = (id: string) => {
+    if (language === 'en') {
+      switch (id) {
+        case 'pembuatan-kolam-koi':
+          return [
+            { name: 'propertyType', label: 'Property Type', type: 'select', options: ['Private Residence', 'Private / Rental Villa', 'Hotel & Resort', 'Restaurant / Cafe', 'Commercial Office / Plaza'] },
+            { name: 'pondStyle', label: 'Desired Pond Concept', type: 'select', options: ['Modern Minimalist Koi Pond', 'Natural Bali Stone & Water-Wall', 'Tempered Glass Viewing Window Pond', 'Water Fall & Cascading Stone Feature', 'Not Sure (Need Recommendations)'] },
+            { name: 'pondSize', label: 'Estimated Dimensions / Land Area (L x W x D meters)', type: 'text', placeholder: 'e.g. 4 x 2.5 x 1.3 meters' },
+            { name: 'locationArea', label: 'Project Location in Bali', type: 'text', placeholder: 'e.g. Sanur, Canggu, Ubud, Seminyak, Uluwatu...' }
+          ];
+        case 'renovasi-perbaikan-kolam':
+          return [
+            { name: 'problemType', label: 'Primary Pond Issue', type: 'select', options: ['Structural Crack / Fast Water Loss', 'Persistent Green / Murky Water (Ineffective Filter)', 'Filtration Chamber Too Small / Needs Upgrade', 'Blocked or Leaking Sub-surface Plumbing', 'Aesthetic Redesign & Natural Stone Tiling'] },
+            { name: 'approxSize', label: 'Current Pond Dimensions', type: 'text', placeholder: 'e.g. 4 x 2 meters with 1.2m depth' },
+            { name: 'fishStatus', label: 'Current Koi Fish Status', type: 'select', options: ['Still in Pond (Need Temporary Holding Tank)', 'Already Relocated / Pond Empty'] },
+            { name: 'locationArea', label: 'Pond Location in Bali', type: 'text', placeholder: 'Enter your address or villa area in Bali' }
+          ];
+        case 'perawatan-kolam':
+          return [
+            { name: 'maintenanceType', label: 'Maintenance Option', type: 'select', options: ['One-Time Deep Clean & Chamber Backwash', 'Bi-Weekly Subscription (2x Monthly)', 'Weekly Subscription (4x Monthly)', 'General Water Chemistry & Electrical Health Check'] },
+            { name: 'pondCondition', label: 'Current Pond Condition', type: 'select', options: ['Very Murky with Heavy Algae', 'Slightly Green Water', 'Normal / Routine Upkeep Needed', 'Pump or Filtration Faulty'] },
+            { name: 'locationArea', label: 'Location in Bali', type: 'text', placeholder: 'e.g. Denpasar, Badung, Gianyar, Tabanan...' }
+          ];
+        case 'perawatan-ikan-koi':
+          return [
+            { name: 'koiCondition', label: 'Fish Symptoms / Inquiries', type: 'select', options: ['Fish Lying on Floor / Lethargic at Surface', 'Anchor Worms / Argulus Lice Visible', 'White Spots (Ich) / Cotton Wool Fungus', 'Red Ulcers / Flaking Scales / Fin Rot', 'Gasping at Surface / Loss of Appetite', 'New Arrival Quarantine Assistance'] },
+            { name: 'fishCount', label: 'Fish Count & Average Size', type: 'text', placeholder: 'e.g. 15 fish, 30-50 cm length' },
+            { name: 'locationArea', label: 'Location in Bali', type: 'text', placeholder: 'e.g. Jimbaran, Nusa Dua, Canggu...' }
+          ];
+        case 'pembuatan-perawatan-filter':
+          return [
+            { name: 'filterNeed', label: 'Filtration Requirement', type: 'select', options: ['New Multi-Chamber / Vortex Bio-Reactor Build', 'Filter Media Upgrade (Japmat, Bio-Rings, Moving Bed)', 'Eco Pump & High-Flow Aerator Installation', 'High-Output UV Clarifier Anti-Green Water Setup', 'Pump & Electrical Safety Servicing'] },
+            { name: 'pondVolume', label: 'Estimated Pond Volume / Dimensions', type: 'text', placeholder: 'e.g. 10,000 Liters / 4x2x1.2 meters' },
+            { name: 'locationArea', label: 'Location in Bali', type: 'text', placeholder: 'Villa or residence location' }
+          ];
+        case 'jual-beli-ikan-koi':
+          return [
+            { name: 'varietyInterest', label: 'Desired Koi Varieties', type: 'select', options: ['Assorted Mix (Kohaku, Showa, Sanke, etc.)', 'Gosanke (Kohaku, Sanke, Showa)', 'Shiro Utsuri / Hi Utsuri', 'Tancho / Asagi / Shusui / Chagoi', 'Bali Butterfly / Longfin Fin Koi', 'Jumbo Show Quality (> 50 cm)', 'Consignment / Selling Personal Koi'] },
+            { name: 'sizeRange', label: 'Size Category', type: 'select', options: ['Fingerling / Tosai (15 - 25 cm)', 'Junior / Nisai (25 - 40 cm)', 'Adult / Jumbo (40 - 65+ cm)', 'Flexible / Best Available Stock'] },
+            { name: 'budgetRange', label: 'Budget Range', type: 'select', options: ['Under IDR 500k / fish', 'IDR 500k - 2 Million / fish', 'IDR 2M - 5M (Grade A / Show Quality)', 'Above IDR 5 Million (Import / High Quality)', 'Open to Recommendations'] },
+            { name: 'actionType', label: 'Transaction Type', type: 'select', options: ['Purchase Healthy Certified Koi', 'Trade-in / Consignment Sale'] },
+            { name: 'deliveryArea', label: 'Delivery Location in Bali', type: 'text', placeholder: 'Full delivery destination' }
+          ];
+        default:
+          return [
+            { name: 'generalInquiry', label: 'Inquiry Details', type: 'textarea', placeholder: 'Describe your requirements here...' }
+          ];
+      }
+    }
+
+    // Indonesian Default
     switch (id) {
       case 'pembuatan-kolam-koi':
         return [
@@ -102,17 +153,27 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
   };
 
   const getWhatsAppLink = () => {
-    let text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi mengenai layanan: *${service.title}*.\n\n`;
-    fields.forEach(f => {
-      const val = formData[f.name];
-      if (val) {
-        text += `- ${f.label}: ${val}\n`;
-      }
-    });
-    if (formData.clientName) text += `- Nama: ${formData.clientName}\n`;
-    if (formData.clientPhone) text += `- No. WhatsApp: ${formData.clientPhone}\n`;
-    
-    text += `\nMohon informasi estimasi biaya & jadwal survei. Terima kasih.`;
+    let text = '';
+    if (language === 'en') {
+      text = `Hello KOI POND SERVICES BALI!\nI would like to inquire about: *${service.title}*.\n\n`;
+      fields.forEach(f => {
+        const val = formData[f.name];
+        if (val) text += `- ${f.label}: ${val}\n`;
+      });
+      if (formData.clientName) text += `- Name: ${formData.clientName}\n`;
+      if (formData.clientPhone) text += `- WhatsApp Number: ${formData.clientPhone}\n`;
+      text += `\nPlease provide estimated cost & survey schedule. Thank you!`;
+    } else {
+      text = `Halo KOI POND SERVICES BALI!\nSaya ingin konsultasi mengenai layanan: *${service.title}*.\n\n`;
+      fields.forEach(f => {
+        const val = formData[f.name];
+        if (val) text += `- ${f.label}: ${val}\n`;
+      });
+      if (formData.clientName) text += `- Nama: ${formData.clientName}\n`;
+      if (formData.clientPhone) text += `- No. WhatsApp: ${formData.clientPhone}\n`;
+      text += `\nMohon informasi estimasi biaya & jadwal survei. Terima kasih.`;
+    }
+
     const target = formData.targetNumber || '08133034733';
     const cleanNumber = target.replace(/\D/g, '');
     const fullNumber = cleanNumber.startsWith('0') ? `62${cleanNumber.slice(1)}` : cleanNumber;
@@ -134,118 +195,105 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-1.5 px-3.5 rounded-lg border border-white/15 transition-all shadow-xs active:scale-95"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>Kembali ke Beranda</span>
+              <span>{t.servicePage.backBtn}</span>
             </button>
             <span className="font-mono tracking-widest text-[#FBBF24] uppercase font-bold text-xs bg-black/25 px-3 py-1 rounded-md border border-amber-400/20">
-              Layanan / {service.title}
+              {t.services.badge} / {service.title}
             </span>
           </div>
 
-          {/* Hero Title & Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-2.5 max-w-4xl pt-1"
-          >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white px-3.5 py-1 rounded-full shadow-md">
-              <div className="text-white">
-                {renderIcon(service.iconName)}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            {/* Title & Headline */}
+            <div className="lg:col-span-8 space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="p-2 rounded-lg bg-teal-900/80 text-teal-200 border border-teal-500/30">
+                  {renderIcon(service.iconName)}
+                </span>
+                <span className="px-3 py-0.5 bg-[#FF5722] text-white rounded-full text-[11px] font-bold uppercase tracking-wider">
+                  {language === 'id' ? 'Layanan Unggulan' : 'Featured Service'}
+                </span>
               </div>
-              <span className="text-xs font-bold uppercase tracking-wider">
-                KOI POND SERVICES BALI
-              </span>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
+                {service.title}
+              </h1>
+              <p className="text-xs sm:text-sm md:text-base text-teal-100/90 leading-relaxed font-normal max-w-2xl">
+                {service.description}
+              </p>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
-              {service.title}
-            </h1>
+            {/* Quick Guarantees Pill Card */}
+            <div className="lg:col-span-4 bg-[#062C38]/70 border border-teal-500/25 rounded-2xl p-4 sm:p-5 space-y-2.5 shadow-lg">
+              <div className="flex items-center gap-2 text-white font-bold text-xs sm:text-sm border-b border-teal-500/20 pb-2">
+                <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+                <span>{language === 'id' ? 'Standar Mutu & Garansi' : 'Quality Standards & Warranty'}</span>
+              </div>
+              <div className="space-y-1.5 text-xs text-teal-100/80 font-normal">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6E40] shrink-0" />
+                  <span>{t.hero.guarantee}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6E40] shrink-0" />
+                  <span>{t.hero.freeSurvey}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FF6E40] shrink-0" />
+                  <span>{language === 'id' ? 'Harga transparan & fleksibel' : 'Transparent & flexible pricing'}</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <p className="text-xs sm:text-sm md:text-base text-teal-50/90 leading-relaxed font-normal max-w-3xl">
-              {service.description}
-            </p>
-          </motion.div>
         </div>
       </div>
 
-      {/* Main Content Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8">
+      {/* Main Details & Form Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Side: Visi, Misi, Specs & Packages (Span 7) */}
-        <div className="lg:col-span-7 space-y-7">
+        {/* Left Side: Content & Features (Span 7) */}
+        <div className="lg:col-span-7 space-y-8">
           
-          {/* Visi & Misi */}
+          {/* Main Photo Banner */}
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden glass-aquatic-card p-1.5 border border-teal-500/20 shadow-xl">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
+
+          {/* Visi & Misi Box */}
           {(service.visi || service.misi) && (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="glass-aquatic-card border border-teal-500/20 rounded-xl p-5 sm:p-6 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-5"
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {service.visi && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-white">
-                    <div className="p-1.5 rounded-lg bg-teal-950 text-[#FF6E40] border border-teal-500/30">
-                      <Eye className="w-4 h-4 stroke-[2]" />
-                    </div>
-                    <h4 className="text-sm sm:text-base font-bold uppercase tracking-wide">
-                      Visi Layanan
-                    </h4>
+                <div className="p-4 sm:p-5 glass-aquatic-card rounded-xl border border-teal-500/20 space-y-2 shadow-xs">
+                  <div className="flex items-center gap-2 text-teal-300 font-bold text-xs sm:text-sm uppercase tracking-wider">
+                    <Eye className="w-4 h-4 text-[#FF6E40]" />
+                    <span>{language === 'id' ? 'Komitmen Visi' : 'Vision Statement'}</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed pl-1 font-normal">
-                    {service.visi}
-                  </p>
+                  <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal">{service.visi}</p>
                 </div>
               )}
               {service.misi && (
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2 text-white">
-                    <div className="p-1.5 rounded-lg bg-teal-950 text-[#FF6E40] border border-teal-500/30">
-                      <Target className="w-4 h-4 stroke-[2]" />
-                    </div>
-                    <h4 className="text-sm sm:text-base font-bold uppercase tracking-wide">
-                      Misi Layanan
-                    </h4>
+                <div className="p-4 sm:p-5 glass-aquatic-card rounded-xl border border-teal-500/20 space-y-2 shadow-xs">
+                  <div className="flex items-center gap-2 text-teal-300 font-bold text-xs sm:text-sm uppercase tracking-wider">
+                    <Target className="w-4 h-4 text-[#FF6E40]" />
+                    <span>{language === 'id' ? 'Komitmen Misi' : 'Mission Commitment'}</span>
                   </div>
-                  <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed pl-1 font-normal">
-                    {service.misi}
-                  </p>
+                  <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal">{service.misi}</p>
                 </div>
               )}
-            </motion.div>
-          )}
-
-          {/* Mengapa Memilih */}
-          {service.whyChooseUs && (
-            <div className="space-y-3">
-              <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-5 bg-[#FF5722] rounded-full inline-block" />
-                Keunggulan Layanan
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {service.whyChooseUs.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-3 p-4 glass-aquatic-card rounded-xl border border-teal-500/20 shadow-xs hover:border-[#FF6E40]/50 transition-all"
-                  >
-                    <ShieldCheck className="w-5 h-5 text-[#10B981] mt-0.5 shrink-0" />
-                    <p className="text-xs sm:text-sm text-teal-100/90 font-normal leading-relaxed">
-                      {item}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
           )}
 
-          {/* Ruang Lingkup Pekerjaan */}
+          {/* Keunggulan Spesifik Divisi */}
           {service.details && (
             <div className="space-y-3">
               <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                <span className="w-2 h-5 bg-[#10B981] rounded-full inline-block" />
-                Ruang Lingkup Pekerjaan
+                <span className="w-2 h-5 bg-[#FF5722] rounded-full inline-block" />
+                {t.services.featuresLabel}
               </h3>
-              <div className="space-y-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {service.details.map((detail, idx) => (
                   <div key={idx} className="flex items-start gap-3 p-4 glass-aquatic-card rounded-xl border border-teal-500/20 shadow-xs hover:border-teal-400/40 transition-all">
                     <CheckCircle2 className="w-5 h-5 text-[#10B981] mt-0.5 shrink-0" />
@@ -261,7 +309,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
             <div className="space-y-3">
               <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
                 <span className="w-2 h-5 bg-teal-400 rounded-full inline-block" />
-                Cakupan & Kategori
+                {t.services.servicesListLabel}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {service.servicesList.map((cat, idx) => (
@@ -290,7 +338,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
             <div className="space-y-3">
               <h3 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
                 <span className="w-2 h-5 bg-[#FF6E40] rounded-full inline-block" />
-                Pilihan Paket
+                {t.services.packagesLabel}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.packages.map((pkg, idx) => (
@@ -323,13 +371,13 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
           <div className="sticky top-24 glass-aquatic-card border border-teal-500/25 rounded-2xl p-5 sm:p-6 shadow-2xl space-y-4">
             <div className="space-y-1 border-b border-teal-500/20 pb-3">
               <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] block">
-                Konsultasi & Estimasi
+                {t.servicePage.consultationTitle}
               </span>
               <h3 className="text-lg sm:text-xl font-bold text-white">
-                Ajukan Survei Kolam Gratis
+                {t.servicePage.formTitle}
               </h3>
               <p className="text-xs text-teal-100/80 leading-relaxed font-normal">
-                Isi formulir untuk konsultasi langsung dengan teknisi spesialis.
+                {t.servicePage.formSubtitle}
               </p>
             </div>
 
@@ -346,23 +394,16 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                       onChange={(e) => handleInputChange(field.name, e.target.value)}
                       className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/80 border border-teal-500/30 text-xs sm:text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                     >
-                      <option value="" className="bg-[#062C38]">-- Pilih {field.label} --</option>
+                      <option value="" className="bg-[#062C38]">-- {field.label} --</option>
                       {field.options?.map((opt) => (
-                        <option key={opt} value={opt} className="bg-[#062C38]">{opt}</option>
+                        <option key={opt} value={opt} className="bg-[#062C38] text-white">
+                          {opt}
+                        </option>
                       ))}
                     </select>
-                  ) : field.type === 'textarea' ? (
-                    <textarea
-                      required
-                      rows={3}
-                      value={formData[field.name] || ''}
-                      onChange={(e) => handleInputChange(field.name, e.target.value)}
-                      placeholder={field.placeholder}
-                      className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
-                    />
                   ) : (
                     <input
-                      type={field.type || 'text'}
+                      type="text"
                       required
                       value={formData[field.name] || ''}
                       onChange={(e) => handleInputChange(field.name, e.target.value)}
@@ -373,30 +414,31 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                 </div>
               ))}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-0.5">
+              {/* Client Name & Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-teal-500/20">
                 <div className="space-y-1">
                   <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                    Nama Lengkap *
+                    {t.servicePage.inputName}
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.clientName || ''}
                     onChange={(e) => handleInputChange('clientName', e.target.value)}
-                    placeholder="Nama Anda"
+                    placeholder={language === 'id' ? 'Nama Anda' : 'Your Name'}
                     className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                   />
                 </div>
                 <div className="space-y-1">
                   <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                    No. WhatsApp *
+                    {t.servicePage.inputPhone}
                   </label>
                   <input
                     type="tel"
                     required
                     value={formData.clientPhone || ''}
                     onChange={(e) => handleInputChange('clientPhone', e.target.value)}
-                    placeholder="Contoh: 08123456789"
+                    placeholder={language === 'id' ? 'Contoh: 08123456789' : 'e.g. +628123456789'}
                     className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                   />
                 </div>
@@ -404,7 +446,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
 
               <div className="space-y-1 pt-1">
                 <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                  Pilih Kontak WhatsApp *
+                  {t.servicePage.selectTargetWa}
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <label className={`flex items-center gap-2 p-2 rounded-lg border cursor-pointer transition-all ${(formData.targetNumber || '08133034733') === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
@@ -418,7 +460,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                     />
                     <div className="text-xs">
                       <span className="font-bold block text-white text-[11px]">WA 1 (08133034733)</span>
-                      <span className="text-[10px] text-teal-200/70">Konsultasi & Survei</span>
+                      <span className="text-[10px] text-teal-200/70">{language === 'id' ? 'Konsultasi & Survei' : 'Consult & Survey'}</span>
                     </div>
                   </label>
 
@@ -433,7 +475,7 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                     />
                     <div className="text-xs">
                       <span className="font-bold block text-white text-[11px]">WA 2 (081295903430)</span>
-                      <span className="text-[10px] text-teal-200/70">Booking & Support</span>
+                      <span className="text-[10px] text-teal-200/70">{language === 'id' ? 'Booking & Support' : 'Booking & Support'}</span>
                     </div>
                   </label>
                 </div>
@@ -448,12 +490,12 @@ export default function ServicePage({ service, onBackToHome, onOpenConsultation 
                 className="w-full mt-3 py-3 px-5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-98"
               >
                 <Phone className="w-4 h-4" />
-                <span>Konsultasi WhatsApp</span>
+                <span>{t.servicePage.submitBtn}</span>
               </a>
 
               <div className="flex items-center justify-center gap-1.5 pt-0.5 text-xs text-teal-200/80 font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
-                <span>Survei lokasi gratis ke seluruh Bali</span>
+                <span>{t.servicePage.surveyFreeBadge}</span>
               </div>
             </form>
           </div>

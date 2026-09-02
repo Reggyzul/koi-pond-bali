@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React from 'react';
 import { motion } from 'motion/react';
 import { DollarSign, ShieldCheck, Wrench, Headphones } from 'lucide-react';
-import { whyChooseUsData } from '../data';
+import { useLanguage } from '../context/LanguageContext';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   DollarSign,
@@ -15,6 +16,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function WhyChooseUs() {
+  const { t, whyChooseUsData } = useLanguage();
+
   const renderIcon = (iconName: string) => {
     const IconComponent = iconMap[iconName] || ShieldCheck;
     return <IconComponent className="w-5 h-5 stroke-[2]" />;
@@ -33,13 +36,13 @@ export default function WhyChooseUs() {
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FBBF24] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-amber-400/25 inline-block shadow-xs">
-            Nilai & Komitmen Kami
+            {t.whyChooseUs.badge}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            Keunggulan KOI POND SERVICES BALI
+            {t.whyChooseUs.title}
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-            Menghadirkan ketenangan melalui keahlian teknis terpadu, biaya fleksibel, dan garansi resmi 100%.
+            {t.whyChooseUs.subtitle}
           </p>
           <div className="w-16 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
