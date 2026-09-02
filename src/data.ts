@@ -599,6 +599,7 @@ export const contactData = {
   businessName: "KOI POND SERVICES BALI",
   ownerName: "KOI POND SERVICES BALI",
   phone: "08133034733",
+  phoneSecondary: "081295903430",
   whatsapp1: "08133034733",
   whatsappUrl1: "https://wa.me/628133034733",
   whatsapp2: "081295903430",
