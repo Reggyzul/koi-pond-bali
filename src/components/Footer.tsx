@@ -207,7 +207,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
       {/* Sub-Footer copyrights */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-teal-200/60 font-medium">
         <div>
-          &copy; {new Date().getFullYear()} KOI POND SERVICES BALI. {t?.footer?.rights || 'Hak Cipta Terpelihara.'}
+          &copy; 2021 powered by PT ASC Artistic Solution Construction. {t?.footer?.rights || 'Hak Cipta Terpelihara.'}
         </div>
 
         <div className="flex gap-2.5">
