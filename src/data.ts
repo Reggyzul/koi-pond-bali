@@ -432,40 +432,41 @@ export const servicesData: Service[] = [
     ],
     servicesList: [
       {
-        category: 'Isi Paket Regular Maintenance (1 Tahun)',
+        category: 'Keuntungan Berlangganan Tahunan',
         items: [
-          '11x regular maintenance',
-          '1x full deep clean',
-          'penggantian media filter rusak',
-          'inspeksi kesehatan ikan koi',
-          'pendampingan pemijahan koi bunting',
-          'gratis 1kg pakan HIRO Premium setiap bulan.',
-          'probiotik setiap penggantian air.',
-          '(Harga mulai Rp 5.000.000 )'
+          'Bebas repot perawatan harian kolam koi sepanjang tahun',
+          'Kesehatan dan pertumbuhan ikan koi terpantau rutin oleh praktisi ahli',
+          'Respon prioritas penanganan darurat (emergency call 24 jam)',
+          'Biaya terencana dan hemat tanpa ada biaya tak terduga'
         ]
       },
       {
-        category: 'Keuntungan Berlangganan Tahunan',
+        category: 'Standar Prosedur Kunjungan Berkala',
         items: [
-          'Bebas repot perawatan harian kolam koi',
-          'Kesehatan ikan koi terpantau rutin oleh praktisi ahli',
-          'Respon prioritas untuk penanganan darurat (emergency response)',
-          'Estimasi biaya tetap tanpa biaya tersembunyi'
+          'Uji parameter air kolam lengkap (pH, TDS, Amonia, Nitrit, Suhu)',
+          'Pembersihan & backwash media mekanis dan biologis filter',
+          'Pengecekan kelistrikan pompa sirkulasi & lampu UV sterilizer',
+          'Pengiriman pakan Hiro bulanan & aplikasi probiotik air'
         ]
       }
     ],
     packages: [
       {
-        name: '1-Year Regular Maintenance Package',
+        name: 'Paket Kontrak Tahunan - Rumah Tinggal',
         items: [
-          '11x regular maintenance',
-          '1x full deep clean',
-          'penggantian media filter rusak',
-          'inspeksi kesehatan ikan koi',
-          'pendampingan pemijahan koi bunting',
-          'gratis 1kg pakan HIRO Premium setiap bulan.',
-          'probiotik setiap penggantian air.',
-          'Harga mulai Rp 5.000.000'
+          'Jadwal teratur 12 bulan (11x reguler + 1x deep clean)',
+          'Ideal untuk kolam residensial & penghobi koi di Bali',
+          'Termasuk suplai pakan Hiro bulanan & probiotik',
+          'Biaya mulai Rp 5.000.000 All-in'
+        ]
+      },
+      {
+        name: 'Paket Kontrak Tahunan - Villa & Komersial',
+        items: [
+          'Disesuaikan dengan kapasitas kolam display villa & resort',
+          'Monitoring kelistrikan pompa, UV & aerasi berkala',
+          'Penanganan darurat 24/7 & inspeksi ikan terpadu',
+          'Konsultasi & survei awal gratis se-Bali'
         ]
       }
     ]
