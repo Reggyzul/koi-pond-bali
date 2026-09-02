@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { RotateCw, AlertTriangle } from 'lucide-react';
 
 interface Props {
@@ -15,26 +15,30 @@ interface State {
   error: Error | null;
 }
 
-export default class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
+export default class ErrorBoundary extends React.Component<Props, State> {
+  override state: State = {
     hasError: false,
     error: null
   };
 
-  public static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Uncaught error in KOI POND BALI SERVICES app:', error, errorInfo);
   }
 
   private handleReload = () => {
-    localStorage.removeItem('koi_pond_lang');
+    try {
+      localStorage.removeItem('koi_pond_lang');
+    } catch {
+      // ignore
+    }
     window.location.href = '/';
   };
 
-  public render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen bg-[#04242E] text-white flex flex-col items-center justify-center p-6 text-center">

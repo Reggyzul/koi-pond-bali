@@ -12,6 +12,7 @@ import {
   HeartHandshake,
   Wrench,
   ShoppingBag,
+  Zap,
   ArrowLeft,
   Eye,
   Target,

@@ -614,3 +614,10 @@ export const contactData = {
   serviceArea: "Seluruh Bali (Denpasar, Badung, Gianyar, Sanur, Kuta, Seminyak, Canggu, Ubud, Tabanan, Jimbaran, Nusa Dua, dll.)",
   operatingHours: "08.00 - 18.00 WITA (Senin - Minggu / Konsultasi WhatsApp 24 Jam)"
 };
+
+export const projectsData: any[] = [];
+export const processStepsData: any[] = [];
+export const statsData: any[] = [];
+export const teamMembersData: any[] = [];
+export const testimonialsData: any[] = [];
+
