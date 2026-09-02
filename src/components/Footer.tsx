@@ -83,6 +83,7 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice }: Foo
             <li><a href="#services" className="hover:text-[#FBBF24] transition-colors">Layanan Kolam</a></li>
             <li><a href="#why-choose-us" className="hover:text-[#FBBF24] transition-colors">Keunggulan</a></li>
             <li><a href="#articles" className="hover:text-[#FBBF24] transition-colors">Artikel & Panduan</a></li>
+            <li><a href="#faq" className="hover:text-[#FBBF24] transition-colors">FAQ</a></li>
             <li><a href="#contact" className="hover:text-[#FBBF24] transition-colors">Kontak Bali</a></li>
           </ul>
         </div>
