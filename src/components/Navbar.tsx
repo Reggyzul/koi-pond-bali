@@ -46,9 +46,9 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
     <>
       <nav
         id="app-navbar"
-        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#04242E] via-[#062C38] to-[#0A4354] border-b border-teal-500/20 py-2.5 sm:py-3 shadow-md backdrop-blur-md"
+        className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-[#04242E] via-[#062C38] to-[#0A4354] border-b border-teal-500/20 py-2 sm:py-2.5 shadow-md backdrop-blur-md"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
           
           {/* Brand Logo */}
           <a
@@ -58,12 +58,12 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               e.preventDefault();
               onSelectService('home');
             }}
-            className="flex items-center gap-2.5 transition-transform hover:scale-[1.02] cursor-pointer"
+            className="flex items-center transition-transform hover:scale-[1.01] cursor-pointer min-w-0"
           >
             <Logo variant="dark" />
           </a>
 
-          {/* Desktop Nav Menu - Sleek, Balanced & Elegant */}
+          {/* Desktop Nav Menu */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-medium text-white/90">
             <a
               id="nav-link-about"
@@ -179,26 +179,23 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
             </a>
           </div>
 
-          {/* Right Section: Language Switcher & Hamburger */}
-          <div className="flex items-center gap-3">
-            {/* Minimalist Language Switcher on Far Right */}
-            <LanguageToggle className="hidden sm:inline-flex" />
+          {/* Right Section: Single Language Switcher & Hamburger Button (NO DUPLICATE) */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+            {/* Exactly ONE Language Switcher: on mobile placed directly beside hamburger; on desktop at far right */}
+            <LanguageToggle />
 
-            {/* Mobile Actions */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <LanguageToggle className="sm:hidden" />
-              <button
-                id="nav-mobile-menu-toggle"
-                onClick={() => {
-                  setMobileMenuOpen(!mobileMenuOpen);
-                  if (mobileMenuOpen) setMobileServicesOpen(false);
-                }}
-                className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
-                aria-label="Toggle Navigation"
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
+            {/* Mobile Menu Toggle Button (Garis 3) */}
+            <button
+              id="nav-mobile-menu-toggle"
+              onClick={() => {
+                setMobileMenuOpen(!mobileMenuOpen);
+                if (mobileMenuOpen) setMobileServicesOpen(false);
+              }}
+              className="lg:hidden p-1.5 sm:p-2 text-white hover:bg-white/10 rounded-lg transition-colors border border-white/15 cursor-pointer flex items-center justify-center shrink-0"
+              aria-label="Toggle Navigation"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
 
@@ -213,8 +210,6 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               transition={{ duration: 0.25 }}
               className="lg:hidden bg-gradient-to-b from-[#062C38] to-[#04242E] border-t border-teal-500/20 px-5 py-4 space-y-3 text-white overflow-y-auto max-h-[85vh] shadow-xl"
             >
-              <LanguageToggle isMobileDrawer className="mb-2" />
-
               <a
                 id="mobile-nav-link-about"
                 href="#about"

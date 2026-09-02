@@ -52,22 +52,22 @@ export default function LanguageToggle({ className = '', isMobileDrawer = false 
 
   return (
     <div
-      className={`inline-flex items-center gap-1 p-0.5 rounded-full bg-[#04242E]/80 backdrop-blur-md border border-teal-500/30 shadow-sm transition-all hover:border-teal-400/60 ${className}`}
+      className={`inline-flex items-center p-0.5 rounded-full bg-[#04242E]/90 backdrop-blur-md border border-teal-500/35 shadow-xs transition-all hover:border-teal-400/60 shrink-0 ${className}`}
       title={language === 'id' ? 'Ganti ke Bahasa Inggris' : 'Switch to Indonesian'}
     >
-      <div className="pl-2 pr-1 flex items-center text-teal-300/80">
-        <Globe className="w-3.5 h-3.5 text-[#FF6E40]" />
+      <div className="pl-1.5 pr-0.5 flex items-center text-teal-300/80">
+        <Globe className="w-3 h-3 text-[#FF6E40]" />
       </div>
 
-      <div className="inline-flex items-center p-0.5 rounded-full bg-black/40">
+      <div className="inline-flex items-center p-0.5 rounded-full bg-black/50">
         <button
           type="button"
           id="lang-toggle-id"
           onClick={() => setLanguage('id')}
-          className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider transition-all duration-200 cursor-pointer ${
+          className={`px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider transition-all duration-200 cursor-pointer ${
             language === 'id'
-              ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-sm scale-100'
-              : 'text-teal-200/65 hover:text-white scale-95'
+              ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-xs scale-100'
+              : 'text-teal-200/60 hover:text-white'
           }`}
           aria-label="Bahasa Indonesia"
         >
@@ -78,10 +78,10 @@ export default function LanguageToggle({ className = '', isMobileDrawer = false 
           type="button"
           id="lang-toggle-en"
           onClick={() => setLanguage('en')}
-          className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wider transition-all duration-200 cursor-pointer ${
+          className={`px-2 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold tracking-wider transition-all duration-200 cursor-pointer ${
             language === 'en'
-              ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-sm scale-100'
-              : 'text-teal-200/65 hover:text-white scale-95'
+              ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-xs scale-100'
+              : 'text-teal-200/60 hover:text-white'
           }`}
           aria-label="English"
         >
