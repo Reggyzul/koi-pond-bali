@@ -61,7 +61,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
               title="Instagram"
             >
               <Instagram className="w-3.5 h-3.5 text-[#FF6E40]" />
-              <span>@koi_pondbali</span>
+              <span>{contactData.instagram}</span>
             </a>
             
             <a
