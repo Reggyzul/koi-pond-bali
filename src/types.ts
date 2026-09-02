@@ -9,7 +9,7 @@ export interface Service {
   iconName: string; // Lucide icon identifier
   image: string;
   description: string;
-  details: string[];
+  details?: string[];
   visi?: string;
   misi?: string;
   link?: string;

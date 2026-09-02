@@ -252,9 +252,46 @@ export default function ServicePage({ service, onBackToHome }: ServicePageProps)
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
                 {service.title}
               </h1>
-              <p className="text-xs sm:text-sm md:text-base text-teal-100/90 leading-relaxed font-normal max-w-2xl">
-                {service.description}
-              </p>
+              {service.id === 'regular-maintenance' ? (
+                <div className="space-y-2.5 pt-1 text-teal-100/95 max-w-2xl">
+                  <p className="text-xs sm:text-sm md:text-base leading-relaxed font-normal">
+                    {language === 'id'
+                      ? 'Paket kontrak perawatan berkala kolam koi tahunan (1-Year Regular Maintenance Package) terpadu di Bali. Solusi lengkap air kolam kristal:'
+                      : 'Comprehensive 1-Year Regular Maintenance Package for koi ponds in Bali. Total crystal-clear water solution:'}
+                  </p>
+                  <ul className="space-y-1 text-xs sm:text-sm font-medium pl-1">
+                    {(language === 'id' ? [
+                      '11x regular maintenance',
+                      '1x full deep clean',
+                      'penggantian media filter rusak',
+                      'inspeksi kesehatan ikan koi',
+                      'pendampingan pemijahan koi bunting',
+                      'gratis 1kg pakan HIRO Premium setiap bulan.',
+                      'probiotik setiap penggantian air.'
+                    ] : [
+                      '11x regular maintenance',
+                      '1x full deep clean',
+                      'filter media replacement (if damaged)',
+                      'fish health inspection',
+                      'breeding assistance for pregnant fish',
+                      '1kg of HIRO PREMIUM FISH FOOD per month',
+                      'probiotics every changed water.'
+                    ]).map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-[#FF6E40] font-bold text-base leading-none select-none">-</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-[#FF6E40] pt-1">
+                    {language === 'id' ? '(Harga mulai Rp 5.000.000 )' : '(Price starts from IDR 5,000,000 )'}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xs sm:text-sm md:text-base text-teal-100/90 leading-relaxed font-normal max-w-2xl">
+                  {service.description}
+                </p>
+              )}
             </div>
 
             {/* Quick Guarantees Pill Card */}

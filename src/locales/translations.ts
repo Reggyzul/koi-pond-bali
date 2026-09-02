@@ -900,63 +900,11 @@ export const bilingualServicesData: Record<Language, Service[]> = {
       iconName: 'CalendarCheck',
       image: '/images/regular_maintenance.avif',
       description: 'Paket kontrak perawatan berkala kolam koi tahunan (1-Year Regular Maintenance Package) terpadu di Bali. Solusi lengkap air kolam kristal: 11x regular maintenance, 1x full deep clean, penggantian media filter rusak, inspeksi kesehatan ikan koi, pendampingan pemijahan koi bunting, gratis 1kg pakan HIRO Premium setiap bulan, probiotik setiap penggantian air. (Harga mulai Rp 5.000.000)',
-      visi: 'Memberikan jaminan ketenangan penuh dan mutu ekosistem kolam koi kelas satu dengan kejernihan air bergaransi 365 hari.',
-      misi: 'Menghadirkan jadwal perawatan berkala profesional tanpa repot, menjaga nutrisi prima koi, dan memastikan filtrasi bekerja sempurna sepanjang tahun.',
-      details: [
-        '11x regular maintenance',
-        '1x full deep clean',
-        'penggantian media filter rusak',
-        'inspeksi kesehatan ikan koi',
-        'pendampingan pemijahan koi bunting',
-        'gratis 1kg pakan HIRO Premium setiap bulan.',
-        'probiotik setiap penggantian air.',
-        '(Harga mulai Rp 5.000.000 )'
-      ],
       whyChooseUs: [
         'Garansi air kolam jernih kristal & ekosistem sehat 365 hari',
         'Gratis 1kg pakan HIRO Premium setiap bulan',
         'Penggantian media filter rusak & pendampingan pemijahan koi bunting',
         'Harga paket tahunan All-In mulai dari Rp 5.000.000'
-      ],
-      servicesList: [
-        {
-          category: 'Keuntungan Berlangganan Tahunan',
-          items: [
-            'Bebas repot perawatan harian kolam koi sepanjang tahun',
-            'Kesehatan dan pertumbuhan ikan koi terpantau rutin oleh praktisi ahli',
-            'Respon prioritas penanganan darurat (emergency call 24 jam)',
-            'Biaya terencana dan hemat tanpa ada biaya tak terduga'
-          ]
-        },
-        {
-          category: 'Standar Prosedur Kunjungan Berkala',
-          items: [
-            'Uji parameter air kolam lengkap (pH, TDS, Amonia, Nitrit, Suhu)',
-            'Pembersihan & backwash media mekanis dan biologis filter',
-            'Pengecekan kelistrikan pompa sirkulasi & lampu UV sterilizer',
-            'Pengiriman pakan Hiro bulanan & aplikasi probiotik air'
-          ]
-        }
-      ],
-      packages: [
-        {
-          name: 'Paket Kontrak Tahunan - Rumah Tinggal',
-          items: [
-            'Jadwal teratur 12 bulan (11x reguler + 1x deep clean)',
-            'Ideal untuk kolam residensial & penghobi koi di Bali',
-            'Termasuk suplai pakan Hiro bulanan & probiotik',
-            'Biaya mulai Rp 5.000.000 All-in'
-          ]
-        },
-        {
-          name: 'Paket Kontrak Tahunan - Villa & Komersial',
-          items: [
-            'Disesuaikan dengan kapasitas kolam display villa & resort',
-            'Monitoring kelistrikan pompa, UV & aerasi berkala',
-            'Penanganan darurat 24/7 & inspeksi ikan terpadu',
-            'Konsultasi & survei awal gratis se-Bali'
-          ]
-        }
       ]
     }
   ],
@@ -1346,63 +1294,11 @@ export const bilingualServicesData: Record<Language, Service[]> = {
       iconName: 'CalendarCheck',
       image: '/images/regular_maintenance.avif',
       description: 'Comprehensive 1-Year Regular Maintenance Package for koi ponds in Bali. All-inclusive worry-free maintenance: 11x regular maintenance visits, 1x full deep clean, filter media replacement if damaged, fish health inspection, breeding assistance for pregnant fish, 1kg HIRO Premium fish food per month, and probiotics on every water change. Price starts from IDR 5,000,000 All-in.',
-      visi: 'To deliver absolute peace of mind and pristine crystal-clear koi pond ecosystems with 365 days clear water warranty.',
-      misi: 'Providing scheduled professional upkeep, maintaining peak koi nutrition, and ensuring bio-filtration operates at maximum efficiency year-round.',
-      details: [
-        '11x regular maintenance',
-        '1x full deep clean',
-        'filter media replacement (if damaged)',
-        'fish health inspection',
-        'breeding assistance for pregnant fish',
-        '1kg of HIRO PREMIUM FISH FOOD per month',
-        'probiotics every changed water.',
-        '(Price starts from IDR 5,000,000 )'
-      ],
       whyChooseUs: [
         'Guaranteed crystal clear water & healthy ecosystem 365 days',
         'Complimentary 1kg bag of HIRO Premium Koi Food every month',
         'Damaged filter media replacement & breeding assistance for pregnant fish',
         'All-inclusive annual package starting from IDR 5,000,000'
-      ],
-      servicesList: [
-        {
-          category: 'Annual Subscription Benefits',
-          items: [
-            'Zero daily pond maintenance hassle for homeowners & villa managers',
-            'Continuous health tracking by certified aquatic specialists',
-            'Priority emergency response for pump or water crises',
-            'Fixed predictable yearly investment with no hidden charges'
-          ]
-        },
-        {
-          category: 'Standard Routine Procedures',
-          items: [
-            'Complete water parameter test (pH, TDS, Ammonia, Nitrite, Temp)',
-            'Filter mechanical & biological media cleaning and backwash',
-            'Electrical inspection for pumps, aerators, and UV sterilizers',
-            'Monthly Hiro Premium food delivery & beneficial probiotic application'
-          ]
-        }
-      ],
-      packages: [
-        {
-          name: 'Annual Contract - Residential Villa/Home',
-          items: [
-            '12-Month scheduled visits (11x regular + 1x deep clean)',
-            'Perfect for residential & private koi hobbyists across Bali',
-            'Includes monthly Hiro food supply & probiotics',
-            'Starts from IDR 5,000,000 All-in'
-          ]
-        },
-        {
-          name: 'Annual Contract - Commercial & Luxury Resort',
-          items: [
-            'Tailored for large commercial resort display ponds',
-            '24/7 pump, aeration & UV sterilizer monitoring support',
-            'Priority emergency callouts & comprehensive fish health care',
-            'Free initial on-site survey anywhere in Bali'
-          ]
-        }
       ]
     }
   ]
