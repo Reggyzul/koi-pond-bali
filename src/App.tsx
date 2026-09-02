@@ -70,7 +70,13 @@ export default function App() {
       'perbaikan-listrik': 'perbaikan-listrik-konstruksi',
       'perbaikan-konstruksi': 'perbaikan-listrik-konstruksi',
       'listrik-kolam': 'perbaikan-listrik-konstruksi',
-      'konstruksi-kolam': 'perbaikan-listrik-konstruksi'
+      'konstruksi-kolam': 'perbaikan-listrik-konstruksi',
+
+      'regular-maintenance': 'regular-maintenance',
+      'paket-regular-maintenance': 'regular-maintenance',
+      'perawatan-rutin': 'regular-maintenance',
+      'maintenance-tahunan': 'regular-maintenance',
+      'regular-maintenance-package': 'regular-maintenance'
     };
 
     const handleNavigationCheck = () => {

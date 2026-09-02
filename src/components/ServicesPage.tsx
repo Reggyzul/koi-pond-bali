@@ -13,6 +13,7 @@ import {
   Wrench,
   ShoppingBag,
   Zap,
+  CalendarCheck,
   ArrowLeft,
   ArrowRight
 } from 'lucide-react';
@@ -26,6 +27,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Wrench,
   ShoppingBag,
   Zap,
+  CalendarCheck,
 };
 
 interface ServicesPageProps {

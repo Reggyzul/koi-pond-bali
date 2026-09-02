@@ -13,6 +13,7 @@ import {
   Wrench,
   ShoppingBag,
   Zap,
+  CalendarCheck,
   ArrowLeft,
   Eye,
   Target,
@@ -32,6 +33,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Wrench,
   ShoppingBag,
   Zap,
+  CalendarCheck,
 };
 
 interface ServicePageProps {
@@ -94,6 +96,15 @@ export default function ServicePage({ service, onBackToHome }: ServicePageProps)
             { name: 'propertyType', label: 'Property Type', type: 'select', options: ['Private Villa', 'Commercial Resort / Hotel', 'Residential Home', 'Restaurant / Cafe'] },
             { name: 'locationArea', label: 'Location in Bali', type: 'text', placeholder: 'e.g. Sanur, Canggu, Ubud, Uluwatu...' }
           ];
+        case 'regular-maintenance':
+        case 'paket-regular-maintenance':
+          return [
+            { name: 'pondSize', label: 'Estimated Pond Size / Dimensions', type: 'text', placeholder: 'e.g. 4 x 2.5 x 1.3 meters / 10,000 Liters' },
+            { name: 'currentFishCount', label: 'Approximate Number of Koi Fish', type: 'text', placeholder: 'e.g. 15 Koi fish' },
+            { name: 'propertyType', label: 'Property Type', type: 'select', options: ['Private Residence', 'Villa / Rental Property', 'Resort / Hotel', 'Restaurant / Cafe', 'Office'] },
+            { name: 'preferredSchedule', label: 'Preferred Maintenance Schedule', type: 'select', options: ['1-Year Package (11x Regular + 1x Deep Clean)', 'Custom Regular Interval', 'Need Survey First'] },
+            { name: 'locationArea', label: 'Pond Location in Bali', type: 'text', placeholder: 'e.g. Sanur, Canggu, Ubud, Seminyak, Denpasar...' }
+          ];
         default:
           return [
             { name: 'generalInquiry', label: 'Inquiry Details', type: 'textarea', placeholder: 'Describe your requirements here...' }
@@ -149,6 +160,15 @@ export default function ServicePage({ service, onBackToHome }: ServicePageProps)
           { name: 'urgencyLevel', label: 'Tingkat Urgensi', type: 'select', options: ['Darurat / Emergency (Arus Bocor / Kolam Surut Cepat)', 'Mendesak (1-2 Hari ke Depan)', 'Survei Berkala & Estimasi Biaya'] },
           { name: 'propertyType', label: 'Tipe Properti', type: 'select', options: ['Villa Pribadi / Sewa', 'Resort / Hotel', 'Rumah Tinggal', 'Restoran / Tempat Usaha'] },
           { name: 'locationArea', label: 'Lokasi Kolam di Bali', type: 'text', placeholder: 'Contoh: Canggu, Sanur, Ubud, Nusa Dua, dll.' }
+        ];
+      case 'regular-maintenance':
+      case 'paket-regular-maintenance':
+        return [
+          { name: 'pondSize', label: 'Perkiraan Ukuran Kolam (P x L x Kedalaman)', type: 'text', placeholder: 'contoh: 4 x 2.5 x 1.3 meter / 10.000 Liter' },
+          { name: 'currentFishCount', label: 'Jumlah Ikan Koi di Kolam', type: 'text', placeholder: 'contoh: 15 ekor koi' },
+          { name: 'propertyType', label: 'Tipe Properti', type: 'select', options: ['Rumah Tinggal', 'Villa Pribadi / Sewa', 'Hotel & Resort', 'Restoran / Cafe', 'Kantor'] },
+          { name: 'preferredSchedule', label: 'Pilihan Jadwal Kunjungan', type: 'select', options: ['Paket 1 Tahun (11x Servis + 1x Deep Clean)', 'Jadwal Fleksibel', 'Butuh Survei Lokasi Dulu'] },
+          { name: 'locationArea', label: 'Lokasi Kolam di Bali', type: 'text', placeholder: 'contoh: Sanur, Canggu, Ubud, Seminyak, Denpasar...' }
         ];
       default:
         return [

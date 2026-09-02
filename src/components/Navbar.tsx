@@ -19,7 +19,8 @@ import {
   HeartHandshake,
   Wrench,
   ShoppingBag,
-  Zap
+  Zap,
+  CalendarCheck
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -41,7 +42,8 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
     'perawatan-ikan-koi': HeartHandshake,
     'pembuatan-perawatan-filter': Wrench,
     'jual-beli-ikan-koi': ShoppingBag,
-    'perbaikan-listrik-konstruksi': Zap
+    'perbaikan-listrik-konstruksi': Zap,
+    'regular-maintenance': CalendarCheck
   };
 
   const navServices = servicesData || [];
