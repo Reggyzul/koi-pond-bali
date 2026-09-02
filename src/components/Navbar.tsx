@@ -149,19 +149,6 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
             </a>
 
             <a
-              id="nav-link-faq"
-              href="#faq"
-              onClick={(e) => {
-                e.preventDefault();
-                onSelectSection('faq');
-              }}
-              className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
-            >
-              <span>FAQ</span>
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
-            </a>
-
-            <a
               id="nav-link-contact"
               href="#contact"
               onClick={(e) => {
@@ -281,20 +268,6 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
                 Artikel & Panduan
-              </a>
-
-              <a
-                id="mobile-nav-link-faq"
-                href="#faq"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMobileMenuOpen(false);
-                  setMobileServicesOpen(false);
-                  onSelectSection('faq');
-                }}
-                className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
-              >
-                FAQ
               </a>
 
               <a

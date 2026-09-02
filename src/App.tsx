@@ -13,7 +13,6 @@ import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import Articles from './components/Articles';
 import ArticlesPage from './components/ArticlesPage';
-import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ConsultationModal from './components/ConsultationModal';
@@ -220,12 +219,17 @@ export default function App() {
 
   const handleSelectSection = (sectionId: string) => {
     if (sectionId === 'contact') {
-      setIsContactPageActive(true);
+      setIsContactPageActive(false);
       setIsAboutPageActive(false);
       setIsArticlesPageActive(false);
       setActiveServiceId(null);
-      window.history.pushState(null, '', '/contact');
-      window.scrollTo({ top: 0, behavior: 'instant' as any });
+      window.history.pushState(null, '', '/#contact');
+      setTimeout(() => {
+        const element = document.getElementById('contact');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
       return;
     }
 
@@ -362,7 +366,7 @@ export default function App() {
               onViewAllArticles={() => handleSelectSection('articles')}
             />
 
-            <FAQ />
+            <Contact />
           </main>
         </>
       )}
