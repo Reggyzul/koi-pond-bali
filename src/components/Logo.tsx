@@ -44,25 +44,14 @@ export default function Logo({ variant = 'light', className = '', showText = tru
             </span>
           </div>
 
-          <div className="flex items-center gap-1 sm:gap-1.5 mt-0.5 leading-none overflow-hidden">
+          <div className="flex items-center mt-0.5 leading-none overflow-hidden">
             {/* Tagline: Bold and Caps */}
             <span
-              className={`text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] md:text-[10.5px] font-bold tracking-tight whitespace-nowrap uppercase ${
+              className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11.5px] font-bold tracking-tight whitespace-nowrap uppercase ${
                 isDark ? 'text-teal-200' : 'text-[#0E5C73]'
               }`}
             >
               SPECIALIST FILTRATION & POND MAKER ( KOI )
-            </span>
-
-            {/* 'Since 2021' Badge beside tagline */}
-            <span
-              className={`text-[6.5px] xs:text-[7px] sm:text-[7.5px] md:text-[8px] font-mono tracking-wider uppercase font-bold px-1 py-0.5 rounded leading-none shrink-0 opacity-90 ${
-                isDark
-                  ? 'bg-teal-950/90 text-[#FF6E40] border border-teal-500/30'
-                  : 'bg-teal-100 text-[#FF5722] border border-teal-300'
-              }`}
-            >
-              Since 2021
             </span>
           </div>
         </div>
