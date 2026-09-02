@@ -37,7 +37,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
             <Logo variant="dark" />
           </a>
           <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal max-w-sm">
-            {t.footer.brandDesc}
+            {t?.footer?.aboutSnippet || 'Spesialis pembuatan, perbaikan dan perawatan kolam, filter chamber vortex dan ikan koi terbaik di Bali sejak 2021.'}
           </p>
           <div className="space-y-1.5 text-xs sm:text-sm text-teal-100/85">
             <div className="flex items-start gap-2">
@@ -46,7 +46,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-[#FBBF24] shrink-0" />
-              <span>{t.footer.consultationDesc}</span>
+              <span>{contactData.phone} / {contactData.phoneSecondary}</span>
             </div>
           </div>
           
@@ -83,7 +83,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
         {/* Quick Links Column (Span 2) */}
         <div className="md:col-span-2 space-y-3">
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
-            {t.footer.quickLinks}
+            {t?.footer?.quickLinks || 'Tautan Cepat'}
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-teal-100/80 font-medium">
             <li>
@@ -95,7 +95,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                {t.nav.about}
+                {t?.nav?.about || 'Tentang Kami'}
               </a>
             </li>
             <li>
@@ -107,7 +107,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                {t.nav.services}
+                {t?.nav?.services || 'Layanan'}
               </a>
             </li>
             <li>
@@ -119,7 +119,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                {t.nav.whyChooseUs}
+                {t?.nav?.whyChooseUs || 'Keunggulan'}
               </a>
             </li>
             <li>
@@ -131,7 +131,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                {t.nav.articles}
+                {t?.nav?.articles || 'Artikel'}
               </a>
             </li>
             <li>
@@ -143,7 +143,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                {t.nav.faq}
+                {t?.nav?.faq || 'FAQ'}
               </a>
             </li>
             <li>
@@ -155,7 +155,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
                 }}
                 className="hover:text-[#FBBF24] transition-colors cursor-pointer"
               >
-                {t.nav.contact}
+                {t?.nav?.contact || 'Kontak'}
               </a>
             </li>
           </ul>
@@ -164,10 +164,10 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
         {/* Services Column (Span 3) */}
         <div className="md:col-span-3 space-y-3">
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
-            {t.footer.specialistServices}
+            {t?.footer?.servicesCol || 'Layanan Spesialis'}
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-teal-100/80 font-medium">
-            {servicesData.map((srv) => (
+            {(servicesData || []).map((srv) => (
               <li key={srv.id}>
                 <a
                   href={`#${srv.id}`}
@@ -187,10 +187,10 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
         {/* Free Consultation Column (Span 3) */}
         <div className="md:col-span-3 space-y-3">
           <h4 className="text-xs font-bold uppercase tracking-widest text-[#FBBF24]">
-            {t.footer.freeSurveyHeader}
+            {t?.footer?.surveyTitle || 'Konsultasi Kolam'}
           </h4>
           <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed font-normal">
-            {t.footer.freeSurveyDesc}
+            {t?.footer?.surveyDesc || 'Dapatkan estimasi biaya transparan dan jadwal survei gratis langsung ke lokasi Anda di Bali.'}
           </p>
 
           <button
@@ -198,7 +198,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
             onClick={onOpenConsultation}
             className="w-full py-2.5 btn-koi-flame text-white rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
           >
-            {t.footer.freeConsultationBtn}
+            {t?.footer?.surveyBtn || 'Jadwalkan Survei'}
           </button>
         </div>
 
@@ -207,7 +207,7 @@ export default function Footer({ onOpenConsultation, onSelectSection }: FooterPr
       {/* Sub-Footer copyrights */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-teal-200/60 font-medium">
         <div>
-          &copy; {new Date().getFullYear()} KOI POND SERVICES BALI. All rights reserved.
+          &copy; {new Date().getFullYear()} KOI POND SERVICES BALI. {t?.footer?.rights || 'Hak Cipta Terpelihara.'}
         </div>
 
         <div className="flex gap-2.5">

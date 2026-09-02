@@ -44,6 +44,8 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
     'perbaikan-listrik-konstruksi': Zap
   };
 
+  const navServices = servicesData || [];
+
   return (
     <>
       <nav
@@ -76,7 +78,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               }}
               className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              <span>{t.nav.about}</span>
+              <span>{t?.nav?.about || 'Tentang Kami'}</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
@@ -90,7 +92,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 id="nav-link-services-drop"
                 className="hover:text-[#FBBF24] transition-colors flex items-center gap-1.5 cursor-pointer py-1 tracking-wide group"
               >
-                <span>{t.nav.services}</span>
+                <span>{t?.nav?.services || 'Layanan'}</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-[#FBBF24]' : 'text-teal-300/70 group-hover:text-[#FBBF24]'}`} />
               </button>
 
@@ -104,7 +106,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                     transition={{ duration: 0.15 }}
                     className="absolute top-full left-0 mt-1.5 w-64 bg-[#04242E]/95 backdrop-blur-xl text-white rounded-xl shadow-2xl z-50 py-2 border border-teal-500/25 overflow-hidden"
                   >
-                    {servicesData.map((srv) => {
+                    {navServices.map((srv) => {
                       const Icon = iconMap[srv.id] || Sparkles;
                       return (
                         <button
@@ -137,7 +139,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               }}
               className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              <span>{t.nav.whyChooseUs}</span>
+              <span>{t?.nav?.whyChooseUs || 'Keunggulan'}</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
@@ -150,7 +152,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               }}
               className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              <span>{t.nav.articles}</span>
+              <span>{t?.nav?.articles || 'Artikel'}</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
@@ -163,7 +165,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               }}
               className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              <span>{t.nav.faq}</span>
+              <span>{t?.nav?.faq || 'FAQ'}</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
 
@@ -176,14 +178,14 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
               }}
               className="hover:text-[#FBBF24] transition-colors py-1 cursor-pointer tracking-wide relative group"
             >
-              <span>{t.nav.contact}</span>
+              <span>{t?.nav?.contact || 'Kontak'}</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FF6E40] transition-all duration-200 group-hover:w-full rounded-full" />
             </a>
           </div>
 
           {/* Right Section: Single Language Switcher & Hamburger Button (NO DUPLICATE) */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* Exactly ONE Language Switcher: on mobile placed directly beside hamburger; on desktop at far right */}
+            {/* Exactly ONE Language Switcher */}
             <LanguageToggle />
 
             {/* Mobile Menu Toggle Button (Garis 3) */}
@@ -223,7 +225,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 }}
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                {t.nav.about}
+                {t?.nav?.about || 'Tentang Kami'}
               </a>
 
               {/* Layanan Kami Accordion */}
@@ -233,7 +235,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                   className="w-full flex items-center justify-between text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5 cursor-pointer"
                 >
-                  <span>{t.nav.mobileServicesLabel}</span>
+                  <span>{t?.nav?.mobileServicesLabel || 'Layanan Kami'}</span>
                   <ChevronDown className={`w-4 h-4 text-teal-300 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180 text-[#FBBF24]' : ''}`} />
                 </button>
 
@@ -246,7 +248,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                       transition={{ duration: 0.2 }}
                       className="pl-3 pr-1 py-1.5 space-y-1 border-l-2 border-[#FF6E40]/40 my-1 ml-1"
                     >
-                      {servicesData.map((srv) => (
+                      {navServices.map((srv) => (
                         <button
                           key={srv.id}
                           id={`mobile-service-item-${srv.id}`}
@@ -277,7 +279,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 }}
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                {t.nav.whyChooseUs}
+                {t?.nav?.whyChooseUs || 'Keunggulan'}
               </a>
 
               <a
@@ -291,7 +293,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 }}
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                {t.nav.articles}
+                {t?.nav?.articles || 'Artikel'}
               </a>
 
               <a
@@ -305,7 +307,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 }}
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                {t.nav.faq}
+                {t?.nav?.faq || 'FAQ'}
               </a>
 
               <a
@@ -319,7 +321,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                 }}
                 className="block text-sm font-semibold hover:text-[#FBBF24] transition-colors py-1.5"
               >
-                {t.nav.contact}
+                {t?.nav?.contact || 'Kontak'}
               </a>
 
               <div className="pt-2">
@@ -333,7 +335,7 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
                   className="w-full py-2.5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wide text-center flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>{t.nav.consultationBtn}</span>
+                  <span>{t?.nav?.consultationBtn || 'Konsultasi Gratis'}</span>
                 </button>
               </div>
             </motion.div>
