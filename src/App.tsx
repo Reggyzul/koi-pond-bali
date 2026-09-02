@@ -371,6 +371,7 @@ export default function App() {
       <Footer
         onOpenConsultation={() => handleOpenConsultation()}
         onOpenWhatsAppChoice={() => setIsWhatsAppChoiceOpen(true)}
+        onSelectSection={handleSelectSection}
       />
 
       {/* Floating WhatsApp Circular Bubble (Bottom-Right Corner) */}

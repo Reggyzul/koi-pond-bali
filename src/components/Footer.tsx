@@ -11,9 +11,10 @@ import { contactData } from '../data';
 interface FooterProps {
   onOpenConsultation: () => void;
   onOpenWhatsAppChoice?: () => void;
+  onSelectSection?: (sectionId: string) => void;
 }
 
-export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice }: FooterProps) {
+export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice, onSelectSection }: FooterProps) {
   return (
     <footer id="footer" className="bg-[#04242E]/85 backdrop-blur-md text-white border-t border-teal-500/20 pt-12 pb-6 relative overflow-hidden">
       
@@ -25,6 +26,10 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice }: Foo
           <a
             id="footer-logo"
             href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="flex items-center gap-2 text-white hover:opacity-95 transition-opacity"
           >
             <Logo variant="dark" />
@@ -79,12 +84,78 @@ export default function Footer({ onOpenConsultation, onOpenWhatsAppChoice }: Foo
             Tautan Cepat
           </h4>
           <ul className="space-y-2 text-xs sm:text-sm text-teal-100/80 font-medium">
-            <li><a href="#about" className="hover:text-[#FBBF24] transition-colors">Tentang Kami</a></li>
-            <li><a href="#services" className="hover:text-[#FBBF24] transition-colors">Layanan Kolam</a></li>
-            <li><a href="#why-choose-us" className="hover:text-[#FBBF24] transition-colors">Keunggulan</a></li>
-            <li><a href="#articles" className="hover:text-[#FBBF24] transition-colors">Artikel & Panduan</a></li>
-            <li><a href="#faq" className="hover:text-[#FBBF24] transition-colors">FAQ</a></li>
-            <li><a href="#contact" className="hover:text-[#FBBF24] transition-colors">Kontak Bali</a></li>
+            <li>
+              <a
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectSection?.('about');
+                }}
+                className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+              >
+                Tentang Kami
+              </a>
+            </li>
+            <li>
+              <a
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectSection?.('services');
+                }}
+                className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+              >
+                Layanan Kolam
+              </a>
+            </li>
+            <li>
+              <a
+                href="#why-choose-us"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectSection?.('why-choose-us');
+                }}
+                className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+              >
+                Keunggulan
+              </a>
+            </li>
+            <li>
+              <a
+                href="#articles"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectSection?.('articles');
+                }}
+                className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+              >
+                Artikel & Panduan
+              </a>
+            </li>
+            <li>
+              <a
+                href="#faq"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectSection?.('faq');
+                }}
+                className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+              >
+                FAQ
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onSelectSection?.('contact');
+                }}
+                className="hover:text-[#FBBF24] transition-colors cursor-pointer"
+              >
+                Kontak & Lokasi Bali
+              </a>
+            </li>
           </ul>
         </div>
 
