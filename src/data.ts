@@ -345,6 +345,66 @@ export const servicesData: Service[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'perbaikan-listrik-konstruksi',
+    title: 'Perbaikan Listrik & Konstruksi Kolam',
+    iconName: 'Zap',
+    image: '/images/renovasi_kolam.avif',
+    description: 'Layanan spesialis perbaikan instalasi kelistrikan kolam, pompa sirkulasi, aerator, grounding anti-korsleting outdoor, serta perbaikan dan penguatan struktur beton bertulang, penambalan retak dinding kolam, dan waterproofing anti-bocor di Bali.',
+    visi: 'Menghadirkan keamanan kelistrikan dan keandalan konstruksi kolam koi berstandar teknik tertinggi dan bebas bahaya.',
+    misi: 'Melakukan perbaikan kelistrikan dan rekonstruksi beton dengan material tahan cuaca ekstrem dan garansi pengerjaan 100%.',
+    details: [
+      'Pemeriksaan dan perbaikan instalasi kabel outdoor tahan air (waterproof IP68)',
+      'Penanganan pompa macet, kebocoran arus listrik, dan perapihan panel MCB kolam',
+      'Injeksi grouting & plesteran beton kedap air pada dinding kolam yang retak',
+      'Penguatan pondasi & pemasangan waterstop membran anti rembes'
+    ],
+    whyChooseUs: [
+      'Teknisi kelistrikan & konstruksi kolam berpengalaman dan bersertifikat',
+      'Penanganan cepat untuk kebocoran arus listrik yang membahayakan ikan & manusia',
+      'Bahan semen waterproofing kualitas tertinggi anti getas & anti retak',
+      'Garansi pengerjaan resmi dan survei lokasi gratis se-Bali'
+    ],
+    servicesList: [
+      {
+        category: 'Layanan Kelistrikan Kolam',
+        items: [
+          'Instalasi & Perbaikan Pompa Air Submersible',
+          'Pemasangan Sistem Aerasi & Blower High-Pressure',
+          'Instalasi Lampu UV & Panel Kontrol Otomatis (Timer/Smart Switch)',
+          'Isolasi Kebocoran Arus Listrik & Pasang Grounding Pengaman'
+        ]
+      },
+      {
+        category: 'Layanan Konstruksi & Struktur',
+        items: [
+          'Perbaikan Retak Struktur Dinding & Lantai Beton',
+          'Aplikasi Waterproofing Elastomeric Tahan Tekanan Tinggi',
+          'Pemasangan & Penggantian Batu Alam / Keramik Kolam',
+          'Pembuatan Dinding Kaca Viewing Tempered Glass'
+        ]
+      }
+    ],
+    packages: [
+      {
+        name: 'Paket Servis Kelistrikan & Pompa',
+        items: [
+          'Pemeriksaan total kabel, stop kontak outdoor & panel kontrol',
+          'Uji daya pompa sirkulasi & aerator',
+          'Penggantian kabel rusak dengan kabel standar outdoor IP68',
+          'Garansi keamanan instalasi'
+        ]
+      },
+      {
+        name: 'Paket Perbaikan Konstruksi & Waterproofing',
+        items: [
+          'Deteksi titik retak struktur beton',
+          'Injeksi semen ekspansi / epoxy & pelapisan waterproofing 3 lapis',
+          'Uji genang air & garansi konstruksi'
+        ]
+      }
+    ]
   }
 ];
 

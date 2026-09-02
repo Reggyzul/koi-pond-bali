@@ -12,6 +12,7 @@ import {
   HeartHandshake,
   Wrench,
   ShoppingBag,
+  Zap,
   ArrowRight
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,22 +24,27 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   HeartHandshake,
   Wrench,
   ShoppingBag,
+  Zap,
 };
 
 interface ServicesProps {
-  onOpenConsultation: () => void;
-  activeServiceId: string | null;
-  onClearActiveService: () => void;
+  onOpenConsultation?: () => void;
+  activeServiceId?: string | null;
+  onClearActiveService?: () => void;
   onSelectService: (id: string) => void;
+  onViewAllServices?: () => void;
 }
 
-export default function Services({ onSelectService }: ServicesProps) {
+export default function Services({ onSelectService, onViewAllServices }: ServicesProps) {
   const { t, servicesData, language } = useLanguage();
 
   const renderIcon = (iconName: string) => {
     const IconComponent = iconMap[iconName] || Sparkles;
     return <IconComponent className="w-5 h-5 stroke-[2]" />;
   };
+
+  // Only display the top 3 services on the landing page
+  const featuredServices = servicesData.slice(0, 3);
 
   return (
     <section id="services" className="py-16 md:py-20 glass-aquatic-section relative">
@@ -64,9 +70,9 @@ export default function Services({ onSelectService }: ServicesProps) {
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
 
-        {/* Services Grid */}
+        {/* 3 Featured Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {servicesData.map((service, idx) => (
+          {featuredServices.map((service, idx) => (
             <motion.div
               id={service.id}
               key={service.id}
@@ -133,6 +139,19 @@ export default function Services({ onSelectService }: ServicesProps) {
             </motion.div>
           ))}
         </div>
+
+        {/* Simple 'Layanan Lainnya' Button Without Arrows or Emoticons */}
+        {onViewAllServices && (
+          <div className="mt-10 sm:mt-12 text-center">
+            <button
+              id="landing-services-view-all-btn"
+              onClick={onViewAllServices}
+              className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white/5 hover:bg-white/10 text-teal-100 hover:text-white border border-teal-500/30 hover:border-[#FF6E40] text-xs sm:text-sm font-bold tracking-wider uppercase transition-all shadow-md cursor-pointer active:scale-95"
+            >
+              <span>{t.services.moreServices}</span>
+            </button>
+          </div>
+        )}
 
       </div>
     </section>

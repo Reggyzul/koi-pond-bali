@@ -57,6 +57,7 @@ export interface Translations {
     packagesLabel: string;
     servicesListLabel: string;
     specificationsLabel: string;
+    moreServices: string;
   };
   servicePage: {
     backBtn: string;
@@ -224,7 +225,8 @@ export const translations: Record<Language, Translations> = {
       featuresLabel: 'Keunggulan Layanan',
       packagesLabel: 'Pilihan Paket Layanan',
       servicesListLabel: 'Cakupan Pekerjaan',
-      specificationsLabel: 'Spesifikasi Teknis'
+      specificationsLabel: 'Spesifikasi Teknis',
+      moreServices: 'Layanan Lainnya'
     },
     servicePage: {
       backBtn: 'Kembali ke Beranda',
@@ -390,7 +392,8 @@ export const translations: Record<Language, Translations> = {
       featuresLabel: 'Key Service Features',
       packagesLabel: 'Available Service Packages',
       servicesListLabel: 'Scope of Work',
-      specificationsLabel: 'Technical Specifications'
+      specificationsLabel: 'Technical Specifications',
+      moreServices: 'More Services'
     },
     servicePage: {
       backBtn: 'Back to Home',
@@ -830,6 +833,66 @@ export const bilingualServicesData: Record<Language, Service[]> = {
           ]
         }
       ]
+    },
+    {
+      id: 'perbaikan-listrik-konstruksi',
+      title: 'Perbaikan Listrik & Konstruksi Kolam',
+      iconName: 'Zap',
+      image: '/images/renovasi_kolam.avif',
+      description: 'Layanan spesialis perbaikan instalasi kelistrikan kolam, pompa sirkulasi, aerator, grounding anti-korsleting outdoor, serta perbaikan dan penguatan struktur beton bertulang, penambalan retak dinding kolam, dan waterproofing anti-bocor di Bali.',
+      visi: 'Menghadirkan keamanan kelistrikan dan keandalan konstruksi kolam koi berstandar teknik tertinggi dan bebas bahaya.',
+      misi: 'Melakukan perbaikan kelistrikan dan rekonstruksi beton dengan material tahan cuaca ekstrem dan garansi pengerjaan 100%.',
+      details: [
+        'Pemeriksaan dan perbaikan instalasi kabel outdoor tahan air (waterproof IP68)',
+        'Penanganan pompa macet, kebocoran arus listrik, dan perapihan panel MCB kolam',
+        'Injeksi grouting & plesteran beton kedap air pada dinding kolam yang retak',
+        'Penguatan pondasi & pemasangan waterstop membran anti rembes'
+      ],
+      whyChooseUs: [
+        'Teknisi kelistrikan & konstruksi kolam berpengalaman dan bersertifikat',
+        'Penanganan cepat untuk kebocoran arus listrik yang membahayakan ikan & manusia',
+        'Bahan semen waterproofing kualitas tertinggi anti getas & anti retak',
+        'Garansi pengerjaan resmi dan survei lokasi gratis se-Bali'
+      ],
+      servicesList: [
+        {
+          category: 'Layanan Kelistrikan Kolam',
+          items: [
+            'Instalasi & Perbaikan Pompa Air Submersible',
+            'Pemasangan Sistem Aerasi & Blower High-Pressure',
+            'Instalasi Lampu UV & Panel Kontrol Otomatis (Timer/Smart Switch)',
+            'Isolasi Kebocoran Arus Listrik & Pasang Grounding Pengaman'
+          ]
+        },
+        {
+          category: 'Layanan Konstruksi & Struktur',
+          items: [
+            'Perbaikan Retak Struktur Dinding & Lantai Beton',
+            'Aplikasi Waterproofing Elastomeric Tahan Tekanan Tinggi',
+            'Pemasangan & Penggantian Batu Alam / Keramik Kolam',
+            'Pembuatan Dinding Kaca Viewing Tempered Glass'
+          ]
+        }
+      ],
+      packages: [
+        {
+          name: 'Paket Servis Kelistrikan & Pompa',
+          items: [
+            'Pemeriksaan total kabel, stop kontak outdoor & panel kontrol',
+            'Uji daya pompa sirkulasi & aerator',
+            'Penggantian kabel rusak dengan kabel standar outdoor IP68',
+            'Garansi keamanan instalasi'
+          ]
+        },
+        {
+          name: 'Paket Perbaikan Konstruksi & Waterproofing',
+          items: [
+            'Deteksi titik retak struktur beton',
+            'Injeksi semen ekspansi / epoxy & pelapisan waterproofing 3 lapis',
+            'Uji genang air & garansi konstruksi'
+          ]
+        }
+      ]
     }
   ],
   en: [
@@ -1148,6 +1211,66 @@ export const bilingualServicesData: Record<Language, Service[]> = {
             'Impressive jumbo body conformation & deep luster',
             'Perfect centerpiece for luxury villa and hotel ponds',
             'Insured live delivery anywhere in Bali'
+          ]
+        }
+      ]
+    },
+    {
+      id: 'perbaikan-listrik-konstruksi',
+      title: 'Pond Electrical & Structural Repair',
+      iconName: 'Zap',
+      image: '/images/renovasi_kolam.avif',
+      description: 'Specialized repair and rewiring services for outdoor pond electrical systems, water pumps, high-flow aerators, UV sterilizers, stray electrical current insulation, alongside structural reinforced concrete reinforcement, crack repair, and leak-proof waterproofing across Bali.',
+      visi: 'To deliver total electrical safety and unmatched structural durability for koi pond facilities throughout Bali.',
+      misi: 'Providing rapid troubleshooting of electrical hazards and robust concrete rehabilitation with official workmanship warranties.',
+      details: [
+        'Comprehensive diagnostics of IP68 waterproof underwater wiring & junction boxes',
+        'Stray electrical current elimination, GFCI/ELCB installations & pump overhauls',
+        'Pressure injection grouting and elastomeric waterproofing for cracked pond walls',
+        'Structural beam reinforcement and tempered glass viewing frame rebuilding'
+      ],
+      whyChooseUs: [
+        'Certified pond electricians and structural concrete engineers in Bali',
+        'Fast priority response for electrical shocks or critical structural cracks',
+        'Industrial-grade non-toxic waterproofing safe for high-value Nishikigoi',
+        '100% Official warranty and complimentary on-site inspection'
+      ],
+      servicesList: [
+        {
+          category: 'Pond Electrical Services',
+          items: [
+            'Submersible Pump Repair & Variable Speed Upgrades',
+            'High-Volume Aeration System & Air Ring Setup',
+            'Submersible UV Clarifier Wiring & Smart Control Timers',
+            'Grounding & Stray Current Safety Isolation'
+          ]
+        },
+        {
+          category: 'Structural Concrete & Waterproofing',
+          items: [
+            'Concrete Wall & Floor Structural Crack Grouting',
+            'Multi-Layer High-Pressure Waterproof Coating',
+            'Natural Bali Stone & Glass Tile Tiling Refinishing',
+            'Tempered Glass Viewing Panel Resealing & Replacement'
+          ]
+        }
+      ],
+      packages: [
+        {
+          name: 'Electrical & Pump Safety Overhaul',
+          items: [
+            'Complete check of outdoor conduits, sockets, and breaker panels',
+            'Pump motor diagnostics, impedance & flow rate test',
+            'Weatherproof rewiring to IP68 international standards',
+            'Electrical safety certificate & warranty'
+          ]
+        },
+        {
+          name: 'Concrete Reconstruction & Waterproofing',
+          items: [
+            'High-precision leak and fracture point identification',
+            'Epoxy/polyurethane resin crack injection sealing',
+            '3-layer flexible membrane waterproofing & flood test'
           ]
         }
       ]

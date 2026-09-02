@@ -30,6 +30,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   HeartHandshake,
   Wrench,
   ShoppingBag,
+  Zap,
 };
 
 interface ServicePageProps {
@@ -85,6 +86,13 @@ export default function ServicePage({ service, onBackToHome }: ServicePageProps)
             { name: 'actionType', label: 'Transaction Type', type: 'select', options: ['Purchase Healthy Certified Koi', 'Trade-in / Consignment Sale'] },
             { name: 'deliveryArea', label: 'Delivery Location in Bali', type: 'text', placeholder: 'Full delivery destination' }
           ];
+        case 'perbaikan-listrik-konstruksi':
+          return [
+            { name: 'repairCategory', label: 'Repair & Engineering Scope', type: 'select', options: ['Pond Electrical & Pump Rewiring (IP68 Waterproof)', 'Stray Electrical Current / Grounding Hazard Fix', 'Concrete Wall & Floor Crack Injection Repair', 'High-Pressure Waterproofing & Leak Prevention', 'Complete Electrical & Concrete Structure Overhaul'] },
+            { name: 'urgencyLevel', label: 'Urgency Level', type: 'select', options: ['Emergency (Electrical Leak / Critical Leak)', 'Urgent (Within 1-2 Days)', 'Standard Survey & Quotation'] },
+            { name: 'propertyType', label: 'Property Type', type: 'select', options: ['Private Villa', 'Commercial Resort / Hotel', 'Residential Home', 'Restaurant / Cafe'] },
+            { name: 'locationArea', label: 'Location in Bali', type: 'text', placeholder: 'e.g. Sanur, Canggu, Ubud, Uluwatu...' }
+          ];
         default:
           return [
             { name: 'generalInquiry', label: 'Inquiry Details', type: 'textarea', placeholder: 'Describe your requirements here...' }
@@ -133,6 +141,13 @@ export default function ServicePage({ service, onBackToHome }: ServicePageProps)
           { name: 'budgetRange', label: 'Kisaran Anggaran / Budget', type: 'select', options: ['Di bawah Rp 500 Ribu / ekor', 'Rp 500 Ribu - Rp 2 Juta / ekor', 'Rp 2 Juta - Rp 5 Juta (Grade A / Show Quality)', 'Di atas Rp 5 Juta (Import / High Quality)', 'Menyesuaikan Rekomendasi'] },
           { name: 'actionType', label: 'Tujuan Transaksi', type: 'select', options: ['Beli Ikan Koi Sehat & Berkualitas', 'Titip Jual / Menjual Ikan Koi Pribadi'] },
           { name: 'deliveryArea', label: 'Alamat Pengiriman di Bali', type: 'text', placeholder: 'Alamat lengkap pengantaran' }
+        ];
+      case 'perbaikan-listrik-konstruksi':
+        return [
+          { name: 'repairCategory', label: 'Kategori Kerusakan / Kebutuhan', type: 'select', options: ['Kelistrikan & Pompa Kolam (Kabel Terkelupas / Korsleting)', 'Grounding & Kebocoran Arus Listrik di Air Kolam', 'Injeksi Grouting Retak Struktur Dinding Beton', 'Waterproofing Ulang & Perbaikan Rembes', 'Perbaikan Menyeluruh Listrik & Struktur'] },
+          { name: 'urgencyLevel', label: 'Tingkat Urgensi', type: 'select', options: ['Darurat / Emergency (Arus Bocor / Kolam Surut Cepat)', 'Mendesak (1-2 Hari ke Depan)', 'Survei Berkala & Estimasi Biaya'] },
+          { name: 'propertyType', label: 'Tipe Properti', type: 'select', options: ['Villa Pribadi / Sewa', 'Resort / Hotel', 'Rumah Tinggal', 'Restoran / Tempat Usaha'] },
+          { name: 'locationArea', label: 'Lokasi Kolam di Bali', type: 'text', placeholder: 'Contoh: Canggu, Sanur, Ubud, Nusa Dua, dll.' }
         ];
       default:
         return [

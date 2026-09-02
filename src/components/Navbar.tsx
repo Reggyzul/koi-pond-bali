@@ -18,7 +18,8 @@ import {
   Sparkles,
   HeartHandshake,
   Wrench,
-  ShoppingBag
+  ShoppingBag,
+  Zap
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -39,7 +40,8 @@ export default function Navbar({ onOpenConsultation, onSelectService, onSelectSe
     'perawatan-kolam': Sparkles,
     'perawatan-ikan-koi': HeartHandshake,
     'pembuatan-perawatan-filter': Wrench,
-    'jual-beli-ikan-koi': ShoppingBag
+    'jual-beli-ikan-koi': ShoppingBag,
+    'perbaikan-listrik-konstruksi': Zap
   };
 
   return (

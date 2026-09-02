@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
+import ServicesPage from './components/ServicesPage';
 import WhyChooseUs from './components/WhyChooseUs';
 import Articles from './components/Articles';
 import ArticlesPage from './components/ArticlesPage';
@@ -30,6 +31,7 @@ export default function App() {
   const [isContactPageActive, setIsContactPageActive] = useState<boolean>(false);
   const [isAboutPageActive, setIsAboutPageActive] = useState<boolean>(false);
   const [isArticlesPageActive, setIsArticlesPageActive] = useState<boolean>(false);
+  const [isServicesPageActive, setIsServicesPageActive] = useState<boolean>(false);
 
   const { servicesData, language } = useLanguage();
 
@@ -62,7 +64,13 @@ export default function App() {
       'jual-beli-ikan-koi': 'jual-beli-ikan-koi',
       'jual-koi': 'jual-beli-ikan-koi',
       'beli-koi': 'jual-beli-ikan-koi',
-      'ikan-koi-bali': 'jual-beli-ikan-koi'
+      'ikan-koi-bali': 'jual-beli-ikan-koi',
+
+      'perbaikan-listrik-konstruksi': 'perbaikan-listrik-konstruksi',
+      'perbaikan-listrik': 'perbaikan-listrik-konstruksi',
+      'perbaikan-konstruksi': 'perbaikan-listrik-konstruksi',
+      'listrik-kolam': 'perbaikan-listrik-konstruksi',
+      'konstruksi-kolam': 'perbaikan-listrik-konstruksi'
     };
 
     const handleNavigationCheck = () => {
@@ -70,10 +78,21 @@ export default function App() {
       const hash = window.location.hash.replace('#', '').toLowerCase();
       const target = path || hash;
 
+      if (target === 'services-all' || target === 'layanan-kami' || target === 'semua-layanan') {
+        setIsServicesPageActive(true);
+        setIsContactPageActive(false);
+        setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
+        setActiveServiceId(null);
+        window.scrollTo({ top: 0, behavior: 'instant' as any });
+        return;
+      }
+
       if (target === 'contact' || target === 'kontak') {
         setIsContactPageActive(true);
         setIsAboutPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -83,6 +102,7 @@ export default function App() {
         setIsAboutPageActive(true);
         setIsContactPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -92,6 +112,7 @@ export default function App() {
         setIsArticlesPageActive(true);
         setIsAboutPageActive(false);
         setIsContactPageActive(false);
+        setIsServicesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -103,11 +124,13 @@ export default function App() {
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
       } else {
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         if (hash) {
           const element = document.getElementById(hash);
           if (element) {
@@ -121,10 +144,21 @@ export default function App() {
 
     const handlePopState = () => {
       const path = window.location.pathname.replace('/', '').toLowerCase();
+      if (path === 'services-all' || path === 'layanan-kami' || path === 'semua-layanan') {
+        setIsServicesPageActive(true);
+        setIsContactPageActive(false);
+        setIsAboutPageActive(false);
+        setIsArticlesPageActive(false);
+        setActiveServiceId(null);
+        window.scrollTo({ top: 0, behavior: 'instant' as any });
+        return;
+      }
+
       if (path === 'contact' || path === 'kontak') {
         setIsContactPageActive(true);
         setIsAboutPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -134,6 +168,7 @@ export default function App() {
         setIsAboutPageActive(true);
         setIsContactPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -143,6 +178,7 @@ export default function App() {
         setIsArticlesPageActive(true);
         setIsAboutPageActive(false);
         setIsContactPageActive(false);
+        setIsServicesPageActive(false);
         setActiveServiceId(null);
         window.scrollTo({ top: 0, behavior: 'instant' as any });
         return;
@@ -154,11 +190,13 @@ export default function App() {
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
       } else {
         setActiveServiceId(null);
         setIsContactPageActive(false);
         setIsAboutPageActive(false);
         setIsArticlesPageActive(false);
+        setIsServicesPageActive(false);
         setTimeout(() => {
           const element = document.getElementById('services');
           if (element) {
@@ -182,6 +220,7 @@ export default function App() {
       setIsContactPageActive(false);
       setIsAboutPageActive(false);
       setIsArticlesPageActive(false);
+      setIsServicesPageActive(false);
       window.history.pushState(null, '', '/');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -189,6 +228,7 @@ export default function App() {
     setIsContactPageActive(false);
     setIsAboutPageActive(false);
     setIsArticlesPageActive(false);
+    setIsServicesPageActive(false);
     setActiveServiceId(id);
     window.history.pushState(null, '', '/' + id);
     window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -199,6 +239,7 @@ export default function App() {
     setIsAboutPageActive(false);
     setIsContactPageActive(false);
     setIsArticlesPageActive(false);
+    setIsServicesPageActive(false);
     window.history.pushState(null, '', '/');
     setTimeout(() => {
       const element = document.getElementById('services');
@@ -217,10 +258,22 @@ export default function App() {
   const handleCloseConsultation = () => setIsConsultationOpen(false);
 
   const handleSelectSection = (sectionId: string) => {
+    if (sectionId === 'services-all') {
+      setIsServicesPageActive(true);
+      setIsContactPageActive(false);
+      setIsAboutPageActive(false);
+      setIsArticlesPageActive(false);
+      setActiveServiceId(null);
+      window.history.pushState(null, '', '/layanan-kami');
+      window.scrollTo({ top: 0, behavior: 'instant' as any });
+      return;
+    }
+
     if (sectionId === 'contact') {
       setIsContactPageActive(true);
       setIsAboutPageActive(false);
       setIsArticlesPageActive(false);
+      setIsServicesPageActive(false);
       setActiveServiceId(null);
       window.history.pushState(null, '', '/contact');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -231,6 +284,7 @@ export default function App() {
       setIsAboutPageActive(true);
       setIsContactPageActive(false);
       setIsArticlesPageActive(false);
+      setIsServicesPageActive(false);
       setActiveServiceId(null);
       window.history.pushState(null, '', '/about');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
@@ -241,17 +295,19 @@ export default function App() {
       setIsArticlesPageActive(true);
       setIsAboutPageActive(false);
       setIsContactPageActive(false);
+      setIsServicesPageActive(false);
       setActiveServiceId(null);
       window.history.pushState(null, '', '/articles');
       window.scrollTo({ top: 0, behavior: 'instant' as any });
       return;
     }
 
-    if (activeServiceId || isContactPageActive || isAboutPageActive || isArticlesPageActive) {
+    if (activeServiceId || isContactPageActive || isAboutPageActive || isArticlesPageActive || isServicesPageActive) {
       setActiveServiceId(null);
       setIsContactPageActive(false);
       setIsAboutPageActive(false);
       setIsArticlesPageActive(false);
+      setIsServicesPageActive(false);
       window.history.pushState(null, '', '/');
       setTimeout(() => {
         const element = document.getElementById(sectionId);
@@ -307,6 +363,21 @@ export default function App() {
           onBackToHome={handleBackToHome}
           onOpenConsultation={() => handleOpenConsultation(activeService.title)}
         />
+      ) : isServicesPageActive ? (
+        <ServicesPage
+          onBackToHome={() => {
+            setIsServicesPageActive(false);
+            window.history.pushState(null, '', '/');
+            setTimeout(() => {
+              const element = document.getElementById('services');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 100);
+          }}
+          onSelectService={handleSelectService}
+          onOpenConsultation={() => handleOpenConsultation()}
+        />
       ) : isContactPageActive ? (
         <Contact
           onBackToHome={() => {
@@ -350,6 +421,7 @@ export default function App() {
               activeServiceId={activeServiceId}
               onClearActiveService={() => setActiveServiceId(null)}
               onSelectService={handleSelectService}
+              onViewAllServices={() => handleSelectSection('services-all')}
             />
 
             <WhyChooseUs />
