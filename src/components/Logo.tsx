@@ -15,7 +15,7 @@ export default function Logo({ variant = 'light', className = '', showText = tru
   const isDark = variant === 'dark';
 
   return (
-    <div className={`flex items-center gap-2 sm:gap-3 min-w-0 ${className}`}>
+    <div className={`flex items-center gap-2 xs:gap-2.5 sm:gap-3 min-w-0 ${className}`}>
       {/* Official Circular Logo with Transparent Background */}
       <div className="relative flex items-center justify-center shrink-0">
         <picture>
@@ -24,7 +24,7 @@ export default function Logo({ variant = 'light', className = '', showText = tru
           <img
             src="/images/logo_koi_transparent.png"
             alt="KOI POND BALI SERVICES"
-            className="w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 object-contain drop-shadow-md transition-transform duration-300 hover:scale-105 shrink-0"
+            className="w-11 h-11 xs:w-11.5 xs:h-11.5 sm:w-12 sm:h-12 md:w-13 md:h-13 object-contain drop-shadow-md transition-transform duration-300 hover:scale-105 shrink-0"
             loading="eager"
             decoding="async"
           />
@@ -36,7 +36,7 @@ export default function Logo({ variant = 'light', className = '', showText = tru
         <div className="flex flex-col justify-center select-none min-w-0">
           <div className="flex items-center leading-tight">
             <span
-              className={`font-serif text-xs xs:text-sm sm:text-base md:text-lg font-bold tracking-tight whitespace-nowrap ${
+              className={`font-serif text-[13.5px] xs:text-[15px] sm:text-base md:text-lg lg:text-xl font-bold tracking-tight whitespace-nowrap ${
                 isDark ? 'text-white' : 'text-[#062C38]'
               }`}
             >
@@ -45,27 +45,27 @@ export default function Logo({ variant = 'light', className = '', showText = tru
           </div>
 
           <div className="flex items-center gap-1 sm:gap-1.5 mt-0.5 leading-none overflow-hidden">
-            {/* Full Tagline for Tablets & Desktops */}
+            {/* Full Tagline for Desktop & Tablet */}
             <span
-              className={`hidden sm:inline text-[9.5px] md:text-[10px] font-medium tracking-tight whitespace-nowrap ${
+              className={`hidden sm:inline text-[10px] md:text-[11px] font-medium tracking-tight whitespace-nowrap ${
                 isDark ? 'text-teal-200/90' : 'text-[#0E5C73]'
               }`}
             >
               Specialists in filters, fish ponds, and koi fish
             </span>
 
-            {/* Compact Clean Tagline for Small Mobile Screens */}
+            {/* Clear & Bigger Tagline for Mobile */}
             <span
-              className={`sm:hidden text-[8px] xs:text-[8.5px] font-medium tracking-tight whitespace-nowrap truncate max-w-[130px] xs:max-w-[170px] ${
+              className={`sm:hidden text-[9px] xs:text-[9.5px] font-medium tracking-tight whitespace-nowrap ${
                 isDark ? 'text-teal-200/90' : 'text-[#0E5C73]'
               }`}
             >
-              Filters, Fish Ponds & Koi
+              Specialists in filters, ponds & koi
             </span>
 
-            {/* Smaller 'Since 2021' Badge directly beside tagline */}
+            {/* 'Since 2021' Badge beside tagline */}
             <span
-              className={`text-[6.5px] sm:text-[7.5px] font-mono tracking-wider uppercase font-bold px-1 py-0.5 rounded leading-none shrink-0 opacity-85 ${
+              className={`text-[7px] sm:text-[7.5px] md:text-[8px] font-mono tracking-wider uppercase font-bold px-1 py-0.5 rounded leading-none shrink-0 opacity-90 ${
                 isDark
                   ? 'bg-teal-950/90 text-[#FF6E40] border border-teal-500/30'
                   : 'bg-teal-100 text-[#FF5722] border border-teal-300'
