@@ -49,10 +49,10 @@ export default function About({ onBackToHome }: AboutProps) {
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>{t.about.backBtn}</span>
+              <span>{t?.about?.backBtn || 'Kembali ke Beranda'}</span>
             </button>
             <span className="text-xs font-mono tracking-widest text-[#FBBF24] uppercase font-bold bg-black/30 px-3 py-1 rounded-md border border-amber-400/20">
-              {t.about.badge}
+              {t?.about?.badge || 'Tentang Kami'}
             </span>
           </div>
         </div>
@@ -69,10 +69,10 @@ export default function About({ onBackToHome }: AboutProps) {
               className="space-y-2 text-center"
             >
               <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-                {t.about.badge}
+                {t?.about?.badge || 'Tentang Kami'}
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
-                {t.about.title}
+                {t?.about?.title || 'Profil & Sejarah KOI POND SERVICES BALI'}
               </h2>
               <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
             </motion.div>
@@ -125,9 +125,9 @@ export default function About({ onBackToHome }: AboutProps) {
                   <div className="p-2.5 w-fit rounded-lg bg-teal-950 text-teal-300 border border-teal-500/30">
                     <Waves className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h4 className="font-bold text-base text-white">1. {t.about.specPlumbing}</h4>
+                  <h4 className="font-bold text-base text-white">1. {t?.about?.specPlumbing || 'Plumbing & Sirkulasi Vortex'}</h4>
                   <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed font-normal">
-                    {t.about.specPlumbingDesc}
+                    {t?.about?.specPlumbingDesc || ''}
                   </p>
                 </div>
 
@@ -135,9 +135,9 @@ export default function About({ onBackToHome }: AboutProps) {
                   <div className="p-2.5 w-fit rounded-lg bg-amber-950/60 text-[#FBBF24] border border-amber-500/30">
                     <Zap className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h4 className="font-bold text-base text-white">2. {t.about.specElectrical}</h4>
+                  <h4 className="font-bold text-base text-white">2. {t?.about?.specElectrical || 'Kelistrikan Outdoor Aman & Hemat'}</h4>
                   <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed font-normal">
-                    {t.about.specElectricalDesc}
+                    {t?.about?.specElectricalDesc || ''}
                   </p>
                 </div>
 
@@ -145,9 +145,9 @@ export default function About({ onBackToHome }: AboutProps) {
                   <div className="p-2.5 w-fit rounded-lg bg-emerald-950/60 text-[#10B981] border border-emerald-500/30">
                     <Wrench className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h4 className="font-bold text-base text-white">3. {t.about.specConcrete}</h4>
+                  <h4 className="font-bold text-base text-white">3. {t?.about?.specConcrete || 'Konstruksi Beton Kedap Air'}</h4>
                   <p className="text-xs sm:text-sm text-teal-100/75 leading-relaxed font-normal">
-                    {t.about.specConcreteDesc}
+                    {t?.about?.specConcreteDesc || ''}
                   </p>
                 </div>
               </div>
@@ -157,7 +157,7 @@ export default function About({ onBackToHome }: AboutProps) {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-white font-bold text-sm sm:text-base uppercase tracking-wider">
                     <BookOpen className="w-4 h-4 text-[#FF6E40]" />
-                    <span>{t.about.historyTitle}</span>
+                    <span>{t?.about?.historyTitle || 'Dedikasi & Standar Mutu'}</span>
                   </div>
                   <p className="text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal">
                     {historyText}

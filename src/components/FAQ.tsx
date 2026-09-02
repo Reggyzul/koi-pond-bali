@@ -17,7 +17,7 @@ export default function FAQ() {
   const categories = ['All', 'General', 'Process', 'Pricing', 'Materials', 'Warranty'];
 
   const getCategoryLabel = (cat: string) => {
-    if (cat === 'All') return t.faq.allCategories;
+    if (cat === 'All') return t?.faq?.allCategories || 'Semua';
     if (language === 'id') {
       switch (cat) {
         case 'General': return 'Umum';
@@ -31,7 +31,9 @@ export default function FAQ() {
     return cat;
   };
 
-  const filteredFaqs = faqData.filter((faq) => {
+  const listFaqs = faqData || [];
+
+  const filteredFaqs = listFaqs.filter((faq) => {
     const matchesCategory = activeCategory === 'All' || faq.category === activeCategory;
     const matchesSearch =
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -56,13 +58,13 @@ export default function FAQ() {
           className="text-center space-y-2 mb-10 sm:mb-14"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-            {t.faq.badge}
+            {t?.faq?.badge || 'FAQ & Panduan'}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            {t.faq.title}
+            {t?.faq?.title || 'Pertanyaan yang Sering Diajukan'}
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-            {t.faq.subtitle}
+            {t?.faq?.subtitle || ''}
           </p>
           <div className="h-1 w-16 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
@@ -98,64 +100,60 @@ export default function FAQ() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3.5 py-2 bg-[#04242E]/70 backdrop-blur-md border border-teal-500/30 rounded-full text-xs sm:text-sm text-white placeholder-teal-300/50 focus:outline-none focus:ring-2 focus:ring-[#FF6E40]"
-              placeholder={t.faq.searchPlaceholder}
+              placeholder={t?.faq?.searchPlaceholder || 'Cari pertanyaan...'}
+              className="w-full pl-9 pr-3.5 py-1.5 rounded-full bg-[#04242E]/70 border border-teal-500/30 text-xs text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
             />
           </div>
         </div>
 
-        {/* Accordions List */}
+        {/* Accordion List */}
         <div className="space-y-3">
-          <AnimatePresence mode="popLayout">
-            {filteredFaqs.length > 0 ? (
-              filteredFaqs.map((faq) => {
-                const isOpen = openId === faq.id;
-                return (
-                  <motion.div
-                    id={`faq-item-${faq.id}`}
-                    key={faq.id}
-                    layout
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="border border-teal-500/20 rounded-xl overflow-hidden glass-aquatic-card shadow-sm"
+          {filteredFaqs.length > 0 ? (
+            filteredFaqs.map((faq) => {
+              const isOpen = openId === faq.id;
+              return (
+                <div
+                  key={faq.id}
+                  className="rounded-2xl border border-teal-500/20 glass-aquatic-card overflow-hidden transition-all duration-200"
+                >
+                  <button
+                    id={`faq-toggle-${faq.id}`}
+                    onClick={() => toggleFaq(faq.id)}
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3 text-white font-bold text-sm sm:text-base hover:text-[#FF6E40] transition-colors cursor-pointer"
                   >
-                    <button
-                      id={`faq-toggle-btn-${faq.id}`}
-                      onClick={() => toggleFaq(faq.id)}
-                      className="w-full flex items-center justify-between p-4 sm:p-5 text-left font-bold text-sm sm:text-base text-white hover:text-[#FF6E40] transition-colors cursor-pointer"
-                    >
-                      <span className="pr-3 leading-snug">{faq.question}</span>
-                      <span className="p-1.5 rounded-lg bg-teal-950/60 text-teal-300 shrink-0 border border-teal-500/30">
-                        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                      </span>
-                    </button>
+                    <span className="flex items-center gap-2.5">
+                      <HelpCircle className="w-4 h-4 text-teal-400 shrink-0" />
+                      <span>{faq.question}</span>
+                    </span>
+                    <div className="p-1 rounded-full bg-teal-900/50 text-teal-300 shrink-0">
+                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    </div>
+                  </button>
 
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          id={`faq-content-${faq.id}`}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.25, ease: 'easeInOut' }}
-                        >
-                          <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-teal-100/85 leading-relaxed border-t border-teal-500/20 bg-[#04242E]/60">
-                            {faq.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })
-            ) : (
-              <div className="text-center py-8 bg-[#04242E]/60 border border-dashed border-teal-500/30 rounded-xl space-y-1.5">
-                <HelpCircle className="w-6 h-6 text-[#FF6E40] mx-auto" />
-                <p className="text-sm font-bold text-white">{t.faq.noResults}</p>
-              </div>
-            )}
-          </AnimatePresence>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-answer-${faq.id}`}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="border-t border-teal-500/15 bg-[#04242E]/40"
+                      >
+                        <div className="p-4 sm:p-5 pt-3 text-xs sm:text-sm text-teal-100/85 leading-relaxed font-normal">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })
+          ) : (
+            <div className="text-center py-10 text-teal-300/70 text-xs sm:text-sm">
+              Tidak ada pertanyaan yang sesuai dengan pencarian Anda.
+            </div>
+          )}
         </div>
 
       </div>

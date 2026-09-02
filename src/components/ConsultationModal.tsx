@@ -76,26 +76,28 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
     onClose();
   };
 
-  const categories = language === 'id' ? [
-    { value: 'Pembuatan Kolam Koi', label: 'Pembuatan Kolam Koi Baru' },
-    { value: 'Renovasi / Perbaikan Kolam', label: 'Renovasi / Perbaikan Kolam Bocor' },
-    { value: 'Perawatan & Kuras Kolam', label: 'Perawatan & Kuras Kolam Berkala' },
-    { value: 'Perawatan Ikan Koi', label: 'Perawatan & Pengobatan Ikan Koi' },
-    { value: 'Pembuatan / Perawatan Filter', label: 'Pembuatan / Perawatan Filter' },
-    { value: 'Jual / Beli Ikan Koi', label: 'Jual / Beli Ikan Koi' }
+  const categories = language === 'en' ? [
+    { value: 'Koi Pond Construction', label: 'Koi Pond Construction' },
+    { value: 'Pond Renovation & Repairs', label: 'Pond Renovation & Repairs' },
+    { value: 'Pond Maintenance & Cleaning', label: 'Pond Maintenance & Cleaning' },
+    { value: 'Koi Health & Disease Treatment', label: 'Koi Health & Disease Treatment' },
+    { value: 'Filter Systems & Pumps', label: 'Filter Systems & Pumps' },
+    { value: 'Certified Koi Fish Sales', label: 'Certified Koi Fish Sales' },
+    { value: 'Electrical & Structural Repair', label: 'Electrical & Structural Repair' }
   ] : [
-    { value: 'Koi Pond Construction', label: 'New Koi Pond Construction' },
-    { value: 'Pond Renovation & Leak Repair', label: 'Pond Renovation & Leak Repair' },
-    { value: 'Routine Pond Maintenance', label: 'Routine Cleaning & Water Care' },
-    { value: 'Koi Fish Care', label: 'Koi Fish Health & Medical Care' },
-    { value: 'Filtration & Plumbing', label: 'Filter Chamber Build & Servicing' },
-    { value: 'Koi Fish Supply', label: 'Koi Fish Sourcing & Supply' }
+    { value: 'Pembuatan Kolam Koi', label: 'Pembuatan Kolam Koi' },
+    { value: 'Renovasi / Perbaikan Kolam', label: 'Renovasi / Perbaikan Kolam' },
+    { value: 'Perawatan Kolam', label: 'Perawatan Kolam' },
+    { value: 'Perawatan Ikan Koi', label: 'Perawatan Ikan Koi' },
+    { value: 'Pembuatan / Perawatan Filter', label: 'Pembuatan / Perawatan Filter' },
+    { value: 'Jual / Beli Ikan Koi', label: 'Jual / Beli Ikan Koi' },
+    { value: 'Perbaikan Listrik & Konstruksi Kolam', label: 'Perbaikan Listrik & Konstruksi Kolam' }
   ];
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div id="consultation-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             id="modal-backdrop"
@@ -136,7 +138,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     </div>
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold text-white">
-                        {t.consultationModal.title}
+                        {t?.consultationModal?.title || 'Konsultasi & Penawaran Gratis'}
                       </h3>
                       <p className="text-xs text-teal-200/80 font-medium">
                         KOI POND SERVICES BALI
@@ -148,7 +150,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          {t.consultationModal.labelName}
+                          {t?.consultationModal?.labelName || 'Nama Lengkap *'}
                         </label>
                         <input
                           id="modal-input-name"
@@ -162,7 +164,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          {t.consultationModal.labelPhone}
+                          {t?.consultationModal?.labelPhone || 'Nomor WhatsApp *'}
                         </label>
                         <input
                           id="modal-input-phone"
@@ -179,7 +181,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          {t.consultationModal.labelService}
+                          {t?.consultationModal?.labelService || 'Pilihan Layanan *'}
                         </label>
                         <select
                           id="modal-select-category"
@@ -196,7 +198,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                          {t.consultationModal.labelLocation}
+                          {t?.consultationModal?.labelLocation || 'Lokasi di Bali *'}
                         </label>
                         <input
                           id="modal-input-location"
@@ -212,7 +214,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                        {t.consultationModal.labelBudget}
+                        {t?.consultationModal?.labelBudget || 'Estimasi Anggaran'}
                       </label>
                       <select
                         id="modal-select-budget"
@@ -220,17 +222,17 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/80 border border-teal-500/30 text-white text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
                       >
-                        <option value={t.consultationModal.budgetFlexible} className="bg-[#062C38]">{t.consultationModal.budgetFlexible}</option>
-                        <option value={t.consultationModal.budgetUnder10m} className="bg-[#062C38]">{t.consultationModal.budgetUnder10m}</option>
-                        <option value={t.consultationModal.budget10m25m} className="bg-[#062C38]">{t.consultationModal.budget10m25m}</option>
-                        <option value={t.consultationModal.budget25m50m} className="bg-[#062C38]">{t.consultationModal.budget25m50m}</option>
-                        <option value={t.consultationModal.budgetAbove50m} className="bg-[#062C38]">{t.consultationModal.budgetAbove50m}</option>
+                        <option value={t?.consultationModal?.budgetFlexible || 'Bisa Disesuaikan (Fleksibel)'} className="bg-[#062C38]">{t?.consultationModal?.budgetFlexible || 'Bisa Disesuaikan (Fleksibel)'}</option>
+                        <option value={t?.consultationModal?.budgetUnder10m || 'Di bawah Rp 10 Juta'} className="bg-[#062C38]">{t?.consultationModal?.budgetUnder10m || 'Di bawah Rp 10 Juta'}</option>
+                        <option value={t?.consultationModal?.budget10m25m || 'Rp 10 Juta - Rp 25 Juta'} className="bg-[#062C38]">{t?.consultationModal?.budget10m25m || 'Rp 10 Juta - Rp 25 Juta'}</option>
+                        <option value={t?.consultationModal?.budget25m50m || 'Rp 25 Juta - Rp 50 Juta'} className="bg-[#062C38]">{t?.consultationModal?.budget25m50m || 'Rp 25 Juta - Rp 50 Juta'}</option>
+                        <option value={t?.consultationModal?.budgetAbove50m || 'Di atas Rp 50 Juta'} className="bg-[#062C38]">{t?.consultationModal?.budgetAbove50m || 'Di atas Rp 50 Juta'}</option>
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                        {t.consultationModal.labelMessage}
+                        {t?.consultationModal?.labelMessage || 'Keterangan Tambahan'}
                       </label>
                       <textarea
                         id="modal-input-message"
@@ -244,7 +246,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
 
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100 mb-1">
-                        {t.consultationModal.labelTargetWa}
+                        {t?.consultationModal?.labelTargetWa || 'Pilih Kontak WhatsApp *'}
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <label className={`flex items-center gap-2 p-2.5 rounded-lg border cursor-pointer transition-all ${formData.targetNumber === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
@@ -288,12 +290,12 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                       {isSubmitting ? (
                         <>
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>{t.consultationModal.submitting}</span>
+                          <span>{t?.consultationModal?.submitting || 'Menghubungkan...'}</span>
                         </>
                       ) : (
                         <>
                           <MessageCircle className="w-4 h-4" />
-                          <span>{t.consultationModal.submitBtn}</span>
+                          <span>{t?.consultationModal?.submitBtn || 'Konsultasi WhatsApp Sekarang'}</span>
                         </>
                       )}
                     </button>
@@ -311,10 +313,10 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                   </div>
                   <div className="space-y-1">
                     <h4 className="text-lg font-bold text-white">
-                      {t.consultationModal.successTitle}
+                      {t?.consultationModal?.successTitle || 'Permintaan Diterima!'}
                     </h4>
                     <p className="text-xs text-teal-200/80 leading-relaxed max-w-xs mx-auto">
-                      {t.consultationModal.successDesc}
+                      {t?.consultationModal?.successDesc || 'Anda akan segera diarahkan ke WhatsApp admin kami untuk konfirmasi jadwal survei.'}
                     </p>
                   </div>
                   <button
@@ -322,7 +324,7 @@ export default function ConsultationModal({ isOpen, onClose, prefillMessage = ''
                     onClick={handleReset}
                     className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                   >
-                    {t.consultationModal.closeBtn}
+                    {t?.consultationModal?.closeBtn || 'Tutup'}
                   </button>
                 </motion.div>
               )}

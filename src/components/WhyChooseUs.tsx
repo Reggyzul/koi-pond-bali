@@ -23,6 +23,8 @@ export default function WhyChooseUs() {
     return <IconComponent className="w-5 h-5 stroke-[2]" />;
   };
 
+  const listData = whyChooseUsData || [];
+
   return (
     <section id="why-choose-us" className="py-16 md:py-20 glass-aquatic-section text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -36,20 +38,20 @@ export default function WhyChooseUs() {
           className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2"
         >
           <span className="text-xs font-bold tracking-widest uppercase text-[#FBBF24] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-amber-400/25 inline-block shadow-xs">
-            {t.whyChooseUs.badge}
+            {t?.whyChooseUs?.badge || 'Keunggulan Kami'}
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-            {t.whyChooseUs.title}
+            {t?.whyChooseUs?.title || 'Mengapa Memilih KOI POND SERVICES BALI?'}
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-            {t.whyChooseUs.subtitle}
+            {t?.whyChooseUs?.subtitle || ''}
           </p>
           <div className="w-16 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
         </motion.div>
 
         {/* Why Choose Us Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {whyChooseUsData.map((item, idx) => (
+          {listData.map((item, idx) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 25 }}

@@ -46,8 +46,8 @@ export default function Hero({ onOpenConsultation, onOpenWhatsAppChoice }: HeroP
                 </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#04242E]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-teal-100 font-medium bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/10">
-                  <span>{t.hero.crystalWater}</span>
-                  <span className="text-[#FF6E40] font-bold">{t.hero.est}</span>
+                  <span>{t?.hero?.crystalWater || 'Kejernihan Air Terjaga'}</span>
+                  <span className="text-[#FF6E40] font-bold">{t?.hero?.est || 'Est. 2021'}</span>
                 </div>
               </div>
             </div>
@@ -63,28 +63,28 @@ export default function Hero({ onOpenConsultation, onOpenWhatsAppChoice }: HeroP
             {/* Tag Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal-900/50 backdrop-blur-md border border-teal-400/30 text-teal-200 text-xs font-semibold shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-[#FF6E40]" />
-              <span>{t.hero.badge}</span>
+              <span>{t?.hero?.badge || 'Spesialis Kolam Koi Bali'}</span>
             </div>
 
             {/* Headline */}
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[36px] font-bold text-white leading-[1.25] tracking-tight">
-              {t.hero.title}
+              {t?.hero?.title || 'Jasa Pembuatan, Perbaikan & Perawatan Kolam Koi Profesional di Bali'}
             </h1>
 
             {/* Description */}
             <p className="text-teal-100/90 text-sm sm:text-[15px] font-normal leading-relaxed max-w-xl">
-              {t.hero.desc}
+              {t?.hero?.desc || 'Spesialis sistem filtrasi chamber vortex, kuras kolam, pengobatan koi sakit, perbaikan kebocoran serta instalasi kelistrikan & plumbing kolam di seluruh Bali.'}
             </p>
 
             {/* Trust Highlights */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1 text-xs font-medium text-teal-100">
               <span className="flex items-center gap-1.5 bg-[#04242E]/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-teal-500/25">
                 <ShieldCheck className="w-4 h-4 text-[#059669]" />
-                {t.hero.guarantee}
+                {t?.hero?.guarantee || 'Garansi 100%'}
               </span>
               <span className="flex items-center gap-1.5 bg-[#04242E]/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-teal-500/25">
                 <Sparkles className="w-4 h-4 text-[#FBBF24]" />
-                {t.hero.freeSurvey}
+                {t?.hero?.freeSurvey || 'Konsultasi & Survei Gratis'}
               </span>
             </div>
 
@@ -96,7 +96,7 @@ export default function Hero({ onOpenConsultation, onOpenWhatsAppChoice }: HeroP
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 btn-koi-flame text-white rounded-full font-bold text-sm shadow-xl transition-all cursor-pointer active:scale-95"
               >
                 <MessageCircle className="w-4 h-4 shrink-0" />
-                <span>{t.hero.whatsappCta}</span>
+                <span>{t?.hero?.whatsappCta || 'Konsultasi & Survei Gratis'}</span>
               </button>
             </div>
 

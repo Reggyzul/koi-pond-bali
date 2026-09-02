@@ -64,7 +64,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
   const contactInfo = [
     {
       icon: MapPin,
-      title: t.contact.workshopAddress,
+      title: t?.contact?.workshopAddress || 'Alamat Workshop & Display Pond',
       desc: contactData.address
     },
     {
@@ -92,8 +92,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
     },
     {
       icon: Clock,
-      title: t.contact.operatingHours,
-      desc: t.contact.hoursDetail
+      title: t?.contact?.operatingHours || 'Jam Operasional & Survei',
+      desc: t?.contact?.hoursDetail || 'Senin - Minggu: 07:00 - 20:00 WITA (Emergency Call 24 Jam)'
     }
   ];
 
@@ -104,6 +104,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
     { value: 'Perawatan Ikan Koi', label: 'Perawatan & Pengobatan Ikan Koi' },
     { value: 'Pembuatan / Perawatan Filter', label: 'Pembuatan / Perawatan Filter' },
     { value: 'Jual / Beli Ikan Koi', label: 'Jual / Beli Ikan Koi' },
+    { value: 'Perbaikan Listrik & Konstruksi Kolam', label: 'Perbaikan Listrik & Konstruksi Kolam' },
     { value: 'Konsultasi Umum', label: 'Konsultasi Umum Lainnya' },
   ] : [
     { value: 'Koi Pond Construction', label: 'New Koi Pond Construction' },
@@ -111,7 +112,8 @@ export default function Contact({ onBackToHome }: ContactProps) {
     { value: 'Routine Pond Maintenance', label: 'Routine Cleaning & Water Care' },
     { value: 'Koi Fish Care & Healthcare', label: 'Koi Fish Health & Medical Care' },
     { value: 'Filtration & Plumbing Build', label: 'Filter Chamber Build & Servicing' },
-    { value: 'Koi Fish Supply', label: 'Koi Fish Sourcing & Supply' },
+    { value: 'Certified Koi Fish Sales', label: 'Certified Koi Fish Sales' },
+    { value: 'Electrical & Structural Repair', label: 'Electrical & Structural Repair' },
     { value: 'General Consultation', label: 'General Technical Consultation' },
   ];
 
@@ -126,10 +128,10 @@ export default function Contact({ onBackToHome }: ContactProps) {
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-2 px-4 rounded-xl border border-white/15 transition-all shadow-sm"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>{t.contact.backBtn}</span>
+              <span>{t?.contact?.backBtn || 'Kembali ke Beranda'}</span>
             </button>
             <span className="text-xs font-mono tracking-widest text-[#FBBF24] uppercase font-bold bg-black/30 px-3 py-1 rounded-md border border-amber-400/20">
-              {t.contact.badge}
+              {t?.contact?.badge || 'Kontak & Lokasi'}
             </span>
           </div>
         </div>
@@ -147,13 +149,13 @@ export default function Contact({ onBackToHome }: ContactProps) {
             className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-2"
           >
             <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] bg-[#04242E]/70 backdrop-blur-md px-4 py-1 rounded-full border border-teal-500/25 inline-block shadow-xs">
-              {t.contact.badge}
+              {t?.contact?.badge || 'Kontak & Lokasi'}
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
-              {t.contact.title}
+              {t?.contact?.title || 'Hubungi Kami & Jadwalkan Survei Gratis'}
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-teal-100/80 font-normal leading-relaxed">
-              {t.contact.subtitle}
+              {t?.contact?.subtitle || 'Konsultasikan kendala kolam koi Anda langsung dengan teknisi spesialis kami se-Bali.'}
             </p>
             <div className="w-16 h-1 bg-gradient-to-r from-[#FF5722] to-[#FF6E40] mx-auto mt-2 rounded-full" />
           </motion.div>
@@ -173,17 +175,17 @@ export default function Contact({ onBackToHome }: ContactProps) {
                 <form id="contact-form" onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-1 border-b border-teal-500/20 pb-3">
                     <h3 className="text-lg sm:text-xl font-bold text-white">
-                      {t.contact.formTitle}
+                      {t?.contact?.formTitle || 'Kirim Pesan / Permintaan Survei'}
                     </h3>
                     <p className="text-xs text-teal-100/80 font-normal">
-                      {t.contact.formDesc}
+                      {t?.contact?.formDesc || 'Isi formulir di bawah ini untuk terhubung langsung ke WhatsApp kami.'}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        {t.contact.labelName}
+                        {t?.contact?.labelName || 'Nama Lengkap *'}
                       </label>
                       <input
                         id="contact-input-name"
@@ -192,12 +194,12 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                        placeholder={t.contact.placeholderName}
+                        placeholder={t?.contact?.placeholderName || 'Nama Anda'}
                       />
                     </div>
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        {t.contact.labelPhone}
+                        {t?.contact?.labelPhone || 'Nomor WhatsApp *'}
                       </label>
                       <input
                         id="contact-input-phone"
@@ -206,7 +208,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                        placeholder={t.contact.placeholderPhone}
+                        placeholder={t?.contact?.placeholderPhone || 'Contoh: 08123456789'}
                       />
                     </div>
                   </div>
@@ -214,7 +216,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        {t.contact.labelService}
+                        {t?.contact?.labelService || 'Jenis Layanan *'}
                       </label>
                       <select
                         id="contact-select-type"
@@ -232,7 +234,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
 
                     <div className="space-y-1">
                       <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                        {t.contact.labelLocation}
+                        {t?.contact?.labelLocation || 'Lokasi di Bali *'}
                       </label>
                       <input
                         id="contact-input-location"
@@ -241,14 +243,14 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
-                        placeholder={t.contact.placeholderLocation}
+                        placeholder={t?.contact?.placeholderLocation || 'Lokasi Anda'}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1">
                     <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                      {t.contact.labelMessage}
+                      {t?.contact?.labelMessage || 'Keterangan Kebutuhan Kolam'}
                     </label>
                     <textarea
                       id="contact-input-message"
@@ -256,19 +258,20 @@ export default function Contact({ onBackToHome }: ContactProps) {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-lg bg-[#04242E]/70 border border-teal-500/30 text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] resize-none transition-all"
-                      placeholder={t.contact.placeholderMessage}
+                      placeholder={t?.contact?.placeholderMessage || 'Jelaskan kendala kolam Anda...'}
                     />
                   </div>
 
-                  <div className="space-y-1.5">
+                  {/* Target WhatsApp Choice Selection */}
+                  <div className="space-y-1.5 pt-1">
                     <label className="block text-xs font-bold uppercase tracking-wider text-teal-100">
-                      {t.contact.labelTargetWa}
+                      {t?.contact?.labelTargetWa || 'Pilih Kontak WhatsApp Admin *'}
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${formData.targetNumber === '08133034733' ? 'border-[#25D366] bg-[#063327] text-white shadow-sm' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
                         <input
                           type="radio"
-                          name="targetNumber"
+                          name="contactTargetNumber"
                           value="08133034733"
                           checked={formData.targetNumber === '08133034733'}
                           onChange={(e) => setFormData({ ...formData, targetNumber: e.target.value })}
@@ -276,14 +279,14 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         />
                         <div className="text-xs">
                           <span className="font-bold block text-white">WA 1 (08133034733)</span>
-                          <span className="text-[11px] text-teal-200/70 font-normal">{language === 'id' ? 'Konsultasi & Survei' : 'Consultation & Survey'}</span>
+                          <span className="text-[10.5px] text-teal-200/80">{language === 'id' ? 'Survei & Konsultasi Teknis' : 'Survey & Technical'}</span>
                         </div>
                       </label>
 
                       <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-all ${formData.targetNumber === '081295903430' ? 'border-[#25D366] bg-[#063327] text-white shadow-sm' : 'border-teal-500/30 bg-[#04242E]/70 text-teal-100/80 hover:border-teal-400/50'}`}>
                         <input
                           type="radio"
-                          name="targetNumber"
+                          name="contactTargetNumber"
                           value="081295903430"
                           checked={formData.targetNumber === '081295903430'}
                           onChange={(e) => setFormData({ ...formData, targetNumber: e.target.value })}
@@ -291,7 +294,7 @@ export default function Contact({ onBackToHome }: ContactProps) {
                         />
                         <div className="text-xs">
                           <span className="font-bold block text-white">WA 2 (081295903430)</span>
-                          <span className="text-[11px] text-teal-200/70 font-normal">{language === 'id' ? 'Booking & Support' : 'Booking & Support'}</span>
+                          <span className="text-[10.5px] text-teal-200/80">{language === 'id' ? 'Layanan Cepat & Booking' : 'Booking & Support'}</span>
                         </div>
                       </label>
                     </div>
@@ -301,79 +304,64 @@ export default function Contact({ onBackToHome }: ContactProps) {
                     id="contact-submit-btn"
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full mt-2 py-3 px-5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+                    className="w-full py-3.5 btn-koi-flame text-white rounded-full font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 mt-2"
                   >
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>{t.contact.submitting}</span>
+                        <span>{t?.contact?.submitting || 'Menghubungkan ke WhatsApp...'}</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>{t.contact.submitBtn}</span>
+                        <span>{t?.contact?.submitBtn || 'Kirim via WhatsApp'}</span>
                       </>
                     )}
                   </button>
                 </form>
               ) : (
-                <motion.div
-                  id="contact-success-card"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-8 px-5 space-y-4 flex flex-col items-center"
-                >
-                  <div className="p-3 bg-emerald-500/20 text-[#10B981] border border-emerald-500/30 rounded-full w-fit">
-                    <Check className="w-8 h-8 stroke-[2.5]" />
+                <div className="text-center py-10 space-y-4">
+                  <div className="w-14 h-14 bg-emerald-500/20 text-[#10B981] border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto shadow-md">
+                    <Check className="w-7 h-7 stroke-[3]" />
                   </div>
-                  <div className="space-y-1.5">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white">
-                      {t.contact.successTitle}
+                  <div className="space-y-1">
+                    <h3 className="text-xl font-bold text-white">
+                      {t?.contact?.successTitle || 'Pesan Anda Siap Dikirim!'}
                     </h3>
-                    <p className="text-xs sm:text-sm text-teal-100/80 max-w-md">
-                      {t.contact.successDesc}
+                    <p className="text-xs sm:text-sm text-teal-100/80 leading-relaxed max-w-sm mx-auto">
+                      {t?.contact?.successDesc || 'WhatsApp akan otomatis terbuka dengan format pesan lengkap.'}
                     </p>
                   </div>
                   <button
                     id="contact-reset-btn"
                     onClick={handleReset}
-                    className="px-6 py-2.5 btn-pond-teal text-white rounded-full font-bold text-xs tracking-wider uppercase transition-colors cursor-pointer"
+                    className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                   >
-                    {t.contact.resetBtn}
+                    {t?.contact?.resetBtn || 'Kirim Pesan Lain'}
                   </button>
-                </motion.div>
+                </div>
               )}
             </motion.div>
 
-            {/* Right Column: Contact info cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="lg:col-span-5 space-y-4"
-            >
-              <div className="space-y-1">
-                <span className="text-xs font-bold tracking-widest uppercase text-[#FF6E40] block">
-                  {t.contact.badge}
-                </span>
-                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                  {language === 'id' ? 'Detail Lokasi & Layanan' : 'Location & Contact Details'}
-                </h3>
-              </div>
-
-              {/* Informational Cards */}
-              <div className="grid grid-cols-1 gap-2.5">
-                {contactInfo.map((info, idx) => (
-                  <div
+            {/* Right Column: Contact Cards Grid (Span 5) */}
+            <div className="lg:col-span-5 space-y-3.5">
+              {contactInfo.map((info, idx) => {
+                const IconComponent = info.icon;
+                return (
+                  <motion.div
                     key={idx}
-                    className="flex items-center gap-3.5 p-3.5 glass-aquatic-card border border-teal-500/20 rounded-xl transition-all group"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.4, delay: idx * 0.05 }}
+                    className="p-4 rounded-xl glass-aquatic-card border border-teal-500/20 hover:border-[#FF6E40]/50 transition-all flex items-start gap-3.5 group shadow-md"
                   >
-                    <div className="p-2.5 bg-[#04242E]/80 text-teal-300 rounded-lg group-hover:bg-[#FF5722] group-hover:text-white transition-colors duration-200 shrink-0 h-fit border border-teal-500/30">
-                      <info.icon className="w-4 h-4 stroke-[2]" />
+                    <div className="p-2.5 bg-teal-900/60 rounded-xl text-[#FF6E40] border border-teal-500/30 group-hover:bg-[#FF5722] group-hover:text-white transition-colors shrink-0 mt-0.5">
+                      <IconComponent className="w-5 h-5" />
                     </div>
-                    <div>
-                      <h4 className="text-[11px] font-bold uppercase tracking-wider text-teal-200/80 mb-0.5">
+
+                    <div className="space-y-0.5 flex-1 min-w-0">
+                      <h4 className="text-xs font-bold text-teal-200/90 uppercase tracking-wider">
                         {info.title}
                       </h4>
                       {info.link ? (
@@ -381,20 +369,20 @@ export default function Contact({ onBackToHome }: ContactProps) {
                           href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs sm:text-sm text-white font-semibold hover:text-[#FF6E40] transition-colors"
+                          className="text-xs sm:text-sm font-semibold text-white hover:text-[#FF6E40] transition-colors block truncate"
                         >
                           {info.desc}
                         </a>
                       ) : (
-                        <p className="text-xs sm:text-sm text-teal-100/90 leading-relaxed font-normal">
+                        <p className="text-xs sm:text-sm text-white/90 leading-relaxed font-normal">
                           {info.desc}
                         </p>
                       )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
 
           </div>
 

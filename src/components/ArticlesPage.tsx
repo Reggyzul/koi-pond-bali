@@ -24,13 +24,15 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
     ? ['Semua', 'Perawatan Kolam', 'Renovasi Kolam', 'Filter & Plumbing']
     : ['All', 'Pond Care', 'Pond Renovation', 'Filter & Plumbing'];
 
-  const filteredArticles = articlesData.filter((art) => {
+  const allArticles = articlesData || [];
+
+  const filteredArticles = allArticles.filter((art) => {
     const isAll = activeCategory === 'Semua' || activeCategory === 'All';
     const matchesCategory = isAll || art.category === activeCategory;
     const matchesSearch =
       art.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       art.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      art.tags.some(tg => tg.toLowerCase().includes(searchQuery.toLowerCase()));
+      (art.tags || []).some(tg => tg.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 
@@ -61,10 +63,10 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
               className="text-xs sm:text-sm font-bold tracking-wide uppercase text-teal-100 hover:text-white flex items-center gap-2 group cursor-pointer bg-white/10 hover:bg-white/20 py-1.5 px-3.5 rounded-lg border border-white/15 transition-all shadow-xs active:scale-95"
             >
               <ArrowLeft className="w-4 h-4 text-[#FF6E40] group-hover:-translate-x-1 transition-transform" />
-              <span>{t.articles.backBtn}</span>
+              <span>{t?.articles?.backBtn || 'Kembali ke Beranda'}</span>
             </button>
             <span className="font-mono tracking-widest text-[#FBBF24] uppercase font-bold text-xs bg-black/25 px-3 py-1 rounded-md border border-amber-400/20">
-              {t.articles.badge}
+              {t?.articles?.badge || 'Artikel & Panduan'}
             </span>
           </div>
 
@@ -78,10 +80,10 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
               {language === 'id' ? 'Edukasi & Tips Praktisi' : 'Education & Practical Guides'}
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
-              {t.articles.title}
+              {t?.articles?.title || 'Edukasi & Tips Perawatan Kolam Koi'}
             </h1>
             <p className="text-xs sm:text-sm md:text-base text-teal-50/90 leading-relaxed font-normal max-w-3xl">
-              {t.articles.subtitle}
+              {t?.articles?.subtitle || ''}
             </p>
           </motion.div>
 
@@ -102,7 +104,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-md scale-100'
+                    ? 'bg-gradient-to-r from-[#FF5722] to-[#FF6E40] text-white shadow-md'
                     : 'bg-white/5 border border-teal-500/30 text-teal-200 hover:text-white hover:bg-white/10'
                 }`}
               >
@@ -111,28 +113,32 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
             ))}
           </div>
 
-          {/* Search Box */}
+          {/* Search Input */}
           <div className="relative w-full md:w-72">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-teal-400" />
             <input
-              id="articles-page-search-input"
+              id="all-articles-search-input"
               type="text"
-              placeholder={language === 'id' ? 'Cari judul panduan...' : 'Search articles...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-[#04242E]/80 border border-teal-500/30 rounded-full text-xs text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40] transition-all"
+              placeholder={language === 'id' ? 'Cari judul tips & panduan...' : 'Search articles & guides...'}
+              className="w-full pl-9 pr-4 py-2 bg-white/5 border border-teal-500/30 rounded-full text-xs sm:text-sm text-white placeholder-teal-300/40 focus:outline-none focus:ring-2 focus:ring-[#FF6E40]"
             />
-            <Search className="w-4 h-4 text-teal-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-          {filteredArticles.map((article) => (
-            <article
-              id={`all-article-card-${article.id}`}
+          {filteredArticles.map((article, idx) => (
+            <motion.article
+              id={`page-article-${article.id}`}
               key={article.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              whileHover={{ y: -5 }}
               onClick={() => setSelectedArticle(article)}
-              className="glass-aquatic-card rounded-2xl overflow-hidden border border-teal-500/20 hover:border-[#FF6E40]/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer shadow-lg hover:-translate-y-1"
+              className="glass-aquatic-card rounded-2xl overflow-hidden border border-teal-500/20 hover:border-[#FF6E40]/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer shadow-lg"
             >
               {/* Image Banner */}
               <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-950">
@@ -173,11 +179,11 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                 </div>
 
                 <div className="pt-3.5 border-t border-teal-500/20 flex items-center justify-between text-xs font-bold tracking-wider uppercase text-teal-200 group-hover:text-[#FF6E40] transition-colors">
-                  <span>{t.articles.readMore}</span>
+                  <span>{t?.articles?.readMore || 'Baca Selengkapnya'}</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#FF6E40] group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
@@ -212,7 +218,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                     id="page-modal-share-article-btn"
                     onClick={() => handleShare(selectedArticle)}
                     className="p-2 text-teal-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10 cursor-pointer"
-                    title={t.articles.shareArticle}
+                    title={t?.articles?.shareArticle || 'Bagikan Artikel'}
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
@@ -263,7 +269,7 @@ export default function ArticlesPage({ onBackToHome }: ArticlesPageProps) {
                 </div>
 
                 <div className="space-y-3.5 text-sm text-teal-50/90 leading-relaxed font-normal">
-                  {selectedArticle.content.map((paragraph, i) => (
+                  {(selectedArticle.content || []).map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
                 </div>
